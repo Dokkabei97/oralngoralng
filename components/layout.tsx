@@ -1,11 +1,13 @@
 import type {NextPage} from 'next'
 import Header from "./header";
+import Footer from "./footer";
 
 const Layout = ({children}) => {
     return (
         <>
             <Header/>
-            {children}
+            <main>{children}</main>
+            <Footer/>
         </>
     );
 };
