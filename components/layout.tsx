@@ -2,13 +2,16 @@ import type {NextPage} from 'next'
 import Header from "./header";
 import Footer from "./footer";
 import SearchBar from "./searchbar";
+import {Container} from "@mui/material";
 
 const Layout = ({children}) => {
     return (
         <>
             <Header/>
-            <SearchBar/>
-            <main>{children}</main>
+            <main>
+                <SearchBar/>
+                {children}
+            </main>
             <Footer/>
         </>
     );
