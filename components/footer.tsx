@@ -9,5 +9,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-//  test
