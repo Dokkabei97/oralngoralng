@@ -69,3 +69,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# h2db
+
+test.mv.db
+test.trace.db
