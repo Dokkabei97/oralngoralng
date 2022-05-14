@@ -82,14 +82,14 @@ create table products
     product_id    bigint auto_increment primary key comment 'id',
     product_token varchar(255) not null comment 'product_token',
     price         int          not null comment '상품 금액',
-    duration      varchar      not null comment '상품 기간',
+    duration      varchar(30)  not null comment '상품 기간',
     created_at    datetime     not null comment '생성 일시',
     updated_at    datetime     not null comment '수정 일시'
 ) comment 'products' charset = utf8mb4;
 
 create index products_idx01 on products (product_id);
-create index products_idx01 on products (product_token);
-create index products_idx01 on products (created_at);
+create index products_idx02 on products (product_token);
+create index products_idx03 on products (created_at);
 
 create table memberships
 (
@@ -104,15 +104,15 @@ create index memberships_idx02 on memberships (name);
 create table tour_reviews
 (
     tour_review_id    bigint auto_increment primary key comment 'id',
-    tour_review_token varchar(255) not null comment 'tour_review_token',
-    user_id           bigint       not null comment '리뷰 작성한 유저',
-    title varchar(50) not null comment '리뷰 제목',
-    description   varchar(2000) not null comment '리뷰 내용',
-    image_name varchar(2000) null comment '사진 이름',
-    likes_count int null comment '좋아요 수',
-    hits_count int null comment '조회 수',
-    created_at    datetime     not null comment '생성 일시',
-    updated_at    datetime     not null comment '수정 일시'
+    tour_review_token varchar(255)  not null comment 'tour_review_token',
+    user_id           bigint        not null comment '리뷰 작성한 유저',
+    title             varchar(50)   not null comment '리뷰 제목',
+    description       varchar(2000) not null comment '리뷰 내용',
+    image_name        varchar(2000) null comment '사진 이름',
+    likes_count       int           null comment '좋아요 수',
+    hits_count        int           null comment '조회 수',
+    created_at        datetime      not null comment '생성 일시',
+    updated_at        datetime      not null comment '수정 일시'
 ) comment 'tour_reviews' charset = utf8mb4;
 
 create index tour_reviews_idx01 on tour_reviews (tour_review_id);
