@@ -12,13 +12,19 @@ const CustomTextField = styled((props: TextFieldProps) => (
     />
     ))(({ theme}) => ({
     '& .MuiFilledInput-root': {
+        '&:hover': {
+            backgroundColor: 'white',
+        },
         borderRadius: 4,
         backgroundColor: 'white',
     },
-    '& .MuiInputBase-root': {
+    '& .MuiInputBase-root.Mui-focused': {
         backgroundColor: 'white',
     },
-    '& .MuiInputBase-formControl': {
+    '& .MuiInputBase-formControl.Mui-focused': {
+        backgroundColor: 'white',
+    },
+    '& .MuiFormControl-root.Mui-focused': {
         backgroundColor: 'white',
     }
 }));
