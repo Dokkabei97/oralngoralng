@@ -4,7 +4,6 @@ import com.t4er.oralng.common.entity.AbstractEntity
 import com.t4er.oralng.common.utils.TokenGenerator
 import javax.persistence.*
 
-// TODO: 2022-05-15 UserToken 정의
 @Entity
 @Table(name = "users")
 class User(
@@ -35,7 +34,7 @@ class User(
         ADMIN("관리자")
     }
     companion object {
-        const val USER_PREFIX = "usr_"
+        private const val USER_PREFIX = "usr_"
         fun of(nickname: String, email: String): User {
             return User(null, TokenGenerator.randomCharacterWithPrefix(USER_PREFIX), nickname, email, Status.COMMON)
         }
