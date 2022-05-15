@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.6.7
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - "MARIADB_DATABASE=ORALNG"
+      - "MARIADB_ROOT_PASSWORD=root"
+      - "TZ=Asia/Seoul"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
