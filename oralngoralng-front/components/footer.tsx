@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
 
 const Footer = () => {
-    const [lang, setLang] = React.useState('');
+    const [lang, setLang] = React.useState('1');
 
     const handleChange = (event: SelectChangeEvent) => {
         setLang(event.target.value as string);
