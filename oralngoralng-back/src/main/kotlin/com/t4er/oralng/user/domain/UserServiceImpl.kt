@@ -13,4 +13,20 @@ class UserServiceImpl(val userReader: UserReader, val userStore: UserStore): Use
         val user = userStore.store(toEntity)
         return UserInfo(user)
     }
+
+    override fun updateUser(command: UserCommand.UpdateUserRequest): UserInfo {
+        val user = userReader.getUser(command.userToken)
+        user.update(command.nickname, command.status)
+        return UserInfo(user)
+    }
+
+    override fun deleteUser(command: UserCommand.DeleteUserRequest) {
+        val user = userReader.getUser(command.userToken)
+        user.id?.let { userStore.delete(it) }
+    }
+
+    override fun getUser(command: UserCommand.GetUserRequest): UserInfo {
+        val user = userReader.getUser(command.userToken)
+        return UserInfo(user)
+    }
 }

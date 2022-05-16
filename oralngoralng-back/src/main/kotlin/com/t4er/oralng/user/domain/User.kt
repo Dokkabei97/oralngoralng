@@ -39,4 +39,9 @@ class User(
             return User(null, TokenGenerator.randomCharacterWithPrefix(USER_PREFIX), nickname, email, Status.COMMON)
         }
     }
+
+    fun update(nickname: String, status: Status) {
+        nickname.let { this.nickname = it }
+        status.let { this.status = it }
+    }
 }
