@@ -14,12 +14,14 @@ class UserServiceImpl(val userReader: UserReader, val userStore: UserStore): Use
         return UserInfo(user)
     }
 
+    @Transactional
     override fun updateUser(command: UserCommand.UpdateUserRequest): UserInfo {
         val user = userReader.getUser(command.userToken)
         user.update(command.nickname, command.status)
         return UserInfo(user)
     }
 
+    @Transactional
     override fun deleteUser(command: UserCommand.DeleteUserRequest) {
         val user = userReader.getUser(command.userToken)
         user.id?.let { userStore.delete(it) }
