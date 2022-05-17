@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank
 
 class UserDto {
 
-    data class CreateUserDto(
+    data class CreateUserRequest(
         @NotBlank(message = "닉네임은 필수입니다.")
         var nickname: String,
         @Email(message = "이메일 형식과 다릅니다.")
@@ -18,4 +18,9 @@ class UserDto {
             }
         }
     }
+
+    data class CreateUserResponse(
+        var nickname: String,
+        var email: String
+    )
 }
