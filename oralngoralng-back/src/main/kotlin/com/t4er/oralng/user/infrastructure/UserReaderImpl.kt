@@ -12,8 +12,4 @@ class UserReaderImpl(val userRepository: UserRepository): UserReader {
             .orElseThrow()
         // TODO: 2022-05-15 orElseThrow 정의
     }
-
-    override fun getUser(userToken: String): User {
-        return userRepository.findByUserToken(userToken)
-    }
 }

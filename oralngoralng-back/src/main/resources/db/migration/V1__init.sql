@@ -1,7 +1,6 @@
 create table users
 (
     user_id    bigint auto_increment primary key comment 'id',
-    user_token varchar(255) not null comment 'user_token',
     nickname   varchar(12)  not null comment '닉네임',
     email      varchar(50)  not null comment '이메일',
     status     varchar(10)  not null comment '상태',
@@ -10,9 +9,8 @@ create table users
 ) comment 'users' charset = utf8mb4;
 
 create index users_idx01 on users (user_id);
-create index users_idx02 on users (user_token);
-create index users_idx03 on users (created_at);
-create index users_idx04 on users (updated_at);
+create index users_idx02 on users (created_at);
+create index users_idx03 on users (updated_at);
 
 create table cards
 (
@@ -80,7 +78,6 @@ create index refunds_idx04 on refunds (created_at);
 create table products
 (
     product_id    bigint auto_increment primary key comment 'id',
-    product_token varchar(255) not null comment 'product_token',
     price         int          not null comment '상품 금액',
     duration      varchar(30)  not null comment '상품 기간',
     created_at    datetime     not null comment '생성 일시',
@@ -88,8 +85,7 @@ create table products
 ) comment 'products' charset = utf8mb4;
 
 create index products_idx01 on products (product_id);
-create index products_idx02 on products (product_token);
-create index products_idx03 on products (created_at);
+create index products_idx02 on products (created_at);
 
 create table memberships
 (
@@ -104,7 +100,6 @@ create index memberships_idx02 on memberships (name);
 create table tour_reviews
 (
     tour_review_id    bigint auto_increment primary key comment 'id',
-    tour_review_token varchar(255)  not null comment 'tour_review_token',
     user_id           bigint        not null comment '리뷰 작성한 유저',
     title             varchar(50)   not null comment '리뷰 제목',
     description       varchar(2000) not null comment '리뷰 내용',

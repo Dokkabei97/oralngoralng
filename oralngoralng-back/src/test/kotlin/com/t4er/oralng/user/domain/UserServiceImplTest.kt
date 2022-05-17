@@ -22,7 +22,7 @@ class UserServiceImplTest(@Autowired val userService: UserService) {
         val user = userService.createUser(command)
 
         // then
-        assertThat(user.userToken).startsWith("usr_")
+
         assertThat(user.nickname).isEqualTo("닉네임")
         assertThat(user.email).isEqualTo("이메일")
         assertThat(user.status).isEqualTo(User.Status.COMMON)
@@ -34,7 +34,7 @@ class UserServiceImplTest(@Autowired val userService: UserService) {
         // given
         val command: UserCommand.RegisterUserRequest = UserCommand.RegisterUserRequest("닉네임", "이메일")
         val user = userService.createUser(command)
-        val updateCommand = UserCommand.UpdateUserRequest(user.userToken, "테스트", User.Status.MEMBERSHIP1)
+        val updateCommand = UserCommand.UpdateUserRequest(1L, "테스트", User.Status.MEMBERSHIP1)
 
         // when
         val updateUser = userService.updateUser(updateCommand)
@@ -55,10 +55,10 @@ class UserServiceImplTest(@Autowired val userService: UserService) {
         val user = userService.createUser(command)
 
         // when
-        val get = userService.getUser(command = UserCommand.GetUserRequest(user.userToken))
+        val get = userService.getUser(command = UserCommand.GetUserRequest(2L))
 
         // then
-        assertThat(get.userToken).startsWith("usr_")
+
         assertThat(get.nickname).isEqualTo("닉네임")
         assertThat(get.email).isEqualTo("이메일")
         assertThat(get.status).isEqualTo(User.Status.COMMON)

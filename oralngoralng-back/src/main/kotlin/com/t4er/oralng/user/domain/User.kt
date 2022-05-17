@@ -13,9 +13,6 @@ class User(
     @Column(name = "user_id")
     var id: Long?,
 
-    @Column(name = "user_token", nullable = false, updatable = false)
-    var userToken: String,
-
     @Column(name = "nickname", nullable =  false)
     var nickname: String,
 
@@ -36,7 +33,7 @@ class User(
     companion object {
         private const val USER_PREFIX = "usr_"
         fun of(nickname: String, email: String): User {
-            return User(null, TokenGenerator.randomCharacterWithPrefix(USER_PREFIX), nickname, email, Status.COMMON)
+            return User(null, nickname, email, Status.COMMON)
         }
     }
 

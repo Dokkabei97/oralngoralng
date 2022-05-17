@@ -1,13 +1,14 @@
 package com.t4er.oralng.user.domain
 
 import com.t4er.oralng.user.infrastructure.UserRepository
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.data.repository.findByIdOrNull
 
 @SpringBootTest
 class UserTest {
@@ -15,6 +16,11 @@ class UserTest {
 
     @Autowired
     private lateinit var userRepository: UserRepository
+
+    @AfterEach
+    fun after() {
+        userRepository.deleteAll()
+    }
 
     @DisplayName("유저 생성")
     @Test
@@ -24,7 +30,6 @@ class UserTest {
         // when
         val saveUser = userRepository.save(user)
         // then
-        assertThat(saveUser.userToken).startsWith("usr_")
         assertThat(saveUser.nickname).isEqualTo("닉네임")
         assertThat(saveUser.email).isEqualTo("test@test.com")
         assertThat(saveUser.status).isEqualTo(User.Status.COMMON)
@@ -58,7 +63,7 @@ class UserTest {
         userRepository.flush()
 
         // then
-        val findById = userRepository.findById(1L)
+        val findById = saveUser.id?.let { userRepository.findById(it) }
         assertThat(findById).isEmpty
     }
 
@@ -70,17 +75,12 @@ class UserTest {
         val saveUser = userRepository.save(user)
 
         // when
-        val findByUserToken = userRepository.findByUserToken(saveUser.userToken)
+        val findUser = userRepository.findById(3L)
+            .orElseThrow()
 
         // then
-        assertThat(findByUserToken.userToken).startsWith("usr_")
-        assertThat(findByUserToken.nickname).isEqualTo("닉네임")
-        assertThat(findByUserToken.status).isEqualTo(User.Status.COMMON)
-        assertThat(findByUserToken.email).isEqualTo("test@test.com")
-        assertThat(findByUserToken.id).isEqualTo(1L)
-
-        assertThat(findByUserToken.nickname).isNotEqualTo("홍길동")
-        assertThat(findByUserToken.status).isNotEqualTo(User.Status.ADMIN)
-        assertThat(findByUserToken.email).isNotEqualTo("hong@test.com")
+        assertThat(findUser.nickname).isEqualTo("닉네임")
+        assertThat(findUser.status).isEqualTo(User.Status.COMMON)
+        assertThat(findUser.email).isEqualTo("test@test.com")
     }
 }
