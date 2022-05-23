@@ -17,7 +17,7 @@ class UserServiceImpl(val userReader: UserReader, val userStore: UserStore): Use
     @Transactional
     override fun updateUser(command: UserCommand.UpdateUserRequest): UserInfo {
         val user = userReader.getUser(command.userId)
-        user.update(command.nickname, command.status)
+        user.updateNickname(command.nickname)
         return UserInfo(user)
     }
 

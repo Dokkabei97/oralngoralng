@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.6.7"
+    id("org.springframework.boot") version "2.7.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.asciidoctor.convert") version "1.5.8"
     kotlin("jvm") version "1.6.21"
@@ -24,6 +24,7 @@ repositories {
 }
 
 //extra["snippetsDir"] = file("build/generated-snippets") 트러블슈팅
+//extra["kotlin-coroutines.version"] = "1.6.1" // kotest 이슈 해결
 val snippetsDir by extra { file("build/generated-snippets") } // 해결안
 
 dependencies {
@@ -48,6 +49,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     testImplementation("org.springframework.security:spring-security-test")
+    implementation("io.kotest:kotest-property-jvm:5.3.0")
     testImplementation("io.kotest:kotest-runner-junit5-jvm:5.3.0")
     testImplementation("io.kotest:kotest-assertions-core-jvm:5.3.0")
     testImplementation("io.mockk:mockk:1.12.4")
