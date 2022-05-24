@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service
 import org.springframework.test.context.ContextConfiguration
 
 @SpringBootTest
-internal class UserServiceImplTest:  BehaviorSpec() {
+internal class UserServiceImplTest : BehaviorSpec() {
     override fun extensions() = listOf(SpringExtension)
 
     @Autowired
@@ -58,7 +58,9 @@ internal class UserServiceImplTest:  BehaviorSpec() {
                 )
                 then("유저는 삭제 된다") {
                     shouldThrow<EntityNotFoundException> {
-                        userService.getUser(UserCommand.GetUserRequest(1L))
+                        userService.getUser(
+                            UserCommand.GetUserRequest(1L)
+                        )
                     }
                 }
             }
