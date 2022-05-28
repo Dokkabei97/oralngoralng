@@ -54,6 +54,8 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core-jvm:5.3.0")
     implementation("io.kotest.extensions:kotest-extensions-spring:1.1.1")
     testImplementation("io.mockk:mockk:1.12.4")
+    implementation("org.mapstruct:mapstruct:1.4.2.Final")
+    annotationProcessor("org.mapstruct:mapstruct-processor:1.4.2.Final")
 }
 
 tasks.withType<KotlinCompile> {
