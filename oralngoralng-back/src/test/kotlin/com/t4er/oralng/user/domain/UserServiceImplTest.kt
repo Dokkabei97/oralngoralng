@@ -3,17 +3,11 @@ package com.t4er.oralng.user.domain
 import com.t4er.oralng.common.exception.EntityNotFoundException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.core.spec.style.scopes.BehaviorSpecGivenContainerScope
 import io.kotest.extensions.spring.SpringExtension
-import io.kotest.matchers.maps.beEmpty
 
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Assertions.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.stereotype.Component
-import org.springframework.stereotype.Service
-import org.springframework.test.context.ContextConfiguration
 
 @SpringBootTest
 internal class UserServiceImplTest : BehaviorSpec() {
@@ -25,7 +19,7 @@ internal class UserServiceImplTest : BehaviorSpec() {
     init {
         given("유저 서비스") {
             `when`("createUser를 호출하면") {
-                val createUser = userService.createUser(
+                val createUser = userService.registerUser(
                     UserCommand.RegisterUserRequest("홍길동", "hong@test.com")
                 )
                 then("유저가 만들어진다") {

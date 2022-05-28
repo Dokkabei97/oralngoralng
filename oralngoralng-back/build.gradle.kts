@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("org.springframework.boot") version "2.7.0"
@@ -7,6 +8,7 @@ plugins {
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
     kotlin("plugin.jpa") version "1.6.21"
+    kotlin("kapt") version "1.6.21"
 }
 
 group = "com.t4er"
@@ -24,8 +26,8 @@ repositories {
 }
 
 //extra["snippetsDir"] = file("build/generated-snippets") 트러블슈팅
-//extra["kotlin-coroutines.version"] = "1.6.1" // kotest 이슈 해결
 val snippetsDir by extra { file("build/generated-snippets") } // 해결안
+//extra["kotlin-coroutines.version"] = "1.6.1" // kotest 이슈 해결
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -55,7 +57,8 @@ dependencies {
     implementation("io.kotest.extensions:kotest-extensions-spring:1.1.1")
     testImplementation("io.mockk:mockk:1.12.4")
     implementation("org.mapstruct:mapstruct:1.4.2.Final")
-    annotationProcessor("org.mapstruct:mapstruct-processor:1.4.2.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.4.2.Final")
+    kaptTest("org.mapstruct:mapstruct-processor:1.4.2.Final")
 }
 
 tasks.withType<KotlinCompile> {

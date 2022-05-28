@@ -3,8 +3,9 @@ package com.t4er.oralng.common.exception
 import com.t4er.oralng.common.response.ErrorCode
 
 open class BaseException : RuntimeException {
-    private val errorCode: ErrorCode
+    var errorCode: ErrorCode? = null
 
+    constructor() {}
     constructor(errorCode: ErrorCode) : super(errorCode.errorMessage) {
         this.errorCode = errorCode
     }
