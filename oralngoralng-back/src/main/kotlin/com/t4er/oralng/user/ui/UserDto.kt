@@ -1,21 +1,20 @@
 package com.t4er.oralng.user.ui
 
-import com.t4er.oralng.user.domain.UserCommand
+import com.t4er.oralng.user.domain.User
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 
 class UserDto {
 
-    data class CreateUserDto(
-        @NotBlank(message = "닉네임은 필수입니다.")
-        var nickname: String,
-        @Email(message = "이메일 형식과 다릅니다.")
-        var email: String
-    ) {
-        companion object {
-            fun toCommand(nickname: String, email: String): UserCommand.RegisterUserRequest {
-                return UserCommand.RegisterUserRequest(nickname, email)
-            }
-        }
-    }
+    data class RegisterUserRequest(
+        @field: NotBlank
+        val nickname: String,
+        @field: NotBlank
+        @field: Email
+        val email: String
+        )
+    data class UpdateUserRequest(val userId: Long, val nickname: String)
+    data class DeleteUserRequest(val userId: Long)
+    data class GetUserRequest(val userId: Long)
+    data class UserResponse(var nickname: String, var email: String, var status: User.Status)
 }

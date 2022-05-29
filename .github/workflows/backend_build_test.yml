@@ -12,7 +12,6 @@ defaults:
 
 jobs:
   build:
-    if: contains(github.event.pull_request.labels.*.id, 4130469453)
     runs-on: ubuntu-latest
 
     steps:

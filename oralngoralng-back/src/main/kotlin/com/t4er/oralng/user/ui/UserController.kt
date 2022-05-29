@@ -1,21 +1,43 @@
 package com.t4er.oralng.user.ui
 
+import com.t4er.oralng.common.response.CommonResponse
 import com.t4er.oralng.user.application.UserFacade
+import com.t4er.oralng.user.ui.UserDto.*
+import org.slf4j.LoggerFactory
+import org.springframework.http.HttpStatus
+import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/v1/users")
-class UserController(val userFacade: UserFacade) {
+class UserController(val userFacade: UserFacade, val userDtoMapper: UserDtoMapper) {
+
+    private val log = LoggerFactory.getLogger(UserController::class.java)
 
     @PostMapping
-    fun createUser(@RequestBody @Valid dto: UserDto.CreateUserDto) {
-        val toCommand = UserDto.CreateUserDto.toCommand(dto.nickname, dto.email)
-        userFacade.createUser(toCommand)
+    fun registerUser(@RequestBody @Validated request: RegisterUserRequest): CommonResponse<*> {
+        val of = userDtoMapper.of(request)
+        val registerUser = userFacade.registerUser(of)
+        val response = userDtoMapper.of(registerUser)
+        return CommonResponse.success(response)
+    }
 
-        // TODO: 2022-05-15 반환 값 추가 후 테스트 코드 추가 검증 필요
+    @DeleteMapping
+    fun deleteUser(@RequestBody @Validated request: DeleteUserRequest): CommonResponse<*> {
+        val of = userDtoMapper.of(request)
+        userFacade.deleteUser(of)
+        return CommonResponse.success(HttpStatus.OK)
+    }
+
+    @GetMapping
+    fun getUser(@RequestBody @Validated request: GetUserRequest): CommonResponse<*> {
+        val of = userDtoMapper.of(request)
+        val user = userFacade.getUser(of)
+        return CommonResponse.success(user)
     }
 }

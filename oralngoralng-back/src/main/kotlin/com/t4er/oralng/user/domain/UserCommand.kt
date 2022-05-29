@@ -9,4 +9,10 @@ class UserCommand {
             }
         }
     }
+
+    class UpdateUserRequest(val userId: Long, val nickname: String)
+
+    class DeleteUserRequest(val userId: Long)
+
+    class GetUserRequest(val userId: Long)
 }

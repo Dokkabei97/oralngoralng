@@ -1,32 +1,35 @@
 package com.t4er.oralng.user.domain
 
-import com.t4er.oralng.user.infrastructure.UserRepository
-import org.assertj.core.api.Assertions
-import org.assertj.core.api.Assertions.*
+import com.t4er.oralng.common.exception.InvalidParamException
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.inspectors.forAll
+import io.kotest.inspectors.forAny
+import io.kotest.matchers.should
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
-class UserTest {
+internal class UserTest : DescribeSpec({
 
+    describe("유저") {
+        context("닉네임이 13글자 이상이면") {
+            it("InvalidParamException 이 터진다") {
+                shouldThrow<InvalidParamException> {
+                    User.of(nickname, "test@test.com")
+                }
+            }
+        }
 
-    @Autowired
-    private lateinit var userRepository: UserRepository
-
-    @DisplayName("유저 생성")
-    @Test
-    fun user_create() {
-        //given
-        val user: User = User(1, "usr_token", "닉네임", "test@test.com", User.Status.COMMON)
-        //when
-        val saveUser = userRepository.save(user)
-        //then
-        assertThat(saveUser.userToken).startsWith("usr_")
-        assertThat(saveUser.nickname).isEqualTo("닉네임")
-        assertThat(saveUser.email).isEqualTo("test@test.com")
-        assertThat(saveUser.status).isEqualTo(User.Status.COMMON)
+        context("유저 생성") {
+            it("성공") {
+                val user = User.of("홍길동", "hong@test.com")
+                user.nickname shouldBe "홍길동"
+                user.email shouldBe "hong@test.com"
+            }
+        }
+    }
+}) {
+    companion object {
+        const val nickname: String = "최강전사파워킹갓오토제너럴123"
     }
 }

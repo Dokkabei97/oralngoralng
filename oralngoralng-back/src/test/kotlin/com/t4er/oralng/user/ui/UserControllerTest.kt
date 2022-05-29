@@ -1,45 +1,58 @@
 package com.t4er.oralng.user.ui
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.t4er.oralng.user.application.UserFacade
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.extensions.spring.SpringExtension
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import java.nio.charset.StandardCharsets
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
-class UserControllerTest(
+internal class UserControllerTest(
     @Autowired val mockMvc: MockMvc,
     @Autowired val objectMapper: ObjectMapper
-) {
+): DescribeSpec() {
+    override fun extensions() = listOf(SpringExtension)
+
     companion object {
         const val URI = "/api/v1/users"
     }
 
-    @DisplayName("유저 생성 api")
-    @Test
-    fun create_user() {
-        val dto: UserDto.CreateUserDto = UserDto.CreateUserDto("닉네임", "test@test.com")
-
-        val requestBuilder = MockMvcRequestBuilders.post(URI)
-            .content(objectMapper.writeValueAsString(dto))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON)
-            .characterEncoding(StandardCharsets.UTF_8.displayName())
-
-        mockMvc.perform(requestBuilder)
-            .andExpect(MockMvcResultMatchers.status().isOk)
-
-        // TODO: 2022-05-15 테스트 코드 더 검증 필요
+    init {
+        describe("유저 컨트롤러") {
+            context("유저 회원 가입 API 값이 정상적으로 들어가면") {
+                val dto: UserDto.RegisterUserRequest = UserDto.RegisterUserRequest("닉네임", "test@test.com")
+                val requestBuilder = MockMvcRequestBuilders.post(URI)
+                    .content(objectMapper.writeValueAsString(dto))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .characterEncoding(StandardCharsets.UTF_8.displayName())
+                it("회원 가입 성공") {
+                    mockMvc.perform(requestBuilder)
+                        .andExpect(MockMvcResultMatchers.status().isOk)
+                        .andExpect(MockMvcResultMatchers.jsonPath("\$.data.nickname").value("닉네임"))
+                        .andExpect(MockMvcResultMatchers.jsonPath("\$.data.email").value("test@test.com"))
+                }
+            }
+            context("유저 회원 가입 API 이메일 형식이 틀리면") {
+                val dto: UserDto.RegisterUserRequest = UserDto.RegisterUserRequest("닉네임", "test")
+                val requestBuilder = MockMvcRequestBuilders.post(URI)
+                    .content(objectMapper.writeValueAsString(dto))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .characterEncoding(StandardCharsets.UTF_8.displayName())
+                it("회원 가입 실패") {
+                    mockMvc.perform(requestBuilder)
+                        .andExpect(MockMvcResultMatchers.status().isBadRequest)
+                }
+            }
+        }
     }
 }
