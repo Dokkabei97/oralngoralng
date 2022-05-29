@@ -6,15 +6,15 @@ import javax.validation.constraints.NotBlank
 
 class UserDto {
 
-    class RegisterUserRequest(
-        @NotBlank
+    data class RegisterUserRequest(
+        @field: NotBlank
         val nickname: String,
-        @NotBlank
-        @Email
+        @field: NotBlank
+        @field: Email
         val email: String
         )
-    class UpdateUserRequest(val userId: Long, val nickname: String)
-    class DeleteUserRequest(val userId: Long)
-    class GetUserRequest(val userId: Long)
-    class UserResponse(val nickname: String, val email: String, val status: User.Status)
+    data class UpdateUserRequest(val userId: Long, val nickname: String)
+    data class DeleteUserRequest(val userId: Long)
+    data class GetUserRequest(val userId: Long)
+    data class UserResponse(var nickname: String, var email: String, var status: User.Status)
 }

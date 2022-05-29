@@ -27,18 +27,30 @@ internal class UserControllerTest(
 
     init {
         describe("유저 컨트롤러") {
-            context("유서 생성 API") {
+            context("유저 회원 가입 API 값이 정상적으로 들어가면") {
                 val dto: UserDto.RegisterUserRequest = UserDto.RegisterUserRequest("닉네임", "test@test.com")
                 val requestBuilder = MockMvcRequestBuilders.post(URI)
                     .content(objectMapper.writeValueAsString(dto))
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON)
                     .characterEncoding(StandardCharsets.UTF_8.displayName())
-                it("성공") {
+                it("회원 가입 성공") {
                     mockMvc.perform(requestBuilder)
                         .andExpect(MockMvcResultMatchers.status().isOk)
-                        .andExpect(MockMvcResultMatchers.jsonPath("\$.nickname").value("닉네임"))
-                        .andExpect(MockMvcResultMatchers.jsonPath("\$.email").value("test@test.com"))
+                        .andExpect(MockMvcResultMatchers.jsonPath("\$.data.nickname").value("닉네임"))
+                        .andExpect(MockMvcResultMatchers.jsonPath("\$.data.email").value("test@test.com"))
+                }
+            }
+            context("유저 회원 가입 API 이메일 형식이 틀리면") {
+                val dto: UserDto.RegisterUserRequest = UserDto.RegisterUserRequest("닉네임", "test")
+                val requestBuilder = MockMvcRequestBuilders.post(URI)
+                    .content(objectMapper.writeValueAsString(dto))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .characterEncoding(StandardCharsets.UTF_8.displayName())
+                it("회원 가입 실패") {
+                    mockMvc.perform(requestBuilder)
+                        .andExpect(MockMvcResultMatchers.status().isBadRequest)
                 }
             }
         }

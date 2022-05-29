@@ -2,11 +2,9 @@ package com.t4er.oralng.user.ui
 
 import com.t4er.oralng.common.response.CommonResponse
 import com.t4er.oralng.user.application.UserFacade
-import com.t4er.oralng.user.domain.UserCommand
 import com.t4er.oralng.user.ui.UserDto.*
-import org.springframework.beans.factory.annotation.Autowired
+import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -18,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/users")
 class UserController(val userFacade: UserFacade, val userDtoMapper: UserDtoMapper) {
+
+    private val log = LoggerFactory.getLogger(UserController::class.java)
 
     @PostMapping
     fun registerUser(@RequestBody @Validated request: RegisterUserRequest): CommonResponse<*> {

@@ -1,10 +1,12 @@
 package com.t4er.oralng.common.response
 
-class CommonResponse<T>(
-    result: Result?,
-    data: T?,
-    message: String?,
-    errorCode: String?,
+import com.fasterxml.jackson.annotation.JsonInclude
+
+data class CommonResponse<T>(
+    val result: Result,
+    val data: T,
+    val message: String?,
+    val errorCode: String?,
 ) {
     companion object {
         fun <T> success(data: T, message: String?): CommonResponse<T> {
