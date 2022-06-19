@@ -1,11 +1,11 @@
 create table users
 (
     user_id    bigint auto_increment primary key comment 'id',
-    nickname   varchar(12)  not null comment '닉네임',
-    email      varchar(50)  not null comment '이메일',
-    status     varchar(10)  not null comment '상태',
-    created_at datetime     not null comment '생성 일시',
-    updated_at datetime     not null comment '수정 일시'
+    nickname   varchar(12) not null comment '닉네임',
+    email      varchar(50) not null comment '이메일',
+    status     varchar(10) not null comment '상태',
+    created_at datetime    not null comment '생성 일시',
+    updated_at datetime    not null comment '수정 일시'
 ) comment 'users' charset = utf8mb4;
 
 create index users_idx01 on users (user_id);
@@ -77,11 +77,11 @@ create index refunds_idx04 on refunds (created_at);
 
 create table products
 (
-    product_id    bigint auto_increment primary key comment 'id',
-    price         int          not null comment '상품 금액',
-    duration      varchar(30)  not null comment '상품 기간',
-    created_at    datetime     not null comment '생성 일시',
-    updated_at    datetime     not null comment '수정 일시'
+    product_id bigint auto_increment primary key comment 'id',
+    price      int         not null comment '상품 금액',
+    duration   varchar(30) not null comment '상품 기간',
+    created_at datetime    not null comment '생성 일시',
+    updated_at datetime    not null comment '수정 일시'
 ) comment 'products' charset = utf8mb4;
 
 create index products_idx01 on products (product_id);
@@ -97,21 +97,32 @@ create table memberships
 create index memberships_idx01 on memberships (membership_id);
 create index memberships_idx02 on memberships (name);
 
-create table tour_reviews
+create table reviews
 (
-    tour_review_id    bigint auto_increment primary key comment 'id',
-    user_id           bigint        not null comment '리뷰 작성한 유저',
-    title             varchar(50)   not null comment '리뷰 제목',
-    description       varchar(2000) not null comment '리뷰 내용',
-    image_name        varchar(2000) null comment '사진 이름',
-    likes_count       int           null comment '좋아요 수',
-    hits_count        int           null comment '조회 수',
-    created_at        datetime      not null comment '생성 일시',
-    updated_at        datetime      not null comment '수정 일시'
-) comment 'tour_reviews' charset = utf8mb4;
+    review_id   bigint auto_increment primary key comment 'id',
+    user_id     bigint      not null comment '리뷰 작성한 유저',
+    title       varchar(50) not null comment '리뷰 제목',
+    description text        not null comment '리뷰 내용',
+    likes_count int         null comment '좋아요 수',
+    hits_count  int         null comment '조회 수',
+    created_at  datetime    not null comment '생성 일시',
+    updated_at  datetime    not null comment '수정 일시'
+) comment 'reviews' charset = utf8mb4;
 
-create index tour_reviews_idx01 on tour_reviews (tour_review_id);
-create index tour_reviews_idx02 on tour_reviews (user_id);
-create index tour_reviews_idx03 on tour_reviews (title);
-create index tour_reviews_idx04 on tour_reviews (likes_count);
-create index tour_reviews_idx05 on tour_reviews (created_at);
+create index reviews_idx01 on reviews (review_id);
+create index reviews_idx02 on reviews (user_id);
+create index reviews_idx03 on reviews (title);
+create index reviews_idx04 on reviews (likes_count);
+create index reviews_idx05 on reviews (created_at);
+
+create table review_images
+(
+    image_id bigint auto_increment primary key comment 'id',
+    review_id bigint not null comment '리뷰 게시글 id',
+    image_name varchar(500) not null comment '이미지 이름',
+    created_at  datetime    not null comment '생성 일시',
+    updated_at  datetime    not null comment '수정 일시'
+) comment 'review_images'  charset = utf8mb4;
+
+create index review_images_idx01 on review_images (image_id);
+create index review_images_idx02 on review_images (review_id);
