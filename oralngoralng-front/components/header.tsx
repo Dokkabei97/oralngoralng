@@ -29,7 +29,6 @@ const Header = () => {
             <Box sx={{flexGrow: 1}}>
                 <AppBar position="static" sx={{backgroundColor: 'white'}}>
                     <Toolbar>
-
                         <IconButton
                             size="large"
                             edge="start"
@@ -46,7 +45,6 @@ const Header = () => {
                         >
                             ORALNG ORALNG
                         </Typography>
-
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -71,10 +69,8 @@ const Header = () => {
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={handleClose}>My account</MenuItem>
+                            <MenuItem onClick={handleClose}>Login</MenuItem>
                         </Menu>
-
                     </Toolbar>
                 </AppBar>
             </Box>
