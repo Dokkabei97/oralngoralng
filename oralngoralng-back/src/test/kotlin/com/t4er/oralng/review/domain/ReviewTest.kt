@@ -12,7 +12,6 @@ internal class ReviewTest : DescribeSpec({
     describe("리뷰") {
         context("작성") {
             it("성공") {
-                val user = User.of("홍길동", "hong@oralng.com")
                 val review = Review.of(user, "나만의 여행 추천 List Top 100", "내가 개인적으로 추천하는....")
 
                 review.title shouldStartWith "나만의 여행"
@@ -22,4 +21,8 @@ internal class ReviewTest : DescribeSpec({
             }
         }
     }
-})
+}) {
+    companion object {
+        val user = User.of("홍길동", "hong@oralng.com")
+    }
+}
