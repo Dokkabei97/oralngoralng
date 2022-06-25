@@ -23,7 +23,7 @@ class Review(
     @Column(name = "content", columnDefinition = "text")
     var content: String,
 
-    @Column(name = "hit_count")
+    @Column(name = "hits_count")
     var hitCount: Int,
 
     @Column(name = "likes_count")
@@ -32,7 +32,18 @@ class Review(
 
     companion object {
         fun of(user: User, title: String, content: String): Review {
+            if (title.isBlank()) throw InvalidParamException("제목은 필수 입니다.")
+            if (content.isBlank()) throw InvalidParamException("내용은 필수 입니다.")
+
             return Review(null, user, title, content, 0, 0)
         }
+    }
+
+    fun update(title: String, content: String) {
+        if (title.isBlank()) throw InvalidParamException("제목은 필수 입니다.")
+        if (content.isBlank()) throw InvalidParamException("내용은 필수 입니다.")
+
+        this.title = title
+        this.content = content
     }
 }
