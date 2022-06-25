@@ -102,7 +102,7 @@ create table reviews
     review_id   bigint auto_increment primary key comment 'id',
     user_id     bigint      not null comment '리뷰 작성한 유저',
     title       varchar(50) not null comment '리뷰 제목',
-    description text        not null comment '리뷰 내용',
+    content     text        not null comment '리뷰 내용',
     likes_count int         null comment '좋아요 수',
     hits_count  int         null comment '조회 수',
     created_at  datetime    not null comment '생성 일시',
@@ -117,12 +117,12 @@ create index reviews_idx05 on reviews (created_at);
 
 create table review_images
 (
-    image_id bigint auto_increment primary key comment 'id',
-    review_id bigint not null comment '리뷰 게시글 id',
+    image_id   bigint auto_increment primary key comment 'id',
+    review_id  bigint       not null comment '리뷰 게시글 id',
     image_name varchar(500) not null comment '이미지 이름',
-    created_at  datetime    not null comment '생성 일시',
-    updated_at  datetime    not null comment '수정 일시'
-) comment 'review_images'  charset = utf8mb4;
+    created_at datetime     not null comment '생성 일시',
+    updated_at datetime     not null comment '수정 일시'
+) comment 'review_images' charset = utf8mb4;
 
 create index review_images_idx01 on review_images (image_id);
 create index review_images_idx02 on review_images (review_id);
