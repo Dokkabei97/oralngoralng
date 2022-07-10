@@ -105,6 +105,7 @@ create table reviews
     content     text        not null comment '리뷰 내용',
     likes_count int         null comment '좋아요 수',
     hits_count  int         null comment '조회 수',
+    status      varchar(15) not null comment '리뷰 상태',
     created_at  datetime    not null comment '생성 일시',
     updated_at  datetime    not null comment '수정 일시'
 ) comment 'reviews' charset = utf8mb4;
@@ -112,17 +113,30 @@ create table reviews
 create index reviews_idx01 on reviews (review_id);
 create index reviews_idx02 on reviews (user_id);
 create index reviews_idx03 on reviews (title);
-create index reviews_idx04 on reviews (likes_count);
-create index reviews_idx05 on reviews (created_at);
+create index reviews_idx04 on reviews (status);
+create index reviews_idx05 on reviews (likes_count);
+create index reviews_idx06 on reviews (created_at);
 
 create table review_images
 (
-    image_id   bigint auto_increment primary key comment 'id',
-    review_id  bigint       not null comment '리뷰 게시글 id',
-    image_name varchar(500) not null comment '이미지 이름',
-    created_at datetime     not null comment '생성 일시',
-    updated_at datetime     not null comment '수정 일시'
+    review_image_id bigint auto_increment primary key comment 'id',
+    review_id       bigint       not null comment '리뷰 게시글 id',
+    image_name      varchar(500) not null comment '이미지 이름',
+    created_at      datetime     not null comment '생성 일시',
+    updated_at      datetime     not null comment '수정 일시'
 ) comment 'review_images' charset = utf8mb4;
 
 create index review_images_idx01 on review_images (image_id);
 create index review_images_idx02 on review_images (review_id);
+
+create table review_likes
+(
+    review_like_id bigint auto_increment primary key comment 'id',
+    review_id      bigint   not null comment '좋아요한 리뷰 게시글 id',
+    user_id        bigint   not null comment '좋아요한 유저 id',
+    created_at     datetime not null comment '생성 일시',
+    updated_at     datetime not null comment '수정 일시'
+) comment 'review_likes' charset = utf8mb4;
+
+create index review_like_idx01 on review_likes (review_like_id);
+create index review_like_idx02 on review_likes (user_id);
