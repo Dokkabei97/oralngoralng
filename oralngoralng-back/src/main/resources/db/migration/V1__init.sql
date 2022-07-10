@@ -99,15 +99,15 @@ create index memberships_idx02 on memberships (name);
 
 create table reviews
 (
-    review_id   bigint auto_increment primary key comment 'id',
-    user_id     bigint      not null comment '리뷰 작성한 유저',
-    title       varchar(50) not null comment '리뷰 제목',
-    content     text        not null comment '리뷰 내용',
-    likes_count int         null comment '좋아요 수',
-    hits_count  int         null comment '조회 수',
-    status      varchar(15) not null comment '리뷰 상태',
-    created_at  datetime    not null comment '생성 일시',
-    updated_at  datetime    not null comment '수정 일시'
+    review_id     bigint auto_increment primary key comment 'id',
+    user_id       bigint      not null comment '리뷰 작성한 유저',
+    title         varchar(50) not null comment '리뷰 제목',
+    content       text        not null comment '리뷰 내용',
+    likes_count   int         null comment '좋아요 수',
+    hits_count    int         null comment '조회 수',
+    review_status varchar(15) not null comment '리뷰 상태',
+    created_at    datetime    not null comment '생성 일시',
+    updated_at    datetime    not null comment '수정 일시'
 ) comment 'reviews' charset = utf8mb4;
 
 create index reviews_idx01 on reviews (review_id);
