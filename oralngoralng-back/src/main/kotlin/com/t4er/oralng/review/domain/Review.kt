@@ -13,9 +13,8 @@ class Review(
     @Column(name = "review_id")
     var id: Long?,
 
-    @JoinColumn(name = "user_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    var user: User,
+    @Column(name = "user_id")
+    var userId: Long,
 
     @Column(name = "title")
     var title: String,
@@ -28,14 +27,24 @@ class Review(
 
     @Column(name = "likes_count")
     var likeCount: Int,
-): AbstractEntity() {
+
+    @Column(name = "review_status")
+    var reviewStatus: Status,
+
+    ) : AbstractEntity() {
+
+    enum class Status(val description: String) {
+        NEW("새 리뷰"),
+        HOT("인기 리뷰"),
+        HOF("명예의 전당")
+    }
 
     companion object {
-        fun of(user: User, title: String, content: String): Review {
+        fun of(userId: Long, title: String, content: String): Review {
             if (title.isBlank()) throw InvalidParamException("제목은 필수 입니다.")
             if (content.isBlank()) throw InvalidParamException("내용은 필수 입니다.")
 
-            return Review(null, user, title, content, 0, 0)
+            return Review(null, userId, title, content, 0, 0, Status.NEW)
         }
     }
 
