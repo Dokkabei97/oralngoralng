@@ -1,11 +1,7 @@
 package com.t4er.oralng.review.domain
 
-import com.t4er.oralng.review.infrastructure.ReviewRepository
-import com.t4er.oralng.user.domain.User
 import io.kotest.core.spec.style.BehaviorSpec
-import io.kotest.matchers.shouldBe
 import io.mockk.*
-import org.junit.jupiter.api.Assertions.*
 
 internal class ReviewServiceImplTest : BehaviorSpec({
     val reviewService = mockk<ReviewService>()
@@ -20,6 +16,6 @@ internal class ReviewServiceImplTest : BehaviorSpec({
     }
 }) {
     companion object {
-        val review = Review.of(1L, "일산 맛집 리스트", "일산에 이렇게....")
+        val review = Review.of(1L, "일산 맛집 리스트", "일산에 이렇게....", null)
     }
 }

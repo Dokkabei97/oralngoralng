@@ -2,10 +2,13 @@ package com.t4er.oralng.review.domain
 
 import com.t4er.oralng.common.entity.AbstractEntity
 import com.t4er.oralng.common.exception.InvalidParamException
-import com.t4er.oralng.user.domain.User
+import com.vladmihalcea.hibernate.type.json.JsonType
+import org.hibernate.annotations.Type
+import org.hibernate.annotations.TypeDef
 import javax.persistence.*
 
 @Entity
+@TypeDef(name = "json", typeClass = JsonType::class)
 @Table(name = "reviews")
 class Review(
     @Id
@@ -22,12 +25,17 @@ class Review(
     @Column(name = "content", columnDefinition = "text")
     var content: String,
 
+    @Type(type = "json")
+    @Column(name = "review_images", columnDefinition = "longtext")
+    var image: Map<String, Any>?,
+
     @Column(name = "hits_count")
     var hitCount: Int,
 
     @Column(name = "likes_count")
     var likeCount: Int,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "review_status")
     var reviewStatus: Status,
 
@@ -40,11 +48,11 @@ class Review(
     }
 
     companion object {
-        fun of(userId: Long, title: String, content: String): Review {
+        fun of(userId: Long, title: String, content: String, image: Map<String, Any>?): Review {
             if (title.isBlank()) throw InvalidParamException("제목은 필수 입니다.")
             if (content.isBlank()) throw InvalidParamException("내용은 필수 입니다.")
 
-            return Review(null, userId, title, content, 0, 0, Status.NEW)
+            return Review(null, userId, title, content, image, 0, 0, Status.NEW)
         }
     }
 
