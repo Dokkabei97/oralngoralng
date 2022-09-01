@@ -1,6 +1,5 @@
 package com.t4er.oralng.user.domain
 
-import com.t4er.oralng.user.infrastructure.UserRepository
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.every
 import io.mockk.mockk
@@ -20,5 +19,4 @@ internal class MockkUserTest : BehaviorSpec({
             }
         }
     }
-
 })
