@@ -1,6 +1,6 @@
-package user
+package com.t4er.oralng.user
 
-import common.AbstractEntity
+import com.t4er.oralng.common.AbstractEntity
 import javax.persistence.*
 
 @Entity

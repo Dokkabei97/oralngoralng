@@ -1,4 +1,4 @@
-package common
+package com.t4er.oralng.common
 
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp

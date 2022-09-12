@@ -1,5 +1,6 @@
 package user
 
+import com.t4er.oralng.user.User
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe

@@ -1,5 +1,7 @@
-package user
+package com.t4er.oralng.user
 
+import com.t4er.oralng.user.User
+import com.t4er.oralng.user.UserReader
 import org.springframework.stereotype.Component
 import java.lang.RuntimeException
 

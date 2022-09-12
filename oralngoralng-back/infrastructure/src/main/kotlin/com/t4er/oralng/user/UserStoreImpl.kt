@@ -1,5 +1,7 @@
-package user
+package com.t4er.oralng.user
 
+import com.t4er.oralng.user.User
+import com.t4er.oralng.user.UserStore
 import org.springframework.stereotype.Component
 
 @Component

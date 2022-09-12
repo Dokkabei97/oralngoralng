@@ -1,4 +1,4 @@
-package user
+package com.t4er.oralng.user
 
 
 interface UserStore {

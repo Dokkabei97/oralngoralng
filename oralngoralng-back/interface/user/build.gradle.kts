@@ -1,5 +1,7 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
-    id("java")
+    kotlin("kapt") version "1.6.21"
 }
 
 group = "com.t4er"
@@ -10,10 +12,13 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    implementation(project(":interface"))
 }
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.withType<BootJar> {
+    enabled = false
 }
