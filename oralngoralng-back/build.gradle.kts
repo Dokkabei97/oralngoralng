@@ -5,7 +5,7 @@ plugins {
     id("org.springframework.boot") version "2.7.3"
     id("io.spring.dependency-management") version "1.0.13.RELEASE"
     id("org.asciidoctor.convert") version "1.5.8"
-    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
+//    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
 
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
@@ -16,7 +16,7 @@ plugins {
 allprojects {
     apply {
         plugin("kotlin")
-        plugin("org.jlleitschuh.gradle.ktlint")
+//        plugin("org.jlleitschuh.gradle.ktlint")
         plugin("org.jetbrains.kotlin.jvm")
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
@@ -53,22 +53,22 @@ allprojects {
         testImplementation("io.mockk:mockk:1.12.4")
     }
 
-    // ktlint setting 3
-    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-        verbose.set(true)
-        disabledRules.set(
-            setOf(
-                "import-ordering",
-                "no-wildcard-imports",
-                "final-newline",
-                "insert_final_newline",
-                "max_line_length"
-            )
-        )
-    }
+//     ktlint setting 3
+//    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+//        verbose.set(true)
+//        disabledRules.set(
+//            setOf(
+//                "import-ordering",
+//                "no-wildcard-imports",
+//                "final-newline",
+//                "insert_final_newline",
+//                "max_line_length"
+//            )
+//        )
+//    }
 
     tasks.withType<KotlinCompile> {
-        dependsOn("ktlintCheck")
+//        dependsOn("ktlintCheck")
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
             jvmTarget = "11"
