@@ -1,5 +1,6 @@
 package com.t4er.oralng.domain
 
+import com.t4er.oralng.exception.InvalidParamException
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
@@ -12,7 +13,7 @@ internal class UserTest : DescribeSpec({
     describe("유저") {
         context("닉네임이 13글자 이상이면") {
             it("InvalidParamException 이 터진다") {
-                shouldThrow<RuntimeException> {
+                shouldThrow<InvalidParamException> {
                     User.of(nickname, "test@test.com")
                 }
             }

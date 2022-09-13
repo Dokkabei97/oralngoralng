@@ -1,4 +1,4 @@
-type UserPayload {
+type UserInfo {
     userId: ID!
     nickname: String!
     email: String!

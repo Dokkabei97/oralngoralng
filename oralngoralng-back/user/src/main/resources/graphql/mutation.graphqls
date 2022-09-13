@@ -1,6 +1,6 @@
 type Mutation {
     # User
-    registerUser(input: RegisterUserRequest!): UserPayload
-    updateUser(input: UpdateUserRequest!): UserPayload
-    deleteUser(input: DeleteUserRequest!): UserPayload
+    registerUser(input: RegisterUserRequest!): UserInfo
+    updateUser(input: UpdateUserRequest!): UserInfo
+    deleteUser(input: DeleteUserRequest!): UserInfo
 }

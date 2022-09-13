@@ -1,4 +1,4 @@
 type Query {
     # User
-    getUser(input: GetUserRequest!): UserPayload
+    getUser(input: GetUserRequest!): UserInfo
 }
