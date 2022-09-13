@@ -7,6 +7,7 @@ import com.t4er.oralng.domain.UserCommand.*
 import com.t4er.oralng.domain.UserInfo
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
+import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
@@ -31,7 +32,7 @@ class UserController(val userFacade: UserFacade) {
         userFacade.deleteUser(input)
     }
 
-    @GetMapping
+    @QueryMapping
     fun getUser(@Argument @Validated input: GetUserRequest): UserInfo {
         return userFacade.getUser(input)
     }
