@@ -1,8 +1,9 @@
 package com.t4er.oralng.exception
 
 import com.t4er.oralng.response.ErrorCode
+import com.t4er.oralng.response.ErrorType
 import graphql.ErrorClassification
-import graphql.ErrorType
+
 
 class InvalidParamException(
     @JvmField
@@ -15,6 +16,6 @@ class InvalidParamException(
     }
 
     override fun getErrorType(): ErrorClassification {
-        return ErrorType.ValidationError
+        return ErrorType.InvalidParam
     }
 }
