@@ -12,6 +12,10 @@ class UserFacade(val userService: UserService) {
         return userService.registerUser(command)
     }
 
+    fun updateUser(command: UpdateUserRequest): UserInfo {
+        return userService.updateUser(command)
+    }
+
     fun deleteUser(command: DeleteUserRequest) {
         userService.deleteUser(command)
     }
