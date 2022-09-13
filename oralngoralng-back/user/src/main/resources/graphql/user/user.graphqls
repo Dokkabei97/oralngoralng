@@ -1,0 +1,13 @@
+type User {
+    userId: ID!
+    nickname: String!
+    email: String!
+    status: Status!
+}
+
+enum Status {
+    COMMON
+    MEMBERSHIP1
+    MEMBERSHIP2
+    ADMIN
+}

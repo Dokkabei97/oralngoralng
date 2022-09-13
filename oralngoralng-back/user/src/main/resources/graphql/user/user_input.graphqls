@@ -1,0 +1,17 @@
+input RegisterUserRequest {
+    nickname: String!
+    email: String!
+}
+
+input UpdateUserRequest {
+    userId: ID!
+    nickname: String!
+}
+
+input DeleteUserRequest {
+    userId: ID!
+}
+
+input GetUserRequest {
+    userId: ID!
+}
