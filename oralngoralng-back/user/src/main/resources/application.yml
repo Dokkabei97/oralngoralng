@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    default: dev
+
+  graphql:
+    schema:
+      locations: classpath:graphql/**/
+      fileExtensions: .graphqls, .gqls

@@ -1,0 +1,6 @@
+type UserPayload {
+    userId: ID!
+    nickname: String!
+    email: String!
+    status: Status!
+}
