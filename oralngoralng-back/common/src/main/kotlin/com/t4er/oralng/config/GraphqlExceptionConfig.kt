@@ -1,6 +1,7 @@
 package com.t4er.oralng.config
 
 import com.t4er.oralng.exception.EntityNotFoundException
+import com.t4er.oralng.exception.IllegalStatusException
 import com.t4er.oralng.exception.InvalidParamException
 import graphql.GraphQLError
 import graphql.schema.DataFetchingEnvironment
@@ -14,6 +15,7 @@ class GraphqlExceptionConfig: DataFetcherExceptionResolverAdapter() {
         return when (ex) {
             is EntityNotFoundException -> EntityNotFoundException(ex.message)
             is InvalidParamException -> InvalidParamException(ex.message)
+            is IllegalStatusException -> IllegalStatusException(ex.message)
             else ->  super.resolveToSingleError(ex, env)
         }
     }
