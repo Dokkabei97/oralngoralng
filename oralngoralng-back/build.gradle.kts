@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("org.springframework.boot") version "2.7.3"
@@ -10,7 +9,6 @@ plugins {
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
     kotlin("plugin.jpa") version "1.6.21"
-    kotlin("kapt") version "1.6.21"
 }
 
 allprojects {
@@ -55,6 +53,8 @@ allprojects {
         implementation("org.springframework.boot:spring-boot-starter-graphql")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.springframework.boot:spring-boot-starter-validation")
+
+        implementation("com.google.devtools.ksp:symbol-processing-api:1.6.21-1.0.6")
 
         implementation("org.flywaydb:flyway-core")
         implementation("org.flywaydb:flyway-mysql")
