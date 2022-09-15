@@ -19,7 +19,7 @@ create table cards
     card_company varchar(30)  not null comment '카드 회사명',
     card_number  varchar(30)  not null comment '카드 번호',
     valid_thru   varchar(5)   not null comment '유효기간',
-    cvc          int(3)       not null comment 'cvc 번호',
+    cvc          int(3) not null comment 'cvc 번호',
     status       bool         not null comment '사용 가능 여부',
     created_at   datetime     not null comment '생성 일시',
     updated_at   datetime     not null comment '수정 일시'
