@@ -25,8 +25,9 @@ class User(
 
     enum class Status(val description: String) {
         COMMON("일반 회원"),
-        MEMBERSHIP1("멤버쉽1 회원"),
-        MEMBERSHIP2("멤버쉽2 회원"),
+        BASIC("베이직 회원"),
+        STANDARD("스탠다드 회원"),
+        PREMIUM("프리미엄 회원"),
         ADMIN("관리자")
     }
 

@@ -1,7 +1,9 @@
 package com.t4er.oralng.domain.order
 
+import com.t4er.oralng.domain.CommonEntity
 import com.t4er.oralng.domain.order.payment.PayMethod
 import com.t4er.oralng.entity.AbstractEntity
+import com.t4er.oralng.util.TokenGenerator
 import java.time.ZonedDateTime
 import javax.persistence.*
 
@@ -30,27 +32,56 @@ class Order(
 
     @Enumerated(EnumType.STRING)
     @Column(name = "pay_type")
-    var payType: PayMethod,
+    var payType: PayMethod?,
 
     @Column(name = "billing_key")
-    var billingKey: String,
+    var billingKey: String?,
 
-    @Column(name= "successed_at")
-    var successedAt: ZonedDateTime?,
+    @Column(name = "order_at")
+    var orderAt: ZonedDateTime,
 
-    @Column(name = "expiration_at")
-    var expirationAt: ZonedDateTime,
+    @Column(name = "expiration_product_at")
+    var expirationProductAt: ZonedDateTime,
 
-    @Column(name = "next_order_at")
-    var nextOrderAt: ZonedDateTime,
+    @Column(name = "next_payment_at")
+    var nextPaymentAt: ZonedDateTime,
 
-    @Column(name = "result_status")
-    var resultStatus: String?,
+    @Embedded
+    var commonEntity: CommonEntity?
 
-    @Column(name = "result_message")
-    var resultMessage: String?,
 ) : AbstractEntity() {
     companion object {
-
+        private const val ORDER_PREFIX: String = "ord_"
+        fun of(
+            userId: Long,
+            productId: Long,
+            price: Int,
+            orderAt: ZonedDateTime,
+            expirationAt: ZonedDateTime,
+            nextOrderAt: ZonedDateTime,
+        ): Order {
+            return Order(
+                null,
+                TokenGenerator.randomCharacterWithPrefix(ORDER_PREFIX),
+                userId,
+                productId,
+                null,
+                price,
+                null,
+                null,
+                orderAt,
+                expirationAt,
+                nextOrderAt,
+                null
+            )
+        }
     }
+}
+
+private fun isValidExpirationDate(): Boolean {
+    return false
+}
+
+private fun isValidNextPaymentDate(): Boolean {
+    return false
 }
