@@ -1,7 +1,6 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    kotlin("kapt") version "1.6.21"
     kotlin("plugin.jpa") version "1.6.21"
 }
 

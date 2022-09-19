@@ -1,6 +1,7 @@
 package com.t4er.oralng.domain
 
 import com.t4er.oralng.entity.AbstractEntity
+import com.t4er.oralng.exception.InvalidParamException
 import javax.persistence.*
 
 @Entity
@@ -24,20 +25,21 @@ class User(
 
     enum class Status(val description: String) {
         COMMON("일반 회원"),
-        MEMBERSHIP1("멤버쉽1 회원"),
-        MEMBERSHIP2("멤버쉽2 회원"),
+        BASIC("베이직 회원"),
+        STANDARD("스탠다드 회원"),
+        PREMIUM("프리미엄 회원"),
         ADMIN("관리자")
     }
 
     companion object {
         fun of(nickname: String, email: String): User {
-            if (isValid(nickname)) throw RuntimeException("닉네임은 12글자 이하만 사용 가능합니다.")
+            if (isValid(nickname)) throw InvalidParamException("닉네임은 12글자 이하만 사용 가능합니다.")
             return User(null, nickname, email, Status.COMMON)
         }
     }
 
     fun updateNickname(nickname: String) {
-        if (isValid(nickname)) throw RuntimeException("닉네임은 12글자 이하만 사용 가능합니다.")
+        if (isValid(nickname)) throw InvalidParamException("닉네임은 12글자 이하만 사용 가능합니다.")
         this.nickname = nickname
     }
 

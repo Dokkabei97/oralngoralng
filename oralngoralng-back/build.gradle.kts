@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("org.springframework.boot") version "2.7.3"
@@ -55,7 +54,6 @@ allprojects {
         implementation("org.springframework.boot:spring-boot-starter-graphql")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.springframework.boot:spring-boot-starter-validation")
-
 
         implementation("org.flywaydb:flyway-core")
         implementation("org.flywaydb:flyway-mysql")
