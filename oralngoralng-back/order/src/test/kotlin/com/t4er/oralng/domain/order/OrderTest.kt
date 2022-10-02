@@ -1,5 +1,6 @@
 package com.t4er.oralng.domain.order
 
+import com.t4er.oralng.domain.order.payment.PayMethod
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
@@ -32,7 +33,7 @@ internal class OrderTest : DescribeSpec({
             }
         }
         context("주문 생성") {
-            val order:Order = Order.of(1L, 1L, 5000)
+            val order:Order = Order.of(1L, 1L, 5000, PayMethod.NAVER_PAY)
             it("성공") {
                 order.userId shouldBe  1L
                 order.orderToken shouldStartWith "ord_"

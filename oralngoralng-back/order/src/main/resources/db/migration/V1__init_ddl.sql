@@ -7,6 +7,7 @@ create table orders
     card_id               bigint       null comment '주문에 사용한 카드',
     price                 int          not null comment '결제 금액',
     pay_method            varchar(50) comment '결제 수단',
+    status                varchar(50) comment '결제 상태',
     billing_key           varchar(50) comment '결제 키',
     order_at              datetime     not null comment '주문 일시',
     expiration_product_at datetime     null comment '상품 만료 일시',

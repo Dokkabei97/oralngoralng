@@ -1,6 +1,7 @@
 package com.t4er.oralng.domain.order
 
 import com.t4er.oralng.domain.CommonEntity
+import com.t4er.oralng.domain.order.Order.Status.*
 import com.t4er.oralng.domain.order.payment.PayMethod
 import com.t4er.oralng.entity.AbstractEntity
 import com.t4er.oralng.util.TokenGenerator
@@ -32,7 +33,11 @@ class Order(
 
     @Enumerated(EnumType.STRING)
     @Column(name = "pay_method")
-    var payMethod: PayMethod?,
+    var payMethod: PayMethod,
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    var status: Status,
 
     @Column(name = "billing_key")
     var billingKey: String?,
@@ -50,9 +55,15 @@ class Order(
     var commonEntity: CommonEntity?,
 
     ) : AbstractEntity() {
+
+    enum class Status(val description: String) {
+        INIT("주문시작"),
+        ORDER_COMPLETE("주문완료"),
+    }
+
     companion object {
         private const val ORDER_PREFIX: String = "ord_"
-        fun of(userId: Long, productId: Long, price: Int): Order {
+        fun of(userId: Long, productId: Long, price: Int, payMethod: PayMethod): Order {
             return Order(
                 null,
                 TokenGenerator.randomCharacterWithPrefix(ORDER_PREFIX),
@@ -60,7 +71,8 @@ class Order(
                 productId,
                 null,
                 price,
-                null,
+                payMethod,
+                INIT,
                 null,
                 ZonedDateTime.now(),
                 null,
@@ -68,5 +80,11 @@ class Order(
                 null
             )
         }
+    }
+
+    // kotlin 문법
+    fun isAlreadyPaymentComplete(): Boolean = when (this.status) {
+        ORDER_COMPLETE -> true
+        INIT -> false
     }
 }
