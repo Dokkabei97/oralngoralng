@@ -3,7 +3,6 @@ package com.t4er.oralng.domain.refund
 import com.t4er.oralng.domain.CommonEntity
 import com.t4er.oralng.domain.order.payment.PayMethod
 import com.t4er.oralng.entity.AbstractEntity
-import java.time.ZonedDateTime
 import javax.persistence.*
 
 @Entity
@@ -24,19 +23,25 @@ class Refund(
     @Column(name = "product_id")
     var productId: Long,
 
-    @Column(name = "card_id")
-    var cardId: Long?,
-
     @Column(name = "price")
     var price: Int,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "pay_type")
-    var payType: PayMethod?,
+    @Column(name = "pay_method")
+    var payMethod: PayMethod,
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "refund_status")
+    var refundStatus: RefundStatus,
 
     @Column(name = "billing_key")
     var billingKey: String?,
 
     @Embedded
     var commonEntity: CommonEntity?,
-) : AbstractEntity()
+) : AbstractEntity() {
+    enum class RefundStatus(val description: String) {
+        INIT("환불시작"),
+        REFUND_COMPLETE("환불완료"),
+    }
+}

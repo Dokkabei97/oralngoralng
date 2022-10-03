@@ -8,9 +8,9 @@ class OrderInfo(order: Order) {
     var orderToken: String = order.orderToken
     var userId: Long = order.userId
     var productId: Long = order.productId
-    var cardId: Long? = order.cardId
     var price: Int = order.price
-    var payMethod: PayMethod? = order.payMethod
+    var payMethod: PayMethod = order.payMethod
+    var orderStatus: Order.OrderStatus = order.orderStatus
     var billingKey: String? = order.billingKey
     var orderAt: ZonedDateTime = order.orderAt
     var expirationProductAt: ZonedDateTime? = order.expirationProductAt
