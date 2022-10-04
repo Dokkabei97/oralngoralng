@@ -3,6 +3,8 @@ type User {
     nickname: String!
     email: String!
     status: Status!
+    createdAt: String!
+    updatedAt: String!
 }
 
 enum Status {

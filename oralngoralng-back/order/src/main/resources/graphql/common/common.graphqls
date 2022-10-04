@@ -1,0 +1,10 @@
+type CommonEntity {
+    succeedAt: String
+    resultStatus: ResultStatus!
+    resultMessage: String!
+}
+
+enum ResultStatus {
+    SUCCESS
+    FAIL
+}

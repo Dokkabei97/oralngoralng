@@ -1,0 +1,21 @@
+type Order {
+    id: ID!
+    orderToken: String!
+    userId: ID!
+    productId: ID!
+    price: Int!
+    payMethod: PayMethod!
+    orderStatus: OrderStatus!
+    billingKey: String
+    orderAt: String!
+    expirationProductAt: String
+    nextPaymentAt: String
+    commonEntity: CommonEntity
+    createdAt: String!
+    updatedAt: String!
+}
+
+enum OrderStatus {
+    INIT
+    ORDER_COMPLETE
+}
