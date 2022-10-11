@@ -16,4 +16,9 @@ class OrderController(val orderFacade: OrderFacade) {
     fun registerOrder(@Argument @Valid input: RegisterOrderRequest): OrderInfo {
         return orderFacade.registerOrder(input)
     }
+
+    @MutationMapping
+    fun paymentOrder(@Argument @Valid input: PaymentRequest) {
+        orderFacade.paymentOrder(input)
+    }
 }
