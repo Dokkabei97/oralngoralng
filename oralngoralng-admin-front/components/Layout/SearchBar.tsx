@@ -1,41 +1,19 @@
 import React from 'react';
-import {styled, alpha} from '@mui/material/styles';
 import Box from "@mui/material/Box";
-import {Grid, InputBase, OutlinedInputProps, TextField, TextFieldProps} from "@mui/material";
+import {Grid, TextField} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
-
-const CustomTextField = styled((props: TextFieldProps) => (
-    <TextField
-        InputProps={{ disableUnderline: true } as Partial<OutlinedInputProps>}
-        {...props}
-    />
-    ))(({ theme}) => ({
-    '& .MuiFilledInput-root': {
-        '&:hover': {
-            backgroundColor: 'white',
-        },
-        borderRadius: 4,
-        backgroundColor: 'white',
-    },
-    '& .MuiInputBase-root.Mui-focused': {
-        backgroundColor: 'white',
-    },
-    '& .MuiInputBase-formControl.Mui-focused': {
-        backgroundColor: 'white',
-    },
-    '& .MuiFormControl-root.Mui-focused': {
-        backgroundColor: 'white',
-    }
-}));
+import styles from './_searchbar.module.scss';
 
 const SearchBar = () => {
     return (
-        <Box sx={{flexGrow: 1}} bgcolor={'rgba(0, 117, 255, 0.72)'}>
+        <Box className={styles.box}>
             <Grid container justifyContent={"center"} alignItems={"center"}>
+                <Grid item xs={3.5}></Grid>
                 <Grid item xs={5}>
                     <Box m={4}>
-                        <CustomTextField
+                        <TextField
+                            className={styles.textField}
                             fullWidth
                             variant={"filled"}
                             label={"여행지를 검색해 보세요"}
@@ -50,6 +28,7 @@ const SearchBar = () => {
                         />
                     </Box>
                 </Grid>
+                <Grid item xs={3.5}></Grid>
             </Grid>
         </Box>
     );
