@@ -1,4 +1,10 @@
 spring:
+  graphql:
+    schema:
+      locations: classpath:graphql/**/
+      fileExtensions: .graphqls, .gqls
+      printer:
+        enabled: true
   h2:
     console:
       enabled: true

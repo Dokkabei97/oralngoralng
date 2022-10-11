@@ -1,0 +1,13 @@
+type OrderInfo {
+    orderToken: String!
+    userId: ID!
+    productId: ID!
+    price: Int!
+    payMethod: PayMethod!
+    orderStatus: OrderStatus!
+    billingKey: String
+    orderAt: String!
+    expirationProductAt: String
+    nextPaymentAt: String
+    commonEntity: CommonEntity
+}
