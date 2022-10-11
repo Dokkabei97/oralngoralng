@@ -4,3 +4,9 @@ input RegisterOrderRequest {
     price: Int!
     payMethod: PayMethod!
 }
+
+input PaymentRequest {
+    orderToken: String!
+    price: Int!
+    payMethod: PayMethod!
+}

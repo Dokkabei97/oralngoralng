@@ -1,4 +1,5 @@
 type Mutation {
     # Order
     registerOrder(input: RegisterOrderRequest!): OrderInfo
+    paymentOrder(input: PaymentRequest!): OrderInfo
 }
