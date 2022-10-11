@@ -1,3 +1,4 @@
 type Mutation {
     # Order
+    registerOrder(input: RegisterOrderRequest!): OrderInfo
 }

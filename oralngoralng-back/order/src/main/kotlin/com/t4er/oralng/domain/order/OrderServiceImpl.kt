@@ -16,7 +16,7 @@ class OrderServiceImpl(
     @Transactional
     override fun registerOrder(command: RegisterOrderRequest): OrderInfo {
         val order = orderStore.store(
-            Order.of(command.user, command.productId, command.price, command.payMethod)
+            Order.of(command.userId, command.productId, command.price, command.payMethod)
         )
         return OrderInfo(order)
     }
