@@ -6,12 +6,13 @@
   color: rgba(0, 117, 255, 0.72);
   font-weight: bold;
   font-size: large;
-  margin-top: 12px;
   flex-grow: 1;
+  display: inline-block;
+  width: 250px;
 }
 
 .menu {
-  float: left;
+  display: inline;
 }
 
 .account {
