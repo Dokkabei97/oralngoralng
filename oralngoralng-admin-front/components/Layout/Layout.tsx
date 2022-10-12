@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 import Sidebar from "./Sidebar";
 import {useEffect, useState} from "react";
 
-const Layout = ({children}) => {
+const Layout = ({ children }: { children: any }) => {
     const [handleDrawerToggle, setHandleDrawerToggle] = useState(true);
 
     const clickHandleDrawerToggle = () => {

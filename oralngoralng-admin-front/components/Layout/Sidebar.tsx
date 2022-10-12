@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Button, Divider, Drawer, List, ListItem, Typography} from "@mui/material";
 import styles from './_sidebar.module.scss';
 
-const Sidebar = ({open, onClose}) => {
+const Sidebar = ({ open, onClose }: { open: boolean, onClose: any }) => {
     return (
         <Drawer
             variant="persistent"

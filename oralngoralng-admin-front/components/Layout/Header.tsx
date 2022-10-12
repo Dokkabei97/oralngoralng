@@ -10,7 +10,7 @@ import {Grid, Hidden, Menu, MenuItem} from "@mui/material";
 import styles from './_header.module.scss';
 
 
-const Header = ({onDrawerToggle}) => {
+const Header = ({ onDrawerToggle }: { onDrawerToggle: React.MouseEventHandler<HTMLButtonElement> }) => {
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
