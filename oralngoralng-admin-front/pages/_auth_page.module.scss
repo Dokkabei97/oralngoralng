@@ -1,0 +1,40 @@
+.typography {
+  color: rgba(0, 117, 255, 0.72);
+  font-weight: bold;
+  font-size: large;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 10%;
+}
+
+.searchField {
+  margin: 10%;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.passwordField {
+  margin: 10%;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.loginButton {
+  margin: 10%;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.box {
+  background-color: white;
+  width: 500px;
+  height: 500px;
+  position: fixed;
+}

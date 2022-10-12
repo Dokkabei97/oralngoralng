@@ -1,10 +1,19 @@
+import {Grid} from '@mui/material';
 import React from 'react';
 
-const Auth = () => {
-    return (
-        <div>
+import styles from './_auth.module.scss';
 
-        </div>
+const Auth = ({children}) => {
+    return (
+        <Grid container spacing={2} className={styles.global}>
+            <Grid item xs={4}>
+            </Grid>
+            <Grid item xs={4} className={styles.authForm}>
+                {children}
+            </Grid>
+            <Grid item xs={4}>
+            </Grid>
+        </Grid>
     );
 };
 
