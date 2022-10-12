@@ -1,0 +1,12 @@
+input RegisterOrderRequest {
+    userId: ID!
+    productId: ID!
+    price: Int!
+    payMethod: PayMethod!
+}
+
+input PaymentRequest {
+    orderToken: String!
+    price: Int!
+    payMethod: PayMethod!
+}

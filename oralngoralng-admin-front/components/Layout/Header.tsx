@@ -1,15 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import Head from "next/head";
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import {AccountCircle} from "@mui/icons-material";
-import {Container, Grid, Menu, MenuItem} from "@mui/material";
+import {AccountCircle, Power} from "@mui/icons-material";
+import {Grid, Hidden, Menu, MenuItem} from "@mui/material";
+import styles from './_header.module.scss';
 
-const Header = () => {
+
+const Header = ({ onDrawerToggle }: { onDrawerToggle: React.MouseEventHandler<HTMLButtonElement> }) => {
+
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -21,33 +23,24 @@ const Header = () => {
     };
 
     return (
-        <Head>
-            <title>
-                ORALNG ORALNG
-            </title>
-
-            <Box sx={{flexGrow: 1}}>
-                <AppBar position="static" sx={{backgroundColor: 'white'}}>
-                    <Toolbar>
-
+        <AppBar position="static" elevation={0} className={styles.appbar}>
+            <Toolbar>
+                <Grid container alignItems={"center"}>
+                    <Grid item xs={2}>
+                    </Grid>
+                    <Grid item xs={6}>
                         <IconButton
-                            size="large"
-                            edge="start"
-                            aria-label="menu"
+                            aria-label="Open drawer"
+                            onClick={onDrawerToggle}
                         >
-                            <MenuIcon/>
+                            <MenuIcon
+                                className={styles.icon}
+                            />
                         </IconButton>
-
-                        <Typography
-                            variant="h6"
-                            component="div"
-                            color={'rgba(0, 117, 255, 0.72)'}
-                            sx={{flexGrow: 1, fontWeight: "bold"}}
-                        >
-                            ORALNG ORALNG
-                        </Typography>
-
+                    </Grid>
+                    <Grid item xs={4}>
                         <IconButton
+                            className={styles.account}
                             size="large"
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
@@ -74,11 +67,10 @@ const Header = () => {
                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                             <MenuItem onClick={handleClose}>My account</MenuItem>
                         </Menu>
-
-                    </Toolbar>
-                </AppBar>
-            </Box>
-        </Head>
+                    </Grid>
+                </Grid>
+            </Toolbar>
+        </AppBar>
     );
 };
 

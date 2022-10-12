@@ -1,0 +1,50 @@
+.box {
+  background-color: ghostwhite;
+  width: 255px;
+  height: 100%;
+}
+
+.list {
+
+  .listItem {
+
+  }
+}
+
+.textBtn {
+  color: black;
+  width: 100%;
+  padding: 10px;
+  justify-content: left;
+
+  &:hover {
+    color: white;
+    background-color: black;
+  }
+}
+
+.divider {
+  background-color: black;
+}
+
+.oralng {
+  color: rgba(0, 117, 255, 0.72);
+  font-weight: bold;
+  font-size: large;
+  margin-left: 15%;
+}
+
+.drawer {
+  border-right: 0;
+
+  > div {
+    border-right: 0;
+  }
+}
+
+.header {
+  background-color: floralwhite;
+  min-height: 56px;
+  padding-top: 10%;
+  padding-bottom: 5%;
+}

@@ -1,0 +1,28 @@
+.box {
+  flex-grow: 1;
+  background-color: rgba(0, 117, 255, 0.72);
+}
+
+.textField {
+  background-color: white;
+
+  & .MuiFilledInput-root {
+    background-color: white;
+
+    &:hover {
+      background-color: white;
+    }
+  }
+
+  & .MuiInputBase-root.Mui-focused {
+    background-color: white;
+  }
+
+  & .MuiInputBase-formControl.Mui-focused {
+    background-color: white;
+  }
+
+  & .MuiFormControl-root.Mui-focused {
+    background-color: white;
+  }
+}

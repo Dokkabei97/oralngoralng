@@ -1,0 +1,19 @@
+mutation registerOrder($input: RegisterOrderRequest!) {
+    registerOrder(input: $input) {
+        orderToken
+        userId
+        productId
+        price
+        payMethod
+        orderStatus
+        billingKey
+        orderAt
+        expirationProductAt
+        nextPaymentAt
+        commonEntity {
+            resultMessage
+            resultStatus
+            succeedAt
+        }
+    }
+}
