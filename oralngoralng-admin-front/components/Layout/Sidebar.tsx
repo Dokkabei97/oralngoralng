@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Box, Button, Divider, Drawer, List, ListItem, Typography} from "@mui/material";
 import styles from './_sidebar.module.scss';
 
@@ -12,18 +12,19 @@ const Sidebar = ({open, onClose}) => {
             onClose={onClose}
         >
             <Box className={styles.box}>
+                <Box className={styles.header}>
                 <Typography
                     className={styles.oralng}
                 >
                     ORALNG ORALNG
                 </Typography>
+                </Box>
                 <Divider/>
                 <List className={styles.list}>
                     <ListItem className={styles.listItem}>
                         <Button
                             variant="text"
                             className={styles.textBtn}
-                            fullWidth
                         >
                             1
                         </Button>
@@ -32,7 +33,6 @@ const Sidebar = ({open, onClose}) => {
                         <Button
                             variant="text"
                             className={styles.textBtn}
-                            fullWidth
                         >
                             <Typography>2</Typography>
                         </Button>
@@ -44,7 +44,6 @@ const Sidebar = ({open, onClose}) => {
                         <Button
                             className={styles.textBtn}
                             variant="text"
-                            fullWidth
                         >
                             3
                         </Button>
@@ -53,7 +52,6 @@ const Sidebar = ({open, onClose}) => {
                         <Button
                             variant="text"
                             className={styles.textBtn}
-                            fullWidth
                         >
                             4
                         </Button>

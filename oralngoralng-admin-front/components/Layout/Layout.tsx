@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar";
 import {useEffect, useState} from "react";
 
 const Layout = ({children}) => {
-    const [handleDrawerToggle, setHandleDrawerToggle] = useState(false);
+    const [handleDrawerToggle, setHandleDrawerToggle] = useState(true);
 
     const clickHandleDrawerToggle = () => {
         setHandleDrawerToggle(!handleDrawerToggle);
@@ -20,7 +20,7 @@ const Layout = ({children}) => {
             />
             <Header onDrawerToggle={clickHandleDrawerToggle}/>
             <main>
-                <SearchBar/>
+                {/*<SearchBar/>*/}
                 {children}
             </main>
             <Footer/>

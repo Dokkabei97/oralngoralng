@@ -26,9 +26,9 @@ const Header = ({onDrawerToggle}) => {
         <AppBar position="static" elevation={0} className={styles.appbar}>
             <Toolbar>
                 <Grid container alignItems={"center"}>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={6}>
                         <IconButton
                             aria-label="Open drawer"
                             onClick={onDrawerToggle}
@@ -38,7 +38,7 @@ const Header = ({onDrawerToggle}) => {
                             />
                         </IconButton>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         <IconButton
                             className={styles.account}
                             size="large"
@@ -67,8 +67,6 @@ const Header = ({onDrawerToggle}) => {
                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                             <MenuItem onClick={handleClose}>My account</MenuItem>
                         </Menu>
-                    </Grid>
-                    <Grid item xs={3}>
                     </Grid>
                 </Grid>
             </Toolbar>
