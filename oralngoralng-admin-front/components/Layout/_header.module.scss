@@ -1,20 +1,12 @@
 .appbar {
-  background-color: white;
-}
-
-.oralng {
-  color: rgba(0, 117, 255, 0.72);
-  font-weight: bold;
-  font-size: large;
-  flex-grow: 1;
-  display: inline-block;
-  width: 250px;
-}
-
-.menu {
-  display: inline;
+  background-color: ghostwhite;
+  box-shadow: 0.5px 0.5px 0.5px 0.5px grey;
 }
 
 .account {
   float: right;
+}
+
+.icon {
+  color: black;
 }
