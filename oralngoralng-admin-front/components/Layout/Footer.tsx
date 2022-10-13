@@ -13,36 +13,28 @@ const Footer = () => {
         setLang(event.target.value as string);
     };
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} className={styles.grid}>
             <Grid item xs={3}>
             </Grid>
             <Grid item xs={3}>
-                <Box m={2}>
-                    <Typography
-                        className={styles.typography}
-                    >
-                        올랑 올랑
-                    </Typography>
-                </Box>
+                <Typography className={styles.typography}>
+                    올랑 올랑
+                </Typography>
             </Grid>
             <Grid item xs={3}>
-                <Box m={2}>
-                    <FormControl
-                        className={styles.fromControl}
+                <FormControl className={styles.fromControl}>
+                    <InputLabel>Lang</InputLabel>
+                    <Select
+                        value={lang}
+                        label="Lang"
+                        onChange={handleChange}
                     >
-                        <InputLabel>Lang</InputLabel>
-                        <Select
-                            value={lang}
-                            label="Lang"
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={1}>한국어</MenuItem>
-                            <MenuItem value={2}>English</MenuItem>
-                            <MenuItem value={3}>日本語</MenuItem>
-                            <MenuItem value={4}>中國語</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
+                        <MenuItem value={1}>한국어</MenuItem>
+                        <MenuItem value={2}>English</MenuItem>
+                        <MenuItem value={3}>日本語</MenuItem>
+                        <MenuItem value={4}>中國語</MenuItem>
+                    </Select>
+                </FormControl>
             </Grid>
             <Grid item xs={3}>
             </Grid>

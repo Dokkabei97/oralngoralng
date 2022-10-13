@@ -1,28 +1,21 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import SearchBar from "./SearchBar";
 import Sidebar from "./Sidebar";
-import {useEffect, useState} from "react";
+
+import styles from './_layout.module.scss';
+import {Paper} from "@mui/material";
 
 const Layout = ({ children }: { children: any }) => {
-    const [handleDrawerToggle, setHandleDrawerToggle] = useState(true);
-
-    const clickHandleDrawerToggle = () => {
-        setHandleDrawerToggle(!handleDrawerToggle);
-        console.log(handleDrawerToggle)
-    }
 
     return (
         <>
-            <Sidebar
-                open={handleDrawerToggle}
-                onClose={clickHandleDrawerToggle}
-            />
-            <Header onDrawerToggle={clickHandleDrawerToggle}/>
-            <main>
-                {/*<SearchBar/>*/}
-                {children}
-            </main>
+            <Header/>
+            <div className={styles.div}>
+                <Sidebar/>
+                <div className={styles.main}>
+                    {children}
+                </div>
+            </div>
             <Footer/>
         </>
     );

@@ -6,9 +6,7 @@ import Layout from "../components/Layout/Layout";
 const Home: NextPage = () => {
     return (
         <Layout>
-            <div>
-                hi
-            </div>
+            <div>hi</div>
         </Layout>
     )
 }
