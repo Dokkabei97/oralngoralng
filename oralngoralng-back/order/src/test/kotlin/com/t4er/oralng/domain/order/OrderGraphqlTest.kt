@@ -51,6 +51,13 @@ internal class OrderGraphqlTest : AnnotationSpec() {
                 .satisfy {
                     error -> error.get(0).errorType shouldBe ErrorType.InvalidParam
                 }
+
+            @Test
+            fun payment_order_success() {
+                val variable: Map<String, Any> = mapOf(
+                        Pair("orderToken", "")
+                )
+            }
         }
     }
 
