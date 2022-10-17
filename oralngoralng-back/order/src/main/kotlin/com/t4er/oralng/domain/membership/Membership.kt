@@ -21,8 +21,8 @@ class Membership(
     var price: Int,
 ) {
     enum class MembershipName(description: String, price: Int) {
-        BASIC("베이직 등급 ...", 5000),
-        STANDARD("스탠다드 등급, ...", 7500),
-        PREMIUM("프리미엄 등급, ...", 10000)
+        BASIC("베이직 등급", 5000),
+        STANDARD("스탠다드 등급", 7500),
+        PREMIUM("프리미엄 등급", 10000)
     }
 }
