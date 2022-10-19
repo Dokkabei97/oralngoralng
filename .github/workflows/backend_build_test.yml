@@ -1,25 +1,25 @@
-name: BackEnd_Build_Test
-
-on:
-  pull_request:
-    branches:
-      - develop
-    types: opened
-
-defaults:
-  run:
-    working-directory: ./oralngoralng-back
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Build Test
-        run: ./gradlew bootJar
+#name: BackEnd_Build_Test
+#
+#on:
+#  pull_request:
+#    branches:
+#      - develop
+#    types: opened
+#
+#defaults:
+#  run:
+#    working-directory: ./oralngoralng-back
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#
+#      - name: Grant execute permission for gradlew
+#        run: chmod +x gradlew
+#
+#      - name: Build Test
+#        run: ./gradlew bootJar

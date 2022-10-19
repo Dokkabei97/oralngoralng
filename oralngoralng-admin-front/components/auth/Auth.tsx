@@ -3,7 +3,7 @@ import React from 'react';
 
 import styles from './_auth.module.scss';
 
-const Auth = ({children}) => {
+const Auth = ({ children }: { children: any }) => {
     return (
         <Grid container spacing={2} className={styles.global}>
             <Grid item xs={4}>

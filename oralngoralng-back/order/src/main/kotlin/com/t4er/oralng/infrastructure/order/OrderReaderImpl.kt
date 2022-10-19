@@ -11,4 +11,8 @@ class OrderReaderImpl(val orderRepository: OrderRepository): OrderReader {
     override fun getOrder(orderToken: String): Order {
         return orderRepository.findByOrderToken(orderToken)
     }
+
+    override fun getOrders(userId: Long): List<Order> {
+        return orderRepository.findAllByUserId(userId)
+    }
 }

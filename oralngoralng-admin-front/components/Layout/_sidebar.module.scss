@@ -1,7 +1,8 @@
 .box {
-  background-color: ghostwhite;
-  width: 255px;
-  height: 100%;
+  background-color: rgba(0, 117, 255, 0.72);
+  width: 10%;
+  display: flex;
+  flex-direction: column;
 }
 
 .list {
@@ -23,10 +24,6 @@
   }
 }
 
-.divider {
-  background-color: black;
-}
-
 .oralng {
   color: rgba(0, 117, 255, 0.72);
   font-weight: bold;
@@ -34,17 +31,15 @@
   margin-left: 15%;
 }
 
-.drawer {
-  border-right: 0;
-
-  > div {
-    border-right: 0;
-  }
-}
-
 .header {
-  background-color: floralwhite;
+  background-color: cyan;
   min-height: 56px;
   padding-top: 10%;
   padding-bottom: 5%;
+}
+
+.footer {
+  background-color: floralwhite;
+  width: 100%;
+  height: 5%;
 }

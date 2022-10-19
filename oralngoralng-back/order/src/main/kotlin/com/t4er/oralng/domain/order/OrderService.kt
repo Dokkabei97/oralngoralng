@@ -6,4 +6,6 @@ interface OrderService {
     fun registerOrder(command: RegisterOrderRequest): OrderInfo
 
     fun paymentOrder(command: PaymentRequest)
+
+    fun getOrders(command: GetOrdersRequest): List<OrderInfo>
 }
