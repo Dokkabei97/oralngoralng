@@ -7,7 +7,7 @@ create table orders
     price                 int          not null comment '결제 금액',
     pay_method            varchar(50)  not null comment '결제 수단',
     order_status          varchar(50)  not null comment '결제 상태',
-    billing_key           varchar(50)  not null comment '결제 키',
+    billing_key           varchar(50)  null comment '결제 키',
     order_at              datetime     not null comment '주문 일시',
     expiration_product_at datetime     null comment '상품 만료 일시',
     next_payment_at       datetime     null comment '다음 결제 일시',
