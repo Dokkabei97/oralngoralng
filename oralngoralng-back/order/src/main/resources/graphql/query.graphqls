@@ -1,3 +1,4 @@
 type Query {
-  # Order
+    # Order
+    getOrders(input: GetOrdersRequest!): [OrderInfo]
 }

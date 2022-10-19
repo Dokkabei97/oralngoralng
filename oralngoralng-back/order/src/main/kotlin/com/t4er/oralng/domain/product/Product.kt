@@ -14,6 +14,7 @@ class Product(
     @Column(name = "product_id")
     var id: Long?,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "membership_name")
     var membershipName: MembershipName,
 

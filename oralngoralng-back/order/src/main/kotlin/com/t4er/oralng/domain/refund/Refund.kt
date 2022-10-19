@@ -34,9 +34,6 @@ class Refund(
     @Column(name = "refund_status")
     var refundStatus: RefundStatus,
 
-    @Column(name = "billing_key")
-    var billingKey: String?,
-
     @Embedded
     var commonEntity: CommonEntity?,
 ) : AbstractEntity() {

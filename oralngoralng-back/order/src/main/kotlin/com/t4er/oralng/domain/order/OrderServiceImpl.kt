@@ -4,6 +4,9 @@ import com.t4er.oralng.domain.order.OrderCommand.*
 import com.t4er.oralng.domain.order.payment.PaymentProcessor
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.Collections
+import java.util.stream.Collectors
+import kotlin.streams.toList
 
 @Service
 @Transactional(readOnly = true)
@@ -30,5 +33,11 @@ class OrderServiceImpl(
         } catch (exception: Exception) {
             order.orderFail()
         }
+    }
+
+    override fun getOrders(command: GetOrdersRequest): List<OrderInfo> {
+        val orders = orderReader.getOrders(command.userId)
+
+        return orders.map { OrderInfo(it) }.toList()
     }
 }

@@ -11,13 +11,14 @@ class Membership(
     @Column(name = "membership_id")
     var id: Long?,
 
-    @Column(name = "membership_name")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "name")
     var name: MembershipName,
 
-    @Column(name = "membership_description")
+    @Column(name = "description")
     var description: String,
 
-    @Column(name = "membership_price")
+    @Column(name = "price")
     var price: Int,
 ) {
     enum class MembershipName(description: String, price: Int) {

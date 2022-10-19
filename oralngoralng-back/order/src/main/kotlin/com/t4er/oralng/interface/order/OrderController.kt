@@ -6,6 +6,7 @@ import com.t4er.oralng.domain.order.OrderCommand.*
 import com.t4er.oralng.domain.order.OrderInfo
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
+import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
 import javax.validation.Valid
 
@@ -20,5 +21,10 @@ class OrderController(val orderFacade: OrderFacade) {
     @MutationMapping
     fun paymentOrder(@Argument @Valid input: PaymentRequest) {
         orderFacade.paymentOrder(input)
+    }
+
+    @QueryMapping
+    fun getOrders(@Argument @Valid input: GetOrdersRequest): List<OrderInfo> {
+        return orderFacade.getOrders(input)
     }
 }
