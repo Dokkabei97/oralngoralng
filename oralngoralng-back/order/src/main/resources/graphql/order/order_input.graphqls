@@ -10,3 +10,7 @@ input PaymentRequest {
     price: Int!
     payMethod: PayMethod!
 }
+
+input GetOrdersRequest {
+    userId: ID!
+}

@@ -16,4 +16,8 @@ class OrderFacade(val orderService: OrderService) {
     fun paymentOrder(command: PaymentRequest) {
         orderService.paymentOrder(command)
     }
+
+    fun getOrders(command: GetOrdersRequest): List<OrderInfo> {
+        return orderService.getOrders(command)
+    }
 }

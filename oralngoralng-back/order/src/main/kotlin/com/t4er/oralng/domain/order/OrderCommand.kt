@@ -16,4 +16,8 @@ class OrderCommand {
         var price: Int,
         var payMethod: PayMethod
     )
+
+    class GetOrdersRequest (
+        var userId: Long
+    )
 }
