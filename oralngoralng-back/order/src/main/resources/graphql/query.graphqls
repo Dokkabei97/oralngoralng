@@ -1,4 +1,5 @@
 type Query {
     # Order
     getOrders(input: GetOrdersRequest!): [OrderInfo]
+    getOrder(input: GetOrderRequest!): OrderInfo
 }

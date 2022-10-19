@@ -8,4 +8,5 @@ interface OrderService {
     fun paymentOrder(command: PaymentRequest)
 
     fun getOrders(command: GetOrdersRequest): List<OrderInfo>
+    fun getOrder(command: GetOrderRequest): OrderInfo
 }

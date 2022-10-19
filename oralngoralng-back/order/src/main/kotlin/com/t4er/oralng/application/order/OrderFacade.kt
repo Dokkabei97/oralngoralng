@@ -1,6 +1,5 @@
 package com.t4er.oralng.application.order
 
-import com.t4er.oralng.domain.order.OrderCommand
 import com.t4er.oralng.domain.order.OrderCommand.*
 import com.t4er.oralng.domain.order.OrderInfo
 import com.t4er.oralng.domain.order.OrderService
@@ -19,5 +18,9 @@ class OrderFacade(val orderService: OrderService) {
 
     fun getOrders(command: GetOrdersRequest): List<OrderInfo> {
         return orderService.getOrders(command)
+    }
+
+    fun getOrder(command: GetOrderRequest): OrderInfo {
+        return orderService.getOrder(command)
     }
 }

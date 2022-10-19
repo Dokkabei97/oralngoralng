@@ -1,6 +1,5 @@
 package com.t4er.oralng.domain.product
 
-import com.t4er.oralng.domain.membership.Membership
 import com.t4er.oralng.domain.membership.Membership.*
 import com.t4er.oralng.entity.AbstractEntity
 import javax.persistence.*

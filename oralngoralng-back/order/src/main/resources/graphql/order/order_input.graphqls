@@ -14,3 +14,7 @@ input PaymentRequest {
 input GetOrdersRequest {
     userId: ID!
 }
+
+input GetOrderRequest {
+    orderToken: String!
+}
