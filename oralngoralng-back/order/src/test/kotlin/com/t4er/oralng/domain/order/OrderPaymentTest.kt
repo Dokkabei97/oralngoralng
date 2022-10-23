@@ -3,9 +3,7 @@ package com.t4er.oralng.domain.order
 import com.t4er.oralng.domain.CommonEntity
 import com.t4er.oralng.domain.order.OrderCommand.*
 import com.t4er.oralng.domain.order.payment.PayMethod
-import com.t4er.oralng.exception.InvalidParamException
 import com.t4er.oralng.infrastructure.order.OrderRepository
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import org.springframework.beans.factory.annotation.Autowired
