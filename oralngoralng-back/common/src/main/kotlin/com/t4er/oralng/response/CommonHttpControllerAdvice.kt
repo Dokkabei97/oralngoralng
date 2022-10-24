@@ -1,6 +1,6 @@
 package com.t4er.oralng.response
 
-import com.t4er.oralng.exception.BaseException
+import com.t4er.oralng.exception.GraphqlException
 import com.t4er.oralng.interceptor.CommonHttpRequestInterceptor
 import org.apache.catalina.connector.ClientAbortException
 import org.slf4j.LoggerFactory
@@ -43,8 +43,8 @@ class CommonHttpControllerAdvice {
      */
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    @ExceptionHandler(value = [BaseException::class])
-    fun onBaseException(e: BaseException): CommonHttpResponse<*> {
+    @ExceptionHandler(value = [GraphqlException::class])
+    fun onBaseException(e: GraphqlException): CommonHttpResponse<*> {
         val eventId = MDC.get(CommonHttpRequestInterceptor.HEADER_REQUEST_UUID_KEY)
         if (SPECIFIC_ALERT_TARGET_ERROR_CODE_LIST.contains(e.errorCode)) {
             log.error(

@@ -7,12 +7,12 @@ import graphql.language.SourceLocation
 
 abstract class GraphqlException(
 
-    private val errorCode: ErrorCode,
+        val errorCode: ErrorCode,
 
-    @JvmField
-    @Suppress("INAPPLICABLE_JVM_FIELD")
-    override val message: String?
-): GraphQLError, RuntimeException(message) {
+        @JvmField
+        @Suppress("INAPPLICABLE_JVM_FIELD")
+        override val message: String?
+) : GraphQLError, RuntimeException(message) {
 
     override fun getMessage(): String? = message
 
@@ -22,8 +22,8 @@ abstract class GraphqlException(
 
     override fun getExtensions(): MutableMap<String, Any> {
         return mutableMapOf(
-            Pair("code", this.errorCode),
-            Pair("exception", this.javaClass.simpleName)
+                Pair("code", this.errorCode),
+                Pair("exception", this.javaClass.simpleName)
         )
     }
 }
