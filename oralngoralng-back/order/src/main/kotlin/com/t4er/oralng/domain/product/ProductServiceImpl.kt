@@ -23,4 +23,9 @@ class ProductServiceImpl(
         )
         return ProductInfo(product)
     }
+
+    override fun getProducts(): List<ProductInfo> {
+        val products = productReader.getProducts()
+        return products.map { ProductInfo(it) }.toList()
+    }
 }

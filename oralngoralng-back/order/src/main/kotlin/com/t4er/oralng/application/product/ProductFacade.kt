@@ -12,4 +12,9 @@ class ProductFacade(val productService: ProductService) {
     fun registerProduct(command: RegisterProductRequest): ProductInfo {
         return productService.registerProduct(command)
     }
+
+    fun getProducts(): List<ProductInfo> {
+        return productService.getProducts()
+    }
+
 }
