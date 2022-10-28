@@ -40,4 +40,9 @@ class OrderServiceImpl(
 
         return orders.map { OrderInfo(it) }.toList()
     }
+
+    override fun getOrder(command: GetOrderRequest): OrderInfo {
+        val order = orderReader.getOrder(command.orderToken)
+        return OrderInfo(order)
+    }
 }

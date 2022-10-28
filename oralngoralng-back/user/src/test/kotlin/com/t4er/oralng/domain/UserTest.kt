@@ -1,12 +1,10 @@
 package com.t4er.oralng.domain
 
 import com.t4er.oralng.exception.InvalidParamException
-import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.matchers.shouldBe
 
 internal class UserTest : DescribeSpec({
 
