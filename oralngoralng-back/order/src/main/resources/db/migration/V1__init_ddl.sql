@@ -64,8 +64,7 @@ create table memberships
 (
     membership_id bigint auto_increment primary key comment 'id',
     name          varchar(255) not null comment '멤버쉽 이름',
-    description   varchar(500) not null comment '멤버쉽 설명',
-    price         int          not null comment '멤버쉽 가격'
+    description   varchar(500) not null comment '멤버쉽 설명'
 ) comment 'memberships' charset = utf8mb4;
 
 create index memberships_idx01 on memberships (membership_id);
