@@ -1,6 +1,7 @@
 package com.t4er.oralng.infrastructure.order.payment
 
 import com.t4er.oralng.domain.order.OrderCommand
+import com.t4er.oralng.domain.order.OrderCommand.*
 import com.t4er.oralng.domain.order.payment.PayMethod
 
 class KakaoPayApiCaller: PaymentApiCaller {
@@ -9,7 +10,7 @@ class KakaoPayApiCaller: PaymentApiCaller {
         return PayMethod.KAKAO_PAY == payMethod
     }
 
-    override fun pay(command: OrderCommand.PaymentRequest) {
+    override fun pay(command: PaymentRequest) {
         TODO("Not yet implemented")
     }
 }
