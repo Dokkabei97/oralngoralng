@@ -59,14 +59,3 @@ create table products
 create index products_idx01 on products (product_id);
 create index products_idx02 on products (membership_name);
 create index products_idx03 on products (created_at);
-
-create table memberships
-(
-    membership_id bigint auto_increment primary key comment 'id',
-    name          varchar(255) not null comment '멤버쉽 이름',
-    description   varchar(500) not null comment '멤버쉽 설명',
-    price         int          not null comment '멤버쉽 가격'
-) comment 'memberships' charset = utf8mb4;
-
-create index memberships_idx01 on memberships (membership_id);
-create index memberships_idx02 on memberships (name);
