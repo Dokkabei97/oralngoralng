@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import Header from "@/ui/Header";
 
 export default function RootLayout({
   children,
@@ -7,8 +8,11 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <head></head>
-      <body>{children}</body>
+      <head><title>OralngOralng</title></head>
+      <body>
+      <Header/>
+      {children}
+      </body>
     </html>
   )
 }
