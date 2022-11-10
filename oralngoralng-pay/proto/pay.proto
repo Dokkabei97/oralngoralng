@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 service PayService {
-  rpc registerPayRequest(PaymentRequest) returns (payment);
+  rpc registerPayRequest(PaymentRequest) returns (PaymentResponse);
 }
 
 message PaymentRequest {
