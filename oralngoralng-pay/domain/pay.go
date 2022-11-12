@@ -5,13 +5,13 @@ import (
 	"pay/common"
 )
 
-type PayMethod int
+type PayMethod string
 
 const (
-	Card PayMethod = iota + 1
-	NaverPay
-	KakaoPay
-	TossPay
+	Card     PayMethod = "CARD"
+	NaverPay           = "NAVER_PAY"
+	KakaoPay           = "KAKAO_PAY"
+	TossPay            = "TOSS_PAY"
 )
 
 type Pay struct {

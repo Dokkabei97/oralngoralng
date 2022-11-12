@@ -12,6 +12,14 @@ func SetRouter() *gin.Engine {
 
 	pay := router.Group(API + "/pays")
 	{
+		pay.GET("", func(context *gin.Context) {
+
+		})
+
+		pay.GET("/graphql", func(context *gin.Context) {
+
+		})
+
 		pay.POST("", func(context *gin.Context) {
 			context.JSON(http.StatusOK, gin.H{
 				"message": "test",
