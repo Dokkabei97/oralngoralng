@@ -5,27 +5,42 @@ import (
 	"log"
 	"net/http"
 	"pay/domain"
+	"strconv"
 )
 
 const API = "/api/v1"
 
 func SetRouter() *gin.Engine {
+	pay := domain.Pay{}
+	var payService domain.PayService
+	payService = &pay
+
 	router := gin.Default()
 
-	pay := router.Group(API + "/pays")
+	payRouter := router.Group(API + "/pays")
 	{
-		pay.GET("", func(context *gin.Context) {
+		payRouter.GET("", func(context *gin.Context) {
 
 		})
 
-		pay.GET("/graphql", func(context *gin.Context) {
+		payRouter.GET("", func(context *gin.Context) {
+			userId := context.Query("userId")
+			a, _ := strconv.Atoi(userId)
+			pays, err := payService.GetPays(a)
+			if err != nil {
+				return
+			}
+			context.JSON(http.StatusOK, gin.H{
+				"pays": pays,
+			})
+		})
+
+		payRouter.GET("", func(context *gin.Context) {
 
 		})
 
-		pay.POST("", func(context *gin.Context) {
-			pay := domain.Pay{}
-			//todo pay
-			registerPay, err := domain.PayService.RegisterPay(&pay)
+		payRouter.POST("", func(context *gin.Context) {
+			registerPay, err := payService.RegisterPay()
 			if err != nil {
 				log.Println(err)
 			}
