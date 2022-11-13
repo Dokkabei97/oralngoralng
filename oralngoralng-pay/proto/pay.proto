@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+service PayService {
+  rpc registerPayRequest(PaymentRequest) returns (PaymentResponse);
+}
+
+message PaymentRequest {
+  string orderToken = 1;
+  int64 userId = 2;
+  int64 productId = 3;
+  int64 price = 4;
+  PayMethod payMethod = 5;
+}
+
+message PaymentResponse {
+  string billingKey = 1;
+  string resultStatus = 2;
+  string succeedAt = 3;
+}
+
+enum PayMethod {
+  CARD = 0;
+  NAVER_PAY = 1;
+  TOSS_PAY = 2;
+  KAKAO_PAY = 3;
+}
