@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
-	"pay/domain"
+	"pay/api/domain"
 	"strconv"
 )
 
@@ -20,10 +20,6 @@ func SetRouter() *gin.Engine {
 	payRouter := router.Group(API + "/pays")
 	{
 		payRouter.GET("", func(context *gin.Context) {
-
-		})
-
-		payRouter.GET("", func(context *gin.Context) {
 			userId := context.Query("userId")
 			a, _ := strconv.Atoi(userId)
 			pays, err := payService.GetPays(a)
@@ -35,7 +31,7 @@ func SetRouter() *gin.Engine {
 			})
 		})
 
-		payRouter.GET("", func(context *gin.Context) {
+		payRouter.GET("/graphql", func(context *gin.Context) {
 
 		})
 

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
+	"log"
+	"pay/api/router"
 )
 
 const restPort = ":8082"
@@ -16,12 +16,9 @@ func main() {
 		panic("DB 연결에 실패했습니다!")
 	}
 
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-
-	r.Run(restPort)
+	r := router.SetRouter()
+	err = r.Run(restPort)
+	if err != nil {
+		log.Println(err)
+	}
 }
