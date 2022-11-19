@@ -1,5 +1,6 @@
 syntax = "proto3";
 package pay;
+option go_package = './proto';
 
 service PayService {
   rpc registerPayRequest(PaymentRequest) returns (PaymentResponse);
