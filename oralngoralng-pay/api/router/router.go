@@ -2,7 +2,6 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
 	"pay/api/domain"
 	"strconv"
@@ -33,16 +32,6 @@ func SetRouter() *gin.Engine {
 
 		payRouter.GET("/graphql", func(context *gin.Context) {
 
-		})
-
-		payRouter.POST("", func(context *gin.Context) {
-			registerPay, err := payService.RegisterPay()
-			if err != nil {
-				log.Println(err)
-			}
-			context.JSON(http.StatusOK, gin.H{
-				"message": registerPay,
-			})
 		})
 	}
 

@@ -1,7 +1,8 @@
-package domain
+package test
 
 import (
 	"fmt"
+	"pay/api/domain"
 	"pay/common"
 	"testing"
 )
@@ -11,7 +12,7 @@ type TestPay struct {
 	UserId     int
 	ProductId  int
 	Price      int
-	PayMethod  PayMethod
+	PayMethod  domain.PayMethod
 	BillingKey string
 }
 
@@ -22,19 +23,19 @@ func TestGeneratorBillingKey(t *testing.T) {
 		1,
 		1,
 		5000,
-		NaverPay,
+		domain.NaverPay,
 		"",
 	}
 
 	var prefix string
 	switch pay.PayMethod {
-	case Card:
+	case domain.Card:
 		prefix = "CP"
-	case NaverPay:
+	case domain.NaverPay:
 		prefix = "NP"
-	case KakaoPay:
+	case domain.KakaoPay:
 		prefix = "KP"
-	case TossPay:
+	case domain.TossPay:
 		prefix = "TP"
 	}
 
