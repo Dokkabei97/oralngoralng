@@ -7,7 +7,7 @@ import (
 
 var DB *gorm.DB
 
-type dbConfig struct {
+type DbConfig struct {
 	user     string
 	password string
 	host     string
@@ -15,9 +15,9 @@ type dbConfig struct {
 	dbName   string
 }
 
-func SetDbInfo() *dbConfig {
-	connectInfo := dbConfig{
-		user:     "t4er",
+func SetDbInfo() *DbConfig {
+	connectInfo := DbConfig{
+		user:     "pay-t4er",
 		password: "pay-oralng",
 		host:     "localhost",
 		port:     3307,
@@ -26,7 +26,7 @@ func SetDbInfo() *dbConfig {
 	return &connectInfo
 }
 
-func SetDb(dbConfig *dbConfig) string {
+func SetDb(dbConfig *DbConfig) string {
 	return fmt.Sprintf(
 		"%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		dbConfig.user,

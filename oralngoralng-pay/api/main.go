@@ -3,11 +3,12 @@ package main
 import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"net/http"
+	"log"
+	"pay/api/router"
 	"pay/config"
-
-	"github.com/gin-gonic/gin"
 )
+
+const port = ":8082"
 
 var err error
 
@@ -18,11 +19,9 @@ func main() {
 		panic("DB 연결에 실패했습니다!")
 	}
 
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run(":8082")
+	r := router.SetRouter()
+	err = r.Run(port)
+	if err != nil {
+		log.Println(err)
+	}
 }

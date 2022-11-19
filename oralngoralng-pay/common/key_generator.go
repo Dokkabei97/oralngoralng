@@ -3,13 +3,17 @@ package common
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"log"
 )
 
 const tokenLength int = 12
 
 func randomCharacter(length int) string {
 	b := make([]byte, length)
-	rand.Read(b)
+	_, err := rand.Read(b)
+	if err != nil {
+		log.Println(err)
+	}
 	return hex.EncodeToString(b)
 }
 
