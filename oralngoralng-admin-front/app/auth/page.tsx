@@ -17,12 +17,12 @@ export default function AuthPage() {
                         어드민 로그인
                     </h2>
                     <div className={"relative mb-4"}>
-                        <label htmlFor={"enum"} className={"leading-7 text-sm text-gray-600"}>
+                        <label htmlFor={"employeeNumber"} className={"leading-7 text-sm text-gray-600"}>
                             사원번호
                         </label>
                         <input type={"text"}
-                               id={"enum"}
-                               name={"enum"}
+                               id={"employeeNumber"}
+                               name={"employeeNumber"}
                                className={"w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"}/>
                     </div>
                     <div className={"relative mb-4"}>
