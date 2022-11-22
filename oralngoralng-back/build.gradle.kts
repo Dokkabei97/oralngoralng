@@ -102,5 +102,3 @@ allprojects {
         outputs.dir(snippetsDir)
     }
 }
-
-
