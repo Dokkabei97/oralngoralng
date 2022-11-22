@@ -22,12 +22,24 @@ type server struct {
 }
 
 func (s *server) RegisterPayRequest(ctx context.Context, request *proto.PaymentRequest) (*proto.PaymentResponse, error) {
+	var payMethod domain.PayMethod
+	switch request.PayMethod {
+	case 0:
+		payMethod = "CARD"
+	case 1:
+		payMethod = "NAVER_PAY"
+	case 2:
+		payMethod = "TOSS_PAY"
+	case 3:
+		payMethod = "KAKAO_PAY"
+	}
+
 	pay := domain.Pay{
 		OrderToken: request.OrderToken,
 		UserId:     int(request.UserId),
 		ProductId:  int(request.ProductId),
 		Price:      int(request.Price),
-		PayMethod:  domain.PayMethod(request.PayMethod),
+		PayMethod:  payMethod,
 	}
 	generatorBillingKey(&pay)
 	if err = config.DB.Create(&pay).Error; err != nil {
