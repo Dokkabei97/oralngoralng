@@ -1,6 +1,5 @@
 package com.t4er.oralng.domain.product
 
-import com.t4er.oralng.domain.membership.Membership.*
 import com.t4er.oralng.entity.AbstractEntity
 import javax.persistence.*
 
@@ -13,10 +12,6 @@ class Product(
     @Column(name = "product_id")
     var id: Long?,
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "membership_name")
-    var membershipName: MembershipName,
-
     @Column(name = "name")
     var name: String,
 
@@ -25,11 +20,21 @@ class Product(
 
     @Column(name = "duration")
     var duration: String,
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "membership_name")
+    var membershipName: MembershipName,
 ) : AbstractEntity() {
 
+    enum class MembershipName {
+        BASIC,
+        STANDARD,
+        PREMIUM
+    }
+
     companion object {
-        fun of(membershipName: MembershipName, name: String, price: Int, duration: String): Product {
-            return Product(null, membershipName, name, price, duration)
+        fun of(name: String, price: Int, duration: String, membershipName: MembershipName): Product {
+            return Product(null, name, price, duration, membershipName)
         }
     }
 }
