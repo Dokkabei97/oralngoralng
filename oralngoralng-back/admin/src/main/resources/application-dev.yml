@@ -3,16 +3,29 @@ spring:
     activate:
       on-profile: dev
 
-  graphql:
-    schema:
-      printer:
-        enabled: true
+  admin-datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3309/admin?serverTimezone=UTC&characterEncoding=UTF-8
+    username: admin-t4er
+    password: admin-oralng
 
-  datasource:
+  user-datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/user?serverTimezone=UTC&characterEncoding=UTF-8
     username: user-t4er
     password: user-oralng
+
+  order-datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/orderr?serverTimezone=UTC&characterEncoding=UTF-8
+    username: order-t4er
+    password: order-oralng
+
+  pay-datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/pay?serverTimezone=UTC&characterEncoding=UTF-8
+    username: pay-t4er
+    password: pay-oralng
 
   jpa:
     hibernate:
@@ -20,11 +33,7 @@ spring:
     show-sql: true
 
   flyway:
-    enabled: true
-    url: jdbc:mysql://localhost:3306/user?serverTimezone=UTC&characterEncoding=UTF-8
-    user: user-t4er
-    password: user-oralng
-    schemas: user
+    enabled: false
 
 logging:
   level:
