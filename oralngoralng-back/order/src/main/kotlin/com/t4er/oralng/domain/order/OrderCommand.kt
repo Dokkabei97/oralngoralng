@@ -1,27 +1,31 @@
 package com.t4er.oralng.domain.order
 
 import com.t4er.oralng.domain.order.payment.PayMethod
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
 
 class OrderCommand {
 
     class RegisterOrderRequest(
-        var userId: Long,
-        var productId: Long,
-        var price: Int,
-        var payMethod: PayMethod
+        val userId: Long,
+        val productId: Long,
+        val price: Int,
+        val payMethod: PayMethod,
     )
 
     class PaymentRequest(
-        var orderToken: String,
-        var price: Int,
-        var payMethod: PayMethod
+        @field: NotBlank(message = "orderToken 은 필수 입니다.")
+        val orderToken: String,
+        val price: Int,
+        val payMethod: PayMethod,
     )
 
     class GetOrdersRequest(
-        var userId: Long
+        val userId: Long,
     )
 
     class GetOrderRequest(
-        var orderToken: String
+        @field: NotBlank(message = "orderToken 은 필수 입니다.")
+        val orderToken: String,
     )
 }
