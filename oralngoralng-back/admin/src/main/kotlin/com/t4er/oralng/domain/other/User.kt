@@ -1,24 +1,23 @@
-package com.t4er.oralng.domain
+package com.t4er.oralng.domain.other
 
 import com.t4er.oralng.entity.AbstractEntity
-import com.t4er.oralng.exception.InvalidParamException
 import javax.persistence.*
 
 @Entity
 @Table(name = "users")
 class User(
-    @Id
+        @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     var id: Long?,
 
-    @Column(name = "nickname", nullable = false)
+        @Column(name = "nickname", nullable = false)
     var nickname: String,
 
-    @Column(name = "email", nullable = false)
+        @Column(name = "email", nullable = false)
     var email: String,
 
-    @Enumerated(EnumType.STRING)
+        @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     var status: Status,
 ) : AbstractEntity() {

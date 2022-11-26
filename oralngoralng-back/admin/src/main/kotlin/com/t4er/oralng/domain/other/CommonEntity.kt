@@ -1,4 +1,4 @@
-package com.t4er.oralng.domain
+package com.t4er.oralng.domain.other
 
 import java.time.ZonedDateTime
 import javax.persistence.Column
@@ -9,14 +9,14 @@ import javax.persistence.Enumerated
 @Embeddable
 class CommonEntity (
 
-    @Column(name = "succeed_at")
+        @Column(name = "succeed_at")
     var succeedAt: ZonedDateTime?,
 
-    @Enumerated(EnumType.STRING)
+        @Enumerated(EnumType.STRING)
     @Column(name = "result_status")
     var resultStatus: ResultStatus,
 
-    @Column(name = "result_message")
+        @Column(name = "result_message")
     var resultMessage: String,
 ) {
 

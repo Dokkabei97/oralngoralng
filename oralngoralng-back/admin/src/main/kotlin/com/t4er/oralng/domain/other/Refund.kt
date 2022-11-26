@@ -1,4 +1,4 @@
-package com.t4er.oralng.domain
+package com.t4er.oralng.domain.other
 
 import com.t4er.oralng.entity.AbstractEntity
 import javax.persistence.*
@@ -7,32 +7,32 @@ import javax.persistence.*
 @Table(name = "refunds")
 class Refund(
 
-    @Id
+        @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "refund_id")
     var id: Long?,
 
-    @Column(name = "refund_token")
+        @Column(name = "refund_token")
     var refundToken: String,
 
-    @Column(name = "user_id")
+        @Column(name = "user_id")
     var userId: Long,
 
-    @Column(name = "product_id")
+        @Column(name = "product_id")
     var productId: Long,
 
-    @Column(name = "price")
+        @Column(name = "price")
     var price: Int,
 
-    @Enumerated(EnumType.STRING)
+        @Enumerated(EnumType.STRING)
     @Column(name = "pay_method")
     var payMethod: PayMethod,
 
-    @Enumerated(EnumType.STRING)
+        @Enumerated(EnumType.STRING)
     @Column(name = "refund_status")
     var refundStatus: RefundStatus,
 
-    @Embedded
+        @Embedded
     var commonEntity: CommonEntity?,
 ) : AbstractEntity() {
     enum class RefundStatus(val description: String) {

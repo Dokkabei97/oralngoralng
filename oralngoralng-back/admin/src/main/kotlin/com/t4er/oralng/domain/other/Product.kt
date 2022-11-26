@@ -1,4 +1,4 @@
-package com.t4er.oralng.domain
+package com.t4er.oralng.domain.other
 
 import com.t4er.oralng.entity.AbstractEntity
 import javax.persistence.*
@@ -7,21 +7,21 @@ import javax.persistence.*
 @Table(name = "products")
 class Product(
 
-    @Id
+        @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     var id: Long?,
 
-    @Column(name = "name")
+        @Column(name = "name")
     var name: String,
 
-    @Column(name = "price")
+        @Column(name = "price")
     var price: Int,
 
-    @Column(name = "duration")
+        @Column(name = "duration")
     var duration: String,
 
-    @Enumerated(EnumType.STRING)
+        @Enumerated(EnumType.STRING)
     @Column(name = "membership_name")
     var membershipName: MembershipName,
 ) : AbstractEntity() {
