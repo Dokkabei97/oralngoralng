@@ -24,7 +24,7 @@ allprojects {
 
     group = "com.t4er"
     version = "1.0.0"
-    java.sourceCompatibility = JavaVersion.VERSION_11
+    java.sourceCompatibility = JavaVersion.VERSION_17
 
     configurations {
         compileOnly {
@@ -70,6 +70,10 @@ allprojects {
         implementation("io.kotest.extensions:kotest-extensions-spring:1.1.1")
 
         testImplementation("io.mockk:mockk:1.12.4")
+
+        implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+        runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+        runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
     }
 
 //     ktlint setting 3
