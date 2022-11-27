@@ -1,8 +1,6 @@
 package domain
 
-import (
-	"gorm.io/gorm"
-)
+import "time"
 
 type PayMethod string
 
@@ -14,11 +12,13 @@ const (
 )
 
 type Pay struct {
-	gorm.Model
-	OrderToken string    `gorm:"not null"`
-	UserId     int       `gorm:"not null"`
-	ProductId  int       `gorm:"not null"`
-	Price      int       `gorm:"not null"`
-	PayMethod  PayMethod `gorm:"not null"`
-	BillingKey string    `gorm:"not null"`
+	PayId      int       `json:"payId" gorm:"primaryKey"`
+	OrderToken string    `json:"orderToken" gorm:"not null"`
+	UserId     int       `json:"userId" gorm:"not null"`
+	ProductId  int       `json:"productId"gorm:"not null"`
+	Price      int       `json:"price" gorm:"not null"`
+	PayMethod  PayMethod `json:"payMethod" gorm:"not null"`
+	BillingKey string    `json:"billingKey" gorm:"not null"`
+	CreatedAt  time.Time `json:"createdAt" gorm:"not null"`
+	UpdatedAt  time.Time `json:"updatedAt" gorm:"not null"`
 }

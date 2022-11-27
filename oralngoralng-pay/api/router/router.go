@@ -10,24 +10,41 @@ import (
 const API = "/api/v1"
 
 func SetRouter() *gin.Engine {
-	pay := domain.Pay{}
-	var payService domain.PayService
-	payService = &pay
-
 	router := gin.Default()
 
 	payRouter := router.Group(API + "/pays")
 	{
+		pay := domain.Pay{}
+		var payService domain.PayService
+		payService = &pay
+
 		payRouter.GET("", func(context *gin.Context) {
+			payId := context.Query("payId")
 			userId := context.Query("userId")
-			a, _ := strconv.Atoi(userId)
-			pays, err := payService.GetPays(a)
+
+			parseIntPayId, err := strconv.Atoi(payId)
 			if err != nil {
-				return
+				context.JSON(http.StatusOK, gin.H{
+					"error": err,
+				})
 			}
-			context.JSON(http.StatusOK, gin.H{
-				"pays": pays,
-			})
+			parseIntUserId, err := strconv.Atoi(userId)
+			if err != nil {
+				context.JSON(http.StatusOK, gin.H{
+					"error": err,
+				})
+			}
+
+			payService.GetPay(parseIntPayId, parseIntUserId)
+			if err != nil {
+				context.JSON(http.StatusOK, gin.H{
+					"error": err,
+				})
+			} else {
+				context.JSON(http.StatusOK, gin.H{
+					"pays": pay,
+				})
+			}
 		})
 
 		payRouter.GET("/graphql", func(context *gin.Context) {
