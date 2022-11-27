@@ -1,8 +1,7 @@
 package com.t4er.oralng.domain.order
 
 import com.t4er.oralng.domain.order.payment.PayMethod
-import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotNull
+import jakarta.validation.constraints.NotBlank
 
 class OrderCommand {
 

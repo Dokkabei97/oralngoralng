@@ -1,6 +1,6 @@
 plugins {
-    kotlin("kapt") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    kotlin("kapt") version "1.7.21"
+    kotlin("plugin.jpa") version "1.7.21"
 }
 
 repositories {

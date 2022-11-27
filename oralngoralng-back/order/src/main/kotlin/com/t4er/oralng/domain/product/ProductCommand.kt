@@ -1,6 +1,6 @@
 package com.t4er.oralng.domain.product
 
-import javax.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotBlank
 
 
 class ProductCommand {

@@ -1,25 +1,24 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.3"
-    id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    id("org.springframework.boot") version "3.0.0"
+    id("io.spring.dependency-management") version "1.1.0"
     id("org.asciidoctor.convert") version "1.5.8"
+    kotlin("jvm") version "1.7.21"
+    kotlin("plugin.spring") version "1.7.21"
+    kotlin("plugin.jpa") version "1.7.21"
+    kotlin("kapt") version "1.7.21"
 //    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
-
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
-    kotlin("kapt") version "1.6.21"
 }
 
 allprojects {
     apply {
         plugin("kotlin")
-//        plugin("org.jlleitschuh.gradle.ktlint")
         plugin("org.jetbrains.kotlin.jvm")
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
         plugin("org.jetbrains.kotlin.plugin.spring")
+//        plugin("org.jlleitschuh.gradle.ktlint")
     }
 
     group = "com.t4er"
@@ -47,18 +46,19 @@ allprojects {
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-        implementation("org.springframework.boot:spring-boot-starter-actuator")
-        implementation("org.springframework.boot:spring-boot-starter-web")
-        implementation("org.springframework.boot:spring-boot-starter-webflux")
-        implementation("org.springframework.boot:spring-boot-starter-graphql")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+        implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-graphql")
         implementation("org.springframework.boot:spring-boot-starter-validation")
 
         implementation("org.flywaydb:flyway-core")
         implementation("org.flywaydb:flyway-mysql")
         runtimeOnly("com.h2database:h2")
         runtimeOnly("mysql:mysql-connector-java")
+
+        implementation("org.springframework.boot:spring-boot-starter-actuator")
+        runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.springframework:spring-webflux")
@@ -94,7 +94,7 @@ allprojects {
 //        dependsOn("ktlintCheck")
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "11"
+            jvmTarget = "17"
         }
     }
 

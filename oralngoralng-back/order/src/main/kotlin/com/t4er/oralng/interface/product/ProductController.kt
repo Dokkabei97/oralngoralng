@@ -5,7 +5,7 @@ import com.t4er.oralng.domain.product.ProductCommand.*
 import com.t4er.oralng.domain.product.ProductInfo
 import com.t4er.oralng.response.CommonHttpResponse
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
+import jakarta.validation.Valid
 
 @RestController
 @RequestMapping("/api/v1/products")

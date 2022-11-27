@@ -1,6 +1,6 @@
 plugins {
-    kotlin("kapt") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    kotlin("kapt") version "1.7.21"
+    kotlin("plugin.jpa") version "1.7.21"
 }
 
 repositories {
@@ -11,6 +11,8 @@ dependencies {
     val kapt by configurations
 
     implementation(project(":common"))
+
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
 
     kapt("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

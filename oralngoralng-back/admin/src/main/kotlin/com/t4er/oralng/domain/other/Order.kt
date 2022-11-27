@@ -3,7 +3,7 @@ package com.t4er.oralng.domain.other
 import com.t4er.oralng.domain.other.CommonEntity.ResultStatus.*
 import com.t4er.oralng.entity.AbstractEntity
 import java.time.ZonedDateTime
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "orders")

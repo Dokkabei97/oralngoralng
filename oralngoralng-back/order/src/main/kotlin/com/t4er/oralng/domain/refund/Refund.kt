@@ -3,7 +3,7 @@ package com.t4er.oralng.domain.refund
 import com.t4er.oralng.domain.CommonEntity
 import com.t4er.oralng.domain.order.payment.PayMethod
 import com.t4er.oralng.entity.AbstractEntity
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "refunds")
