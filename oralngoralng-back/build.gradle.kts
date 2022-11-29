@@ -49,6 +49,7 @@ allprojects {
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
         implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-webflux")
         implementation("org.springframework.boot:spring-boot-starter-graphql")
         implementation("org.springframework.boot:spring-boot-starter-validation")
 
@@ -57,19 +58,26 @@ allprojects {
         runtimeOnly("com.h2database:h2")
         runtimeOnly("mysql:mysql-connector-java")
 
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+        implementation("org.springframework.boot:spring-boot-starter-data-redis")
+        implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+        implementation("org.springframework.kafka:spring-kafka")
+
         implementation("org.springframework.boot:spring-boot-starter-actuator")
         runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.springframework:spring-webflux")
         testImplementation("org.springframework.graphql:spring-graphql-test")
+        testImplementation("org.springframework.kafka:spring-kafka-test")
 
-        implementation("io.kotest:kotest-property-jvm:5.3.0")
-        testImplementation("io.kotest:kotest-runner-junit5-jvm:5.3.0")
-        testImplementation("io.kotest:kotest-assertions-core-jvm:5.3.0")
-        implementation("io.kotest.extensions:kotest-extensions-spring:1.1.1")
+        implementation("io.kotest:kotest-property-jvm:5.5.4")
+        testImplementation("io.kotest:kotest-runner-junit5-jvm:5.5.4")
+        testImplementation("io.kotest:kotest-assertions-core-jvm:5.5.4")
+        implementation("io.kotest.extensions:kotest-extensions-spring:1.1.2")
 
-        testImplementation("io.mockk:mockk:1.12.4")
+        testImplementation("io.mockk:mockk:1.13.2")
 
         implementation("io.jsonwebtoken:jjwt-api:0.11.5")
         runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
