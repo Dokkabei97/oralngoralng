@@ -45,6 +45,7 @@ func SetRouter() *gin.Engine {
 					"pays": pay,
 				})
 			}
+			pay = domain.Pay{}
 		})
 
 		payRouter.GET("/graphql", func(context *gin.Context) {
