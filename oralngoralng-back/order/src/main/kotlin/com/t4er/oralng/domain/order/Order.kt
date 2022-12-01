@@ -8,7 +8,7 @@ import com.t4er.oralng.entity.AbstractEntity
 import com.t4er.oralng.exception.IllegalStatusException
 import com.t4er.oralng.util.TokenGenerator
 import java.time.ZonedDateTime
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "orders")

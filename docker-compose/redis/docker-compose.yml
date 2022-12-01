@@ -1,0 +1,12 @@
+version: "3.7"
+
+# redis cluster 구성을 대비해 따로 뺌
+services:
+  redis:
+    container_name: redis
+    image: redis:7.0.5
+    ports:
+      - "6379:6379"
+    labels:
+      - "name=redis"
+      - "mode=standalone"

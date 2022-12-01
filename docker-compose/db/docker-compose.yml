@@ -1,0 +1,73 @@
+version: "3.7"
+
+services:
+  user-db:
+    container_name: user-db
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=user
+      - MYSQL_ROOT_PASSWORD=root-pass
+      - MYSQL_USER=user-t4er
+      - MYSQL_PASSWORD=user-oralng
+      - TZ=UTC
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+  pay-db:
+    container_name: pay-db
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_DATABASE=pay
+      - MYSQL_ROOT_PASSWORD=root-pass
+      - MYSQL_USER=pay-t4er
+      - MYSQL_PASSWORD=pay-oralng
+      - TZ=UTC
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+  order-db:
+    container_name: order-db
+    image: mysql:8.0
+    ports:
+      - "3308:3306"
+    environment:
+      - MYSQL_DATABASE=order
+      - MYSQL_ROOT_PASSWORD=root-pass
+      - MYSQL_USER=order-t4er
+      - MYSQL_PASSWORD=order-oralng
+      - TZ=UTC
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+  admin-db:
+    container_name: admin-db
+    image: mysql:8.0
+    ports:
+      - "3309:3306"
+    environment:
+      - MYSQL_DATABASE=admin
+      - MYSQL_ROOT_PASSWORD=root-pass
+      - MYSQL_USER=admin-t4er
+      - MYSQL_PASSWORD=admin-oralng
+      - TZ=UTC
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+  review-db:
+    container_name: review-db
+    image: mysql:8.0
+    ports:
+      - "3310:3306"
+    environment:
+      - MYSQL_DATABASE=review
+      - MYSQL_ROOT_PASSWORD=root-pass
+      - MYSQL_USER=review-t4er
+      - MYSQL_PASSWORD=review-oralng
+      - TZ=UTC
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci

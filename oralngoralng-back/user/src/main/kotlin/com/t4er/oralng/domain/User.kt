@@ -2,7 +2,7 @@ package com.t4er.oralng.domain
 
 import com.t4er.oralng.entity.AbstractEntity
 import com.t4er.oralng.exception.InvalidParamException
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "users")

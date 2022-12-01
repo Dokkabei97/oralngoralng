@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.40.4
+    ports:
+      - "9090:9090"
+    networks:
+      - monitor-networks
+  influxdb:
+    container_name: influxdb
+    image: influxdb:2.5.1
+    ports:
+      - "9086:8086"
+    networks:
+      - monitor-networks
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:9.3.0
+    ports:
+      - "9000:3000"
+    networks:
+      - monitor-networks
+
+networks:
+  monitor-networks:
+    driver: bridge
