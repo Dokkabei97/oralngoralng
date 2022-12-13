@@ -1,0 +1,22 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3310/review?serverTimezone=UTC&characterEncoding=UTF-8
+    username: review-t4er
+    password: review-oralng
+
+  flyway:
+    enabled: false
+
+  #TODO
+  # Redis 설정
+  # ElasticSearch 설정
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
