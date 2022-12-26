@@ -1,7 +1,9 @@
 package com.t4er.oralng.domain
 
 import com.t4er.oralng.entity.AbstractEntity
+import com.vladmihalcea.hibernate.type.json.JsonType
 import jakarta.persistence.*
+import org.hibernate.annotations.Type
 
 @Entity
 @Table(name = "reviews")
@@ -21,7 +23,8 @@ class Review(
     @Column(name = "content", columnDefinition = "TEXT")
     var content: String,
 
-    var images: Any, //TODO Map 타입을 어캐 정의 하지?
+    @OneToMany(mappedBy = "review")
+    var images: MutableList<Image> = ArrayList(),
 
     @Column(name = "location")
     var location: String,
@@ -39,7 +42,7 @@ class Review(
     @Column(name = "report_count")
     var reportCount: Int,
 
-) : AbstractEntity() {
+    ) : AbstractEntity() {
 
     enum class Theme {
 
