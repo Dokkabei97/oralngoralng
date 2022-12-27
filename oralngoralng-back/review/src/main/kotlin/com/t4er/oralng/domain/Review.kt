@@ -1,9 +1,7 @@
 package com.t4er.oralng.domain
 
 import com.t4er.oralng.entity.AbstractEntity
-import com.vladmihalcea.hibernate.type.json.JsonType
 import jakarta.persistence.*
-import org.hibernate.annotations.Type
 
 @Entity
 @Table(name = "reviews")
@@ -45,7 +43,8 @@ class Review(
     ) : AbstractEntity() {
 
     enum class Theme {
-
+        FAMILY, FRIEND, COUPLE,
+        EAT, HEALING,
     }
 
     companion object {
