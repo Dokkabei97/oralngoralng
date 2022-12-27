@@ -1,6 +1,6 @@
 version: "3.7"
 
 services:
-  rabbit-mq:
-    container_name: rabbit-mq
-    image: rabbitmq:latest
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.11.5-management

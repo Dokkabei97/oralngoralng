@@ -1,5 +1,7 @@
 package com.t4er.oralng.domain
 
+import com.t4er.oralng.domain.tag.Location
+import com.t4er.oralng.domain.tag.Theme
 import com.t4er.oralng.entity.AbstractEntity
 import jakarta.persistence.*
 
@@ -24,12 +26,18 @@ class Review(
     @OneToMany(mappedBy = "review")
     var images: MutableList<Image> = ArrayList(),
 
-    @Column(name = "location")
-    var location: String,
+    /**
+     * locationTags, themeTags는 각 MutableList<Location>, MutableList<Theme>로 받아
+     * String으로 변경 후 db에 저장
+     * ex) MutableList<Theme> ["FAMILY", "HEALING"] -> String "FAMILY, HEALING"
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "location_tags")
+    var locationTags: String,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "theme")
-    var theme: Theme,
+    @Column(name = "theme_tags")
+    var themeTags: String,
 
     @Column(name = "comment_count")
     var commentCount: Int,
@@ -41,11 +49,6 @@ class Review(
     var reportCount: Int,
 
     ) : AbstractEntity() {
-
-    enum class Theme {
-        FAMILY, FRIEND, COUPLE,
-        EAT, HEALING,
-    }
 
     companion object {
 
