@@ -6,9 +6,9 @@ services:
     image: rabbitmq:3.11.5-management
     restart: always
     volumes:
-#      - /data/rabbitmq/etc/:/etc/rabbitmq/
+      - /data/rabbitmq/etc/:/etc/rabbitmq/
       - /data/rabbitmq/data/:/var/lib/rabbitmq/
-#      - /data/rabbitmq/logs/:/var/log/rabbitmq/
+      - /data/rabbitmq/logs/:/var/log/rabbitmq/
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -21,9 +21,9 @@ services:
     image: rabbitmq:3.11.5-management
     restart: always
     volumes:
-#      - /data/rabbitmq/etc/:/etc/rabbitmq/
+      - /data/rabbitmq/etc/:/etc/rabbitmq/
       - /data/rabbitmq/data/:/var/lib/rabbitmq/
-#      - /data/rabbitmq/logs/:/var/log/rabbitmq/
+      - /data/rabbitmq/logs/:/var/log/rabbitmq/
     ports:
       - "5673:5672"
       - "15673:15672"
@@ -36,9 +36,9 @@ services:
     image: rabbitmq:3.11.5-management
     restart: always
     volumes:
-#      - /data/rabbitmq/etc/:/etc/rabbitmq/
+      - /data/rabbitmq/etc/:/etc/rabbitmq/
       - /data/rabbitmq/data/:/var/lib/rabbitmq/
-#      - /data/rabbitmq/logs/:/var/log/rabbitmq/
+      - /data/rabbitmq/logs/:/var/log/rabbitmq/
     ports:
       - "5674:5672"
       - "15674:15672"
