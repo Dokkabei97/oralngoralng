@@ -1,12 +1,107 @@
 version: "3.7"
 
-# redis cluster 구성을 대비해 따로 뺌
 services:
-  redis:
-    container_name: redis
-    image: redis:7.0.5
+  redis-master:
+    container_name: redis-master
+    image: bitnami/redis:7.0.5
     ports:
       - "6379:6379"
-    labels:
-      - "name=redis"
-      - "mode=standalone"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=t4er
+    volumes:
+      - /data/redis1:/bitnami/redis
+    networks:
+      - redis-network
+    #    labels:
+    #      - "name=redis"
+    #      - "mode=standalone"
+  redis-slave01:
+    container_name: redis-slave01
+    image: bitnami/redis:7.0.5
+    ports:
+      - "6380:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PASSWORD=t4er
+      - REDIS_PASSWORD=t4er
+    volumes:
+      - /data/redis2:/bitnami/redis
+    networks:
+      - redis-network
+  redis-slave02:
+    container_name: redis-slave02
+    image: bitnami/redis:7.0.5
+    ports:
+      - "6381:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PASSWORD=t4er
+      - REDIS_PASSWORD=t4er
+    volumes:
+      - /data/redis3:/bitnami/redis
+    networks:
+      - redis-network
+  redis-sentinel01:
+    container_name: redis-sentinel01
+    image: bitnami/redis-sentinel:7.0.5
+    ports:
+      - '26379:26379'
+    environment:
+      - REDIS_SENTINEL_DOWN_AFTER_MILLISECONDS=3000
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PORT_NUMBER=6379
+      - REDIS_MASTER_SET=redis-master-set
+      - REDIS_MASTER_PASSWORD=t4er
+      - REDIS_SENTINEL_PASSWORD=t4er
+      - REDIS_SENTINEL_QUORUM=2
+    depends_on:
+      - redis-master
+      - redis-slave01
+      - redis-slave02
+    networks:
+      - redis-network
+  redis-sentinel02:
+    container_name: redis-sentinel02
+    image: bitnami/redis-sentinel:7.0.5
+    ports:
+      - '26380:26379'
+    environment:
+      - REDIS_SENTINEL_DOWN_AFTER_MILLISECONDS=3000
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PORT_NUMBER=6379
+      - REDIS_MASTER_SET=redis-master-set
+      - REDIS_MASTER_PASSWORD=t4er
+      - REDIS_SENTINEL_PASSWORD=t4er
+      - REDIS_SENTINEL_QUORUM=2
+    depends_on:
+      - redis-master
+      - redis-slave01
+      - redis-slave02
+    networks:
+      - redis-network
+  redis-sentinel03:
+    container_name: redis-sentinel03
+    image: bitnami/redis-sentinel:7.0.5
+    ports:
+      - '26381:26379'
+    environment:
+      - REDIS_SENTINEL_DOWN_AFTER_MILLISECONDS=3000
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PORT_NUMBER=6379
+      - REDIS_MASTER_SET=redis-master-set
+      - REDIS_MASTER_PASSWORD=t4er
+      - REDIS_SENTINEL_PASSWORD=t4er
+      - REDIS_SENTINEL_QUORUM=2
+    depends_on:
+      - redis-master
+      - redis-slave01
+      - redis-slave02
+    networks:
+      - redis-network
+
+networks:
+  redis-network:
+    driver: bridge

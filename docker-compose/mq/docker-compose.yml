@@ -4,10 +4,11 @@ services:
   rabbit01:
     container_name: rabbit01
     image: rabbitmq:3.11.5-management
+    restart: always
     volumes:
-      - data/etc/:/etc/rabbitmq/
-      - data/data/:/var/lib/rabbitmq/
-      - data/logs/:/var/log/rabbitmq/
+#      - /data/rabbitmq/etc/:/etc/rabbitmq/
+      - /data/rabbitmq/data/:/var/lib/rabbitmq/
+#      - /data/rabbitmq/logs/:/var/log/rabbitmq/
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -18,10 +19,11 @@ services:
   rabbit02:
     container_name: rabbit02
     image: rabbitmq:3.11.5-management
+    restart: always
     volumes:
-      - data/etc/:/etc/rabbitmq/
-      - data/data/:/var/lib/rabbitmq/
-      - data/logs/:/var/log/rabbitmq/
+#      - /data/rabbitmq/etc/:/etc/rabbitmq/
+      - /data/rabbitmq/data/:/var/lib/rabbitmq/
+#      - /data/rabbitmq/logs/:/var/log/rabbitmq/
     ports:
       - "5673:5672"
       - "15673:15672"
@@ -32,10 +34,11 @@ services:
   rabbit03:
     container_name: rabbit03
     image: rabbitmq:3.11.5-management
+    restart: always
     volumes:
-      - data/etc/:/etc/rabbitmq/
-      - data/data/:/var/lib/rabbitmq/
-      - data/logs/:/var/log/rabbitmq/
+#      - /data/rabbitmq/etc/:/etc/rabbitmq/
+      - /data/rabbitmq/data/:/var/lib/rabbitmq/
+#      - /data/rabbitmq/logs/:/var/log/rabbitmq/
     ports:
       - "5674:5672"
       - "15674:15672"
