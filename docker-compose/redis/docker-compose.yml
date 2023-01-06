@@ -10,7 +10,7 @@ services:
       - REDIS_REPLICATION_MODE=master
       - REDIS_PASSWORD=t4er
     volumes:
-      - /data/redis1:/bitnami/redis
+      - /data/redis/redis01:/bitnami/redis
     networks:
       - redis-network
     #    labels:
@@ -27,7 +27,7 @@ services:
       - REDIS_MASTER_PASSWORD=t4er
       - REDIS_PASSWORD=t4er
     volumes:
-      - /data/redis2:/bitnami/redis
+      - /data/redis/redis02:/bitnami/redis
     networks:
       - redis-network
   redis-slave02:
@@ -41,7 +41,7 @@ services:
       - REDIS_MASTER_PASSWORD=t4er
       - REDIS_PASSWORD=t4er
     volumes:
-      - /data/redis3:/bitnami/redis
+      - /data/redis/redis03:/bitnami/redis
     networks:
       - redis-network
   redis-sentinel01:
