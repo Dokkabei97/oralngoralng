@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+  rabbit01:
+    container_name: rabbit01
+    image: rabbitmq:3.11.5-management
+    restart: always
+    volumes:
+      - /data/rabbitmq/rabbit01/data/:/var/lib/rabbitmq/
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "25672:25672"
+      - "35197:35197"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "Oralng-Cookie"
+      RABBITMQ_DEFAULT_USER: "t4er"
+      RABBITMQ_DEFAULT_PASS: "mq-oralng"
+  rabbit02:
+    container_name: rabbit02
+    image: rabbitmq:3.11.5-management
+    restart: always
+    depends_on:
+      - rabbit01
+    volumes:
+      - /data/rabbitmq/rabbit02/data/:/var/lib/rabbitmq/
+      - ./init.sh:/home/init.sh
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "Oralng-Cookie"
+      RABBITMQ_DEFAULT_USER: "t4er"
+      RABBITMQ_DEFAULT_PASS: "mq-oralng"
+  rabbit03:
+    container_name: rabbit03
+    image: rabbitmq:3.11.5-management
+    restart: always
+    depends_on:
+      - rabbit01
+      - rabbit02
+    volumes:
+      - /data/rabbitmq/rabbit03/data/:/var/lib/rabbitmq/
+      - ./init.sh:/home/init.sh
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "Oralng-Cookie"
+      RABBITMQ_DEFAULT_USER: "t4er"
+      RABBITMQ_DEFAULT_PASS: "mq-oralng"

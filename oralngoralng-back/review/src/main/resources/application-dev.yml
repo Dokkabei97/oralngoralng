@@ -1,0 +1,36 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  graphql:
+    schema:
+      printer:
+        enabled: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3310/review?serverTimezone=UTC&characterEncoding=UTF-8
+    username: review-t4er
+    password: review-oralng
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
+    url: jdbc:mysql://localhost:3310/review?serverTimezone=UTC&characterEncoding=UTF-8
+    user: review-t4er
+    password: review-oralng
+    schemas: review
+
+  #TODO
+  # Redis 설정
+  # ElasticSearch 설정
+
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace

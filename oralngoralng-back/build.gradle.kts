@@ -8,7 +8,6 @@ plugins {
     kotlin("plugin.spring") version "1.7.21"
     kotlin("plugin.jpa") version "1.7.21"
     kotlin("kapt") version "1.7.21"
-//    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
 }
 
 allprojects {
@@ -18,7 +17,6 @@ allprojects {
         plugin("org.springframework.boot")
         plugin("io.spring.dependency-management")
         plugin("org.jetbrains.kotlin.plugin.spring")
-//        plugin("org.jlleitschuh.gradle.ktlint")
     }
 
     group = "com.t4er"
@@ -59,9 +57,7 @@ allprojects {
         runtimeOnly("mysql:mysql-connector-java")
 
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-        implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
-        implementation("org.springframework.boot:spring-boot-starter-data-redis")
-        implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+
         implementation("org.springframework.kafka:spring-kafka")
 
         implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -84,22 +80,8 @@ allprojects {
         runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
     }
 
-//     ktlint setting 3
-    /*    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-            verbose.set(true)
-            disabledRules.set(
-                setOf(
-                    "import-ordering",
-                    "no-wildcard-imports",
-                    "final-newline",
-                    "insert_final_newline",
-                    "max_line_length"
-                )
-            )
-        }*/
 
     tasks.withType<KotlinCompile> {
-//        dependsOn("ktlintCheck")
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
             jvmTarget = "17"
