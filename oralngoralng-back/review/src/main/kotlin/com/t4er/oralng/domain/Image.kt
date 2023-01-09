@@ -5,12 +5,12 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "images")
-class Image (
+class Image(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id")
-    var id: Long,
+    var id: Long?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id")
@@ -20,6 +20,11 @@ class Image (
 
     var imageUrl: String,
 
-): AbstractEntity() {
+    ) : AbstractEntity() {
 
+    companion object {
+        fun of(review: Review, imageName: String, imageUrl: String): Image {
+            return Image(null, review, imageName, imageUrl)
+        }
+    }
 }

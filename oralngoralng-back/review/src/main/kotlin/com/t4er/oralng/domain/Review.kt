@@ -1,8 +1,7 @@
 package com.t4er.oralng.domain
 
-import com.t4er.oralng.domain.tag.Location
-import com.t4er.oralng.domain.tag.Theme
 import com.t4er.oralng.entity.AbstractEntity
+import com.t4er.oralng.exception.InvalidParamException
 import jakarta.persistence.*
 
 @Entity
@@ -12,7 +11,7 @@ class Review(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
-    var id: Long,
+    var id: Long?,
 
     @Column(name = "user_id")
     var userId: Long,
@@ -24,18 +23,16 @@ class Review(
     var content: String,
 
     @OneToMany(mappedBy = "review")
-    var images: MutableList<Image> = ArrayList(),
+    var images: MutableList<Image>? = ArrayList(),
 
     /**
      * locationTags, themeTags는 각 MutableList<Location>, MutableList<Theme>로 받아
      * String으로 변경 후 db에 저장
      * ex) MutableList<Theme> ["FAMILY", "HEALING"] -> String "FAMILY, HEALING"
      */
-    @Enumerated(EnumType.STRING)
     @Column(name = "location_tags")
     var locationTags: String,
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "theme_tags")
     var themeTags: String,
 
@@ -51,6 +48,26 @@ class Review(
     ) : AbstractEntity() {
 
     companion object {
-
+        fun of(
+            userId: Long,
+            title: String,
+            content: String,
+            locationTags: String,
+            themeTags: String,
+        ): Review {
+            if (title.length > 30) throw InvalidParamException("제목은 30자 이하만 작성 가능 합니다.")
+            return Review(
+                null,
+                userId,
+                title,
+                content,
+                null,
+                locationTags,
+                themeTags,
+                0,
+                0,
+                0
+            )
+        }
     }
 }
