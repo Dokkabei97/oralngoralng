@@ -24,6 +24,7 @@ class Image(
 
     companion object {
         fun of(review: Review, imageName: String, imageUrl: String): Image {
+            // TODO: minio에 이미지 업로드 후 링크 받으면 imageUrl에 미니오 링크 적재 
             return Image(null, review, imageName, imageUrl)
         }
     }

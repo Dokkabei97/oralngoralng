@@ -1,7 +1,7 @@
 package com.t4er.oralng.infrastructure
 
-import com.t4er.oralng.domain.Review
+import com.t4er.oralng.domain.Image
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface ReviewRepository: JpaRepository<Review, Long> {
+interface ImageRepository : JpaRepository<Image, Long> {
 }

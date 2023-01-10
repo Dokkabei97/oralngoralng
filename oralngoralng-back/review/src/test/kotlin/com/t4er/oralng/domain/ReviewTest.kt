@@ -41,5 +41,24 @@ class ReviewTest : DescribeSpec({
                 image[0].imageName shouldBe "1.png"
             }
         }
+
+        context("태그 배열 분리") {
+
+            val review = ReviewCommand.CreateReviewRequest(
+                userId = 1L,
+                title = "대충 제목",
+                content = "대충 리뷰 내용",
+                locationTags = mutableListOf(
+
+                ),
+                themeTags = mutableListOf(
+
+                )
+            )
+
+            it("분리") {
+
+            }
+        }
     }
 })

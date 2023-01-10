@@ -70,4 +70,11 @@ class Review(
             )
         }
     }
+
+    fun update(title: String, content: String, locationTags: String, themeTags: String) {
+        this.title = title
+        this.content = content
+        this.locationTags = locationTags
+        this.themeTags = themeTags
+    }
 }
