@@ -1,5 +1,7 @@
 package com.t4er.oralng.domain
 
+import com.t4er.oralng.domain.tag.Location
+import com.t4er.oralng.domain.tag.Theme
 import com.t4er.oralng.exception.InvalidParamException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
@@ -49,15 +51,22 @@ class ReviewTest : DescribeSpec({
                 title = "대충 제목",
                 content = "대충 리뷰 내용",
                 locationTags = mutableListOf(
-
+                    Location.SEOUL,
+                    Location.GYEONGGIDO,
+                    Location.INCHEON
                 ),
                 themeTags = mutableListOf(
-
+                    Theme.FRIEND,
+                    Theme.FOOD
                 )
             )
-
             it("분리") {
-
+                var themes: String = ""
+                for (theme in review.themeTags) {
+                    themes += theme.description +", "
+                }
+                themes.substring(0, themes.length - 2)
+                themes shouldBe "우정 여행, 식도락 여행"
             }
         }
     }
