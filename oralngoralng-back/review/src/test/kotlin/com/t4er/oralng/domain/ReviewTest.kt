@@ -65,8 +65,48 @@ class ReviewTest : DescribeSpec({
                 for (theme in review.themeTags) {
                     themes += theme.description +", "
                 }
-                themes.substring(0, themes.length - 2)
-                themes shouldBe "우정 여행, 식도락 여행"
+                val theme = themes.substring(0, themes.length - 2)
+                theme shouldBe "우정 여행, 식도락 여행"
+            }
+        }
+
+        context("CreateReviewRequest") {
+            val request: ReviewCommand.CreateReviewRequest =
+                ReviewCommand.CreateReviewRequest(
+                    userId = 1L,
+                    title = "대충 제목",
+                    content = "대충 리뷰 내용",
+                    locationTags = mutableListOf(
+                        Location.SEOUL,
+                        Location.GYEONGGIDO,
+                        Location.INCHEON
+                    ),
+                    themeTags = mutableListOf(
+                        Theme.FRIEND,
+                        Theme.FOOD
+                    )
+                )
+            var locations: String = ""
+            for (location in request.locationTags) {
+                locations += location.description + ", "
+            }
+            val location = locations.substring(0, locations.length -2)
+            var themes: String = ""
+            for (theme in request.themeTags) {
+                themes += theme.description +", "
+            }
+            val theme = themes.substring(0, themes.length - 2)
+            it("review") {
+                val review = Review.of(
+                    request.userId,
+                    request.title,
+                    request.content,
+                    location,
+                    theme
+                )
+
+                review.themeTags shouldBe "우정 여행, 식도락 여행"
+                review.locationTags shouldBe "서울, 경기도, 인천"
             }
         }
     }
