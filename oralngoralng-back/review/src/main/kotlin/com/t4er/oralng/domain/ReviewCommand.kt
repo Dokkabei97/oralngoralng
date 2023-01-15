@@ -17,6 +17,7 @@ class ReviewCommand {
     )
 
     class UpdateReviewRequest(
+        val reviewId: Long,
         val userId: Long,
         @field: NotBlank(message = "title은 필수 입니다.")
         val title: String,

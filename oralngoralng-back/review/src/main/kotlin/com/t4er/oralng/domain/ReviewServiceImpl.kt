@@ -18,7 +18,10 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
     }
 
     override fun update(review: UpdateReviewRequest) {
-        TODO("Not yet implemented")
+        val findById: Review = reviewReader.getReview(review.reviewId)
+        val locations: String = locationListToString(review.locationTags)
+        val themes: String = themeListToString(review.themeTags)
+        findById.update(review.title, review.content, locations, themes)
     }
 
     private fun themeListToString(list: MutableList<Theme>): String {
