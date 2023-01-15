@@ -9,9 +9,6 @@ import org.springframework.transaction.annotation.Transactional
 class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewStore) : ReviewService {
 
     override fun create(review: CreateReviewRequest) {
-        val locationTags = review.locationTags.forEach {
-
-        }
 
     }
 
