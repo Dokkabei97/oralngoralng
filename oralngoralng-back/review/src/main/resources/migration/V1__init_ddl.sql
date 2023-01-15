@@ -2,7 +2,7 @@ create table reviews
 (
     review_id       bigint auto_increment primary key comment 'id',
     user_id         bigint        not null comment '리뷰 작성 크리에이터 id',
-    title           varchar(255)  not null comment '제목',
+    title           varchar(50)   not null comment '제목',
     content         text          not null comment '내용',
     location_tags   varchar(1000) not null comment '여행 지역 태그',
     theme_tags      varchar(1000) not null comment '테마 태그',

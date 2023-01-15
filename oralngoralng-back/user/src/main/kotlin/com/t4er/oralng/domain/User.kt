@@ -33,13 +33,13 @@ class User(
 
     companion object {
         fun of(nickname: String, email: String): User {
-            if (isValid(nickname)) throw InvalidParamException("닉네임은 12글자 이하만 사용 가능합니다.")
+            if (isValid(nickname)) throw InvalidParamException("닉네임은 12글자 이하만 사용 가능 합니다.")
             return User(null, nickname, email, Status.COMMON)
         }
     }
 
     fun updateNickname(nickname: String) {
-        if (isValid(nickname)) throw InvalidParamException("닉네임은 12글자 이하만 사용 가능합니다.")
+        if (isValid(nickname)) throw InvalidParamException("닉네임은 12글자 이하만 사용 가능 합니다.")
         this.nickname = nickname
     }
 
