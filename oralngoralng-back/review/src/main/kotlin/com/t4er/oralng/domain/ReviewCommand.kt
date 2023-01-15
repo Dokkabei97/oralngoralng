@@ -26,4 +26,9 @@ class ReviewCommand {
         val locationTags: MutableList<Location>,
         val themeTags: MutableList<Theme>
     )
+
+    class DeleteReviewRequest(
+        val reviewId: Long,
+        val userId: Long
+    )
 }

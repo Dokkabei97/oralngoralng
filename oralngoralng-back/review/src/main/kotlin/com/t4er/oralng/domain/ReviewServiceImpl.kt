@@ -24,6 +24,10 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
         findById.update(review.title, review.content, locations, themes)
     }
 
+    override fun delete(review: DeleteReviewRequest) {
+        reviewStore.delete(review.reviewId)
+    }
+
     private fun themeListToString(list: MutableList<Theme>): String {
         var themes: String = ""
         list.forEach { theme ->

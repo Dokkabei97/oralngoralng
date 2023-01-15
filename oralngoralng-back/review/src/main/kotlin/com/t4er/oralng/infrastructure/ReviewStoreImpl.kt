@@ -10,4 +10,8 @@ class ReviewStoreImpl(val reviewRepository: ReviewRepository) : ReviewStore {
     override fun create(review: Review) {
         reviewRepository.save(review)
     }
+
+    override fun delete(reviewId: Long) {
+        reviewRepository.deleteReview(reviewId)
+    }
 }
