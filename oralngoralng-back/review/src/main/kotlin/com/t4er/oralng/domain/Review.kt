@@ -16,6 +16,9 @@ class Review(
     @Column(name = "user_id")
     var userId: Long,
 
+    @Column(name = "nickname")
+    var nickname: String,
+
     @Column(name = "title")
     var title: String,
 
@@ -50,6 +53,7 @@ class Review(
     companion object {
         fun of(
             userId: Long,
+            nickname: String,
             title: String,
             content: String,
             locationTags: String,
@@ -59,6 +63,7 @@ class Review(
             return Review(
                 null,
                 userId,
+                nickname,
                 title,
                 content,
                 null,

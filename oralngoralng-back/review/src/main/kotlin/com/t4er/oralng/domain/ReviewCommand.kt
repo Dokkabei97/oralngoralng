@@ -8,6 +8,8 @@ class ReviewCommand {
 
     class CreateReviewRequest(
         val userId: Long,
+        @field: NotBlank(message = "nickname 입니다.")
+        val nickname: String,
         @field: NotBlank(message = "title은 필수 입니다.")
         val title: String,
         @field: NotBlank(message = "content은 필수 입니다.")

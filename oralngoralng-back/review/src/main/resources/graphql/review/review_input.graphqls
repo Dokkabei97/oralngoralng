@@ -1,0 +1,22 @@
+input CreateReviewRequest {
+    userId: ID!
+    nickname: String!
+    title: String!
+    content: String!
+    locationTags: [LocationTag]!
+    themeTags: [ThemeTag]!
+}
+
+input UpdateReviewRequest {
+    reviewId: ID!
+    userId: ID!
+    title: String!
+    content: String!
+    locationTags: [LocationTag]!
+    themeTags: [ThemeTag]!
+}
+
+input DeleteReviewRequest {
+    reviewId: ID!
+    userId: ID!
+}

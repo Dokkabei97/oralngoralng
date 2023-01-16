@@ -13,7 +13,7 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
     override fun create(review: CreateReviewRequest) {
         val locations: String = locationListToString(review.locationTags)
         val themes: String = themeListToString(review.themeTags)
-        val of: Review = Review.of(review.userId, review.title, review.content, locations, themes)
+        val of: Review = Review.of(review.userId, review.nickname, review.title, review.content, locations, themes)
         reviewStore.create(of)
     }
 

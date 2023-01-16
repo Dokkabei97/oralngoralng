@@ -2,6 +2,7 @@ create table reviews
 (
     review_id       bigint auto_increment primary key comment 'id',
     user_id         bigint        not null comment '리뷰 작성 크리에이터 id',
+    nickname        varchar(12)   not null comment '크리에이터 닉네임',
     title           varchar(50)   not null comment '제목',
     content         text          not null comment '내용',
     location_tags   varchar(1000) not null comment '여행 지역 태그',
@@ -14,7 +15,8 @@ create table reviews
 ) comment 'reviews' charset = utf8mb4;
 
 create index reviews_idx01 on reviews (review_id);
-create index reviews_idx02 on reviews (title);
+create index reviews_idx02 on reviews (nickname);
+create index reviews_idx03 on reviews (title);
 create index reviews_idx04 on reviews (location_tags);
 create index reviews_idx05 on reviews (theme_tags);
 

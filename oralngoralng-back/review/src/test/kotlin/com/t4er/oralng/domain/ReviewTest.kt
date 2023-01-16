@@ -16,6 +16,7 @@ class ReviewTest : DescribeSpec({
                 shouldThrow<InvalidParamException> {
                     Review.of(
                         1L,
+                        "여행 조무사",
                         "가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234",
                         "대충 내용",
                         "서울 은평구, 서울 마포구",
@@ -28,6 +29,7 @@ class ReviewTest : DescribeSpec({
         context("이미지 생성") {
             val review = Review.of(
                 1L,
+                "여행 조무사",
                 "홍대 투어",
                 "홍대 어쩌구 ...",
                 "서울 마포구 ...",
@@ -48,6 +50,7 @@ class ReviewTest : DescribeSpec({
 
             val review = ReviewCommand.CreateReviewRequest(
                 userId = 1L,
+                nickname = "여행 조무사",
                 title = "대충 제목",
                 content = "대충 리뷰 내용",
                 locationTags = mutableListOf(
@@ -63,7 +66,7 @@ class ReviewTest : DescribeSpec({
             it("분리") {
                 var themes: String = ""
                 for (theme in review.themeTags) {
-                    themes += theme.description +", "
+                    themes += theme.description + ", "
                 }
                 val theme = themes.substring(0, themes.length - 2)
                 theme shouldBe "우정 여행, 식도락 여행"
@@ -74,6 +77,7 @@ class ReviewTest : DescribeSpec({
             val request: ReviewCommand.CreateReviewRequest =
                 ReviewCommand.CreateReviewRequest(
                     userId = 1L,
+                    nickname = "여행 조무사",
                     title = "대충 제목",
                     content = "대충 리뷰 내용",
                     locationTags = mutableListOf(
@@ -90,15 +94,16 @@ class ReviewTest : DescribeSpec({
             for (location in request.locationTags) {
                 locations += location.description + ", "
             }
-            val location = locations.substring(0, locations.length -2)
+            val location = locations.substring(0, locations.length - 2)
             var themes: String = ""
             for (theme in request.themeTags) {
-                themes += theme.description +", "
+                themes += theme.description + ", "
             }
             val theme = themes.substring(0, themes.length - 2)
             it("review") {
                 val review = Review.of(
                     request.userId,
+                    request.nickname,
                     request.title,
                     request.content,
                     location,
