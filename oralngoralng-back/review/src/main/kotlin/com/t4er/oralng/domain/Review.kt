@@ -2,7 +2,9 @@ package com.t4er.oralng.domain
 
 import com.t4er.oralng.entity.AbstractEntity
 import com.t4er.oralng.exception.InvalidParamException
+import io.hypersistence.utils.hibernate.type.json.JsonType
 import jakarta.persistence.*
+import org.hibernate.annotations.Type
 
 @Entity
 @Table(name = "reviews")
@@ -25,8 +27,8 @@ class Review(
     @Column(name = "content", columnDefinition = "TEXT")
     var content: String,
 
-    @OneToMany(mappedBy = "review")
-    var images: MutableList<Image>? = ArrayList(),
+    @Type(JsonType::class)
+    var images: MutableMap<String, Any> = HashMap(),
 
     /**
      * locationTags, themeTags는 각 MutableList<Location>, MutableList<Theme>로 받아
@@ -56,6 +58,7 @@ class Review(
             nickname: String,
             title: String,
             content: String,
+            images: MutableMap<String, Any>,
             locationTags: String,
             themeTags: String,
         ): Review {
@@ -66,7 +69,7 @@ class Review(
                 nickname,
                 title,
                 content,
-                null,
+                images,
                 locationTags,
                 themeTags,
                 0,
