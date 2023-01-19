@@ -6,7 +6,7 @@ import com.t4er.oralng.exception.EntityNotFoundException
 import org.springframework.stereotype.Component
 
 @Component
-class ReviewReaderImpl(val reviewRepository: ReviewRepository): ReviewReader {
+class ReviewReaderImpl(val reviewRepository: ReviewRepository) : ReviewReader {
     override fun getReview(reviewId: Long): Review {
         return reviewRepository.findById(reviewId)
             .orElseThrow { EntityNotFoundException("해당 게시글은 없습니다.") }

@@ -1,4 +1,8 @@
 package com.t4er.oralng.application
 
-class ReviewFacade {
+import com.t4er.oralng.domain.ReviewService
+import org.springframework.stereotype.Service
+
+@Service
+class ReviewFacade(val reviewService: ReviewService) {
 }

@@ -1,0 +1,48 @@
+type Review {
+    reviewId: ID!
+    userId: ID!
+    nickname: String!
+    title: String!
+    content: String!
+    image: Image!
+    locationTags: String!
+    themeTags: String!
+    commentCount: Int!
+    recommendCount: Int!
+    reportCount: Int!
+}
+
+type Image {
+    imageIndex: Int!
+    imageUrl: String!
+}
+
+enum LocationTag {
+    SEOUL
+    GYEONGGIDO
+    INCHEON
+    GANGWONDO
+    CHUNGCHEONGBUKDO
+    CHUNGCHEONGNAMDO
+    DAEJEON
+    SEJONG
+    JEOLLABUKDO
+    JEOLLANAMDO
+    GWANGJU
+    GYEONGSANGBUKDO
+    GYEONGSANGNAMDO
+    DAEGU
+    ULSAN
+    BUSAN
+    JEJUDO
+}
+
+enum ThemeTag {
+    FAMILY
+    FRIEND
+    COUPLE
+    SOLO
+    HEALING
+    FOOD
+    HISTORICAL
+}

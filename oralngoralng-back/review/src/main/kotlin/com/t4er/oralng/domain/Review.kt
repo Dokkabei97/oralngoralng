@@ -2,7 +2,9 @@ package com.t4er.oralng.domain
 
 import com.t4er.oralng.entity.AbstractEntity
 import com.t4er.oralng.exception.InvalidParamException
+import io.hypersistence.utils.hibernate.type.json.JsonType
 import jakarta.persistence.*
+import org.hibernate.annotations.Type
 
 @Entity
 @Table(name = "reviews")
@@ -16,14 +18,22 @@ class Review(
     @Column(name = "user_id")
     var userId: Long,
 
+    @Column(name = "nickname")
+    var nickname: String,
+
     @Column(name = "title")
     var title: String,
 
     @Column(name = "content", columnDefinition = "TEXT")
     var content: String,
 
-    @OneToMany(mappedBy = "review")
-    var images: MutableList<Image>? = ArrayList(),
+    /**
+     * Int, String
+     * 1: "https://minio/review/1/image1.png"
+     * 2: "https://minio/review/1/image2.png"
+     */
+    @Type(JsonType::class)
+    var images: MutableMap<Int, String> = HashMap(),
 
     /**
      * locationTags, themeTags는 각 MutableList<Location>, MutableList<Theme>로 받아
@@ -50,8 +60,10 @@ class Review(
     companion object {
         fun of(
             userId: Long,
+            nickname: String,
             title: String,
             content: String,
+            images: MutableMap<Int, String>,
             locationTags: String,
             themeTags: String,
         ): Review {
@@ -59,9 +71,10 @@ class Review(
             return Review(
                 null,
                 userId,
+                nickname,
                 title,
                 content,
-                null,
+                images,
                 locationTags,
                 themeTags,
                 0,
@@ -71,9 +84,16 @@ class Review(
         }
     }
 
-    fun update(title: String, content: String, locationTags: String, themeTags: String) {
+    fun update(
+        title: String,
+        content: String,
+        images: MutableMap<Int, String>,
+        locationTags: String,
+        themeTags: String
+    ) {
         this.title = title
         this.content = content
+        this.images = images
         this.locationTags = locationTags
         this.themeTags = themeTags
     }

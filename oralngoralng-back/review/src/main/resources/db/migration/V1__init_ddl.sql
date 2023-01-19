@@ -2,8 +2,10 @@ create table reviews
 (
     review_id       bigint auto_increment primary key comment 'id',
     user_id         bigint        not null comment '리뷰 작성 크리에이터 id',
+    nickname        varchar(12)   not null comment '크리에이터 닉네임',
     title           varchar(50)   not null comment '제목',
     content         text          not null comment '내용',
+    images          json          not null comment '사진',
     location_tags   varchar(1000) not null comment '여행 지역 태그',
     theme_tags      varchar(1000) not null comment '테마 태그',
     comment_count   int           not null comment '댓글 수',
@@ -14,22 +16,10 @@ create table reviews
 ) comment 'reviews' charset = utf8mb4;
 
 create index reviews_idx01 on reviews (review_id);
-create index reviews_idx02 on reviews (title);
+create index reviews_idx02 on reviews (nickname);
+create index reviews_idx03 on reviews (title);
 create index reviews_idx04 on reviews (location_tags);
 create index reviews_idx05 on reviews (theme_tags);
-
-create table images
-(
-    image_id   bigint auto_increment primary key comment 'id',
-    review_id  bigint       not null comment '리뷰 id',
-    image_name varchar(300) not null comment '이미지 이름',
-    image_url  varchar(300) not null comment '이미지 링크',
-    created_at datetime     not null comment '생성 일시',
-    updated_at datetime     not null comment '수정 일시'
-) comment 'images' charset = utf8mb4;
-
-create index images_idx01 on images (image_id);
-create index images_idx02 on images (review_id);
 
 create table review_comments
 (
