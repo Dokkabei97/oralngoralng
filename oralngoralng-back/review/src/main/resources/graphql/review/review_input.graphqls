@@ -3,6 +3,7 @@ input CreateReviewRequest {
     nickname: String!
     title: String!
     content: String!
+    images: [String]!
     locationTags: [LocationTag]!
     themeTags: [ThemeTag]!
 }
@@ -12,6 +13,7 @@ input UpdateReviewRequest {
     userId: ID!
     title: String!
     content: String!
+    images: [String]!
     locationTags: [LocationTag]!
     themeTags: [ThemeTag]!
 }

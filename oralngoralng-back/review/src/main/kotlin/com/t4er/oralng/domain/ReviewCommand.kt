@@ -14,6 +14,7 @@ class ReviewCommand {
         val title: String,
         @field: NotBlank(message = "content은 필수 입니다.")
         val content: String,
+        val images: List<String>,
         val locationTags: MutableList<Location>,
         val themeTags: MutableList<Theme>
     )
@@ -25,6 +26,7 @@ class ReviewCommand {
         val title: String,
         @field: NotBlank(message = "content은 필수 입니다.")
         val content: String,
+        val images: List<String>,
         val locationTags: MutableList<Location>,
         val themeTags: MutableList<Theme>
     )

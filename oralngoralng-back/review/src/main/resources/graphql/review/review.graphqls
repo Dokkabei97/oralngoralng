@@ -4,7 +4,7 @@ type Review {
     nickname: String!
     title: String!
     content: String!
-    image: [Image]!
+    image: Image!
     locationTags: String!
     themeTags: String!
     commentCount: Int!
@@ -13,6 +13,7 @@ type Review {
 }
 
 type Image {
+    imageIndex: Int!
     imageUrl: String!
 }
 

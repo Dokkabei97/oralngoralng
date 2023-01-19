@@ -27,8 +27,13 @@ class Review(
     @Column(name = "content", columnDefinition = "TEXT")
     var content: String,
 
+    /**
+     * Int, String
+     * 1: "https://minio/review/1/image1.png"
+     * 2: "https://minio/review/1/image2.png"
+     */
     @Type(JsonType::class)
-    var images: MutableMap<String, Any> = HashMap(),
+    var images: MutableMap<Int, String> = HashMap(),
 
     /**
      * locationTags, themeTags는 각 MutableList<Location>, MutableList<Theme>로 받아
@@ -58,7 +63,7 @@ class Review(
             nickname: String,
             title: String,
             content: String,
-            images: MutableMap<String, Any>,
+            images: MutableMap<Int, String>,
             locationTags: String,
             themeTags: String,
         ): Review {
@@ -79,9 +84,16 @@ class Review(
         }
     }
 
-    fun update(title: String, content: String, locationTags: String, themeTags: String) {
+    fun update(
+        title: String,
+        content: String,
+        images: MutableMap<Int, String>,
+        locationTags: String,
+        themeTags: String
+    ) {
         this.title = title
         this.content = content
+        this.images = images
         this.locationTags = locationTags
         this.themeTags = themeTags
     }

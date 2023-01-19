@@ -19,30 +19,14 @@ class ReviewTest : DescribeSpec({
                         "여행 조무사",
                         "가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234",
                         "대충 내용",
+                        hashMapOf(
+                            Pair<Int, String>(1, "https://oralng.minio.com/reviews/1/image1.png"),
+                            Pair<Int, String>(2, "https://oralng.minio.com/reviews/1/image2.png")
+                        ),
                         "서울 은평구, 서울 마포구",
                         "FAMILY, HEALING"
                     )
                 }
-            }
-        }
-
-        context("이미지 생성") {
-            val review = Review.of(
-                1L,
-                "여행 조무사",
-                "홍대 투어",
-                "홍대 어쩌구 ...",
-                "서울 마포구 ...",
-                "FRIEND, ..."
-            )
-            it("이미지 등록") {
-                val image = mutableListOf<Image>(
-                    Image.of(review, "1.png", "/1.png"),
-                    Image.of(review, "2.png", "/2.png"),
-                    Image.of(review, "3.png", "/3.png")
-                )
-
-                image[0].imageName shouldBe "1.png"
             }
         }
 
@@ -53,6 +37,7 @@ class ReviewTest : DescribeSpec({
                 nickname = "여행 조무사",
                 title = "대충 제목",
                 content = "대충 리뷰 내용",
+                images = listOf("image1.png", "image2.png"),
                 locationTags = mutableListOf(
                     Location.SEOUL,
                     Location.GYEONGGIDO,
@@ -80,6 +65,7 @@ class ReviewTest : DescribeSpec({
                     nickname = "여행 조무사",
                     title = "대충 제목",
                     content = "대충 리뷰 내용",
+                    images = listOf("image1.png", "image2.png"),
                     locationTags = mutableListOf(
                         Location.SEOUL,
                         Location.GYEONGGIDO,
@@ -100,18 +86,25 @@ class ReviewTest : DescribeSpec({
                 themes += theme.description + ", "
             }
             val theme = themes.substring(0, themes.length - 2)
+            val images: MutableMap<Int, String> = HashMap()
+            request.images.withIndex().forEach { (index, image) ->
+                images[index] = image
+            }
+
             it("review") {
                 val review = Review.of(
                     request.userId,
                     request.nickname,
                     request.title,
                     request.content,
+                    images,
                     location,
                     theme
                 )
 
                 review.themeTags shouldBe "우정 여행, 식도락 여행"
                 review.locationTags shouldBe "서울, 경기도, 인천"
+                review.images[0] shouldBe "image1.png"
             }
         }
     }
