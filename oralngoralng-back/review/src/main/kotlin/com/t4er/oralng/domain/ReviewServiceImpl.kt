@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional(readOnly = true)
 class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewStore) : ReviewService {
 
+    @Transactional
     override fun create(review: CreateReviewRequest) {
         val locations: String = locationListToString(review.locationTags)
         val themes: String = themeListToString(review.themeTags)
@@ -26,6 +27,7 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
         reviewStore.create(of)
     }
 
+    @Transactional
     override fun update(review: UpdateReviewRequest) {
         val findById: Review = reviewReader.getReview(review.reviewId)
         val locations: String = locationListToString(review.locationTags)
@@ -34,6 +36,7 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
         findById.update(review.title, review.content, images, locations, themes)
     }
 
+    @Transactional
     override fun delete(review: DeleteReviewRequest) {
         reviewStore.delete(review.reviewId)
     }

@@ -33,6 +33,7 @@ class Review(
      * 2: "https://minio/review/1/image2.png"
      */
     @Type(JsonType::class)
+    @Column(name = "images", columnDefinition = "json")
     var images: MutableMap<Int, String> = HashMap(),
 
     /**
