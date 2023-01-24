@@ -20,8 +20,20 @@ class ReviewTest : DescribeSpec({
                         "가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234",
                         "대충 내용",
                         hashMapOf(
-                            Pair<Int, String>(1, "https://oralng.minio.com/reviews/1/image1.png"),
-                            Pair<Int, String>(2, "https://oralng.minio.com/reviews/1/image2.png")
+                            Pair(
+                                "image1",
+                                hashMapOf(
+                                    Pair("url", "https://oralng.minio.com/reviews/1/image1.png"),
+                                    Pair("depscrion", "홍대 가족 여행 ...")
+                                ),
+                            ),
+                            Pair(
+                                "image2",
+                                hashMapOf(
+                                    Pair("url", "https://oralng.minio.com/reviews/1/image2.png"),
+                                    Pair("depscrion", "은평구 힐링 ...")
+                                ),
+                            )
                         ),
                         "서울 은평구, 서울 마포구",
                         "FAMILY, HEALING"
@@ -37,7 +49,7 @@ class ReviewTest : DescribeSpec({
                 nickname = "여행 조무사",
                 title = "대충 제목",
                 content = "대충 리뷰 내용",
-                images = listOf("image1.png", "image2.png"),
+
                 locationTags = mutableListOf(
                     Location.SEOUL,
                     Location.GYEONGGIDO,
