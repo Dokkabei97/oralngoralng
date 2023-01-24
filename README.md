@@ -4,25 +4,19 @@
 
 ## Stack
 
-- Kotlin
-- Spring Boot
-- Go
-- Gin
+- Kotlin / Spring Boot
+- Go / Gin
+- TypeScript / Next.js
+- Dart / Flutter
+- Elasticsearch / Logstash || Filebeat / Kibana
 - GraphQL
-- TypeScript
-- Next.js
-- Dart
-- Flutter
-- Elasticsearch
 - Kafka
-- RabbitMQ
 - gRPC
 - MySQL
 - Redis
-- minio
-- grafana
-- prometheus
-- influxdb
+- Minio
+- Grafana / Prometheus / Influxdb
+- Docker / Kubernetes (Docker Desktop Single Kube)
 
 로컬 포트 표
 
