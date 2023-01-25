@@ -3,9 +3,14 @@ input CreateReviewRequest {
     nickname: String!
     title: String!
     content: String!
-    images: [String]!
+    images: [ImageInput]!
     locationTags: [LocationTag]!
     themeTags: [ThemeTag]!
+}
+
+input ImageInput {
+    imageUrl: String!
+    imageDescription: String!
 }
 
 input UpdateReviewRequest {

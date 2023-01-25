@@ -4,7 +4,7 @@ type Review {
     nickname: String!
     title: String!
     content: String!
-    image: [Image]!
+    images: [Image]!
     locationTags: String!
     themeTags: String!
     commentCount: Int!
@@ -13,8 +13,8 @@ type Review {
 }
 
 type Image {
-    url: String!
-    description: String!
+    imageUrl: String!
+    imageDescription: String!
 }
 
 enum LocationTag {

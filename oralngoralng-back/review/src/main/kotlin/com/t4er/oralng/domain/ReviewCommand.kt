@@ -14,12 +14,16 @@ class ReviewCommand {
         val title: String,
         @field: NotBlank(message = "content은 필수 입니다.")
         val content: String,
-        @field: NotBlank(message = "url은 필수 입니다.")
-        val url: String,
-        @field: NotBlank(message = "description은 필수 입니다.")
-        val description: String,
+        val images: MutableList<Image>,
         val locationTags: MutableList<Location>,
         val themeTags: MutableList<Theme>
+    )
+
+    data class Image (
+        @field: NotBlank(message = "imageUrl은 필수 입니다.")
+        val imageUrl: String,
+        @field: NotBlank(message = "imageDescription은 필수 입니다.")
+        val imageDescription: String
     )
 
     class UpdateReviewRequest(
