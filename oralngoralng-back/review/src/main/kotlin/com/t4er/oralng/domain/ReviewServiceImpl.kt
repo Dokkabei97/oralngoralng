@@ -14,7 +14,7 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
     override fun create(review: CreateReviewRequest) {
         val locations: String = locationListToString(review.locationTags)
         val themes: String = themeListToString(review.themeTags)
-        val images: MutableMap<Int, String> = imageListToMap(review.images)
+        val images: MutableMap<String, MutableMap<String, String>> = imageListToMap(review.images)
         val of: Review = Review.of(
             review.userId,
             review.nickname,
@@ -32,7 +32,7 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
         val findById: Review = reviewReader.getReview(review.reviewId)
         val locations: String = locationListToString(review.locationTags)
         val themes: String = themeListToString(review.themeTags)
-        val images: MutableMap<Int, String> = imageListToMap(review.images)
+        val images: MutableMap<String, MutableMap<String, String>> = imageListToMap(review.images)
         findById.update(review.title, review.content, images, locations, themes)
     }
 
@@ -41,12 +41,16 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
         reviewStore.delete(review.reviewId)
     }
 
-    private fun imageListToMap(list: List<String>): MutableMap<Int, String> {
-        val images: MutableMap<Int, String> = HashMap()
-        list.withIndex().forEach { (index, image) ->
-            images[index] = image
+    private fun imageListToMap(list: MutableList<Image>): MutableMap<String, MutableMap<String, String>> {
+        val images: MutableMap<String, MutableMap<String, String>> = HashMap()
+        val imageLists: MutableMap<String, String> = HashMap()
+        for ((index, image) in list.withIndex()) {
+            imageLists.put("imageUrl", image.imageUrl)
+            imageLists.put("imageDescription", image.imageDescription)
+            images.put("image"+index, imageLists)
         }
-        return images
+
+        return hashMapOf()
     }
 
     private fun themeListToString(list: MutableList<Theme>): String {
