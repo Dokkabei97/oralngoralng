@@ -19,12 +19,18 @@ class ReviewCommand {
         val themeTags: MutableList<Theme>
     )
 
-    data class Image (
+    data class Image(
         @field: NotBlank(message = "imageUrl은 필수 입니다.")
         val imageUrl: String,
         @field: NotBlank(message = "imageDescription은 필수 입니다.")
         val imageDescription: String
-    )
+    ) {
+        companion object {
+            fun of(url: String, description: String): Image {
+                return Image(url, description)
+            }
+        }
+    }
 
     class UpdateReviewRequest(
         val reviewId: Long,

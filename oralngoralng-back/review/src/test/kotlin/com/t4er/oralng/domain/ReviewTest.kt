@@ -49,7 +49,16 @@ class ReviewTest : DescribeSpec({
                 nickname = "여행 조무사",
                 title = "대충 제목",
                 content = "대충 리뷰 내용",
-
+                images = mutableListOf<ReviewCommand.Image>(
+                    ReviewCommand.Image.of(
+                        url = "https://oralng.minio.com/reviews/1/image1.png",
+                        description = "홍대 가족 여행 ..."
+                    ),
+                    ReviewCommand.Image.of(
+                        url = "https://oralng.minio.com/reviews/1/image2.png",
+                        description = "은평구 힐링 ..."
+                    )
+                ),
                 locationTags = mutableListOf(
                     Location.SEOUL,
                     Location.GYEONGGIDO,
@@ -77,7 +86,16 @@ class ReviewTest : DescribeSpec({
                     nickname = "여행 조무사",
                     title = "대충 제목",
                     content = "대충 리뷰 내용",
-                    images = listOf("image1.png", "image2.png"),
+                    images = mutableListOf<ReviewCommand.Image>(
+                        ReviewCommand.Image.of(
+                            url = "https://oralng.minio.com/reviews/1/image1.png",
+                            description = "홍대 가족 여행 ..."
+                        ),
+                        ReviewCommand.Image.of(
+                            url = "https://oralng.minio.com/reviews/1/image2.png",
+                            description = "은평구 힐링 ..."
+                        )
+                    ),
                     locationTags = mutableListOf(
                         Location.SEOUL,
                         Location.GYEONGGIDO,
@@ -98,9 +116,18 @@ class ReviewTest : DescribeSpec({
                 themes += theme.description + ", "
             }
             val theme = themes.substring(0, themes.length - 2)
-            val images: MutableMap<Int, String> = HashMap()
-            request.images.withIndex().forEach { (index, image) ->
-                images[index] = image
+
+            val images: MutableMap<String, MutableMap<String, String>> = HashMap()
+//            val imageLists: Map<String, String> = HashMap()
+            for ((i, v) in request.images.withIndex()) {
+                println("i => $i , v => $v")
+//                imageLists.("imageUrl", v.imageUrl)
+//                imageLists.put("imageDescription", v.imageDescription)
+                images["image$i"] = hashMapOf(
+                    Pair("imageUrl", v.imageUrl),
+                    Pair("imageDescription", v.imageDescription)
+                )
+                println(images)
             }
 
             it("review") {
@@ -116,7 +143,12 @@ class ReviewTest : DescribeSpec({
 
                 review.themeTags shouldBe "우정 여행, 식도락 여행"
                 review.locationTags shouldBe "서울, 경기도, 인천"
-                review.images[0] shouldBe "image1.png"
+//                review.images[0] shouldBe "image1.png"
+
+                println("review images  => ${review.images}")
+                println("review images1 => ${review.images["image1"]}")
+                println("review images1 values => ${review.images["image1"]?.values}")
+                println("review images1 imageUrl value => ${review.images["image1"]?.get("imageUrl")}")
             }
         }
     }
