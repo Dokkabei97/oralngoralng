@@ -43,14 +43,13 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
 
     private fun imageListToMap(list: MutableList<Image>): MutableMap<String, MutableMap<String, String>> {
         val images: MutableMap<String, MutableMap<String, String>> = HashMap()
-        val imageLists: MutableMap<String, String> = HashMap()
-        for ((index, image) in list.withIndex()) {
-            imageLists.put("imageUrl", image.imageUrl)
-            imageLists.put("imageDescription", image.imageDescription)
-            images.put("image"+index, imageLists)
+        list.withIndex().forEach { (index, image) ->
+            images["image$index"] = hashMapOf(
+                Pair("imageUrl", image.imageUrl),
+                Pair("imageDescription", image.imageDescription)
+            )
         }
-
-        return hashMapOf()
+        return images
     }
 
     private fun themeListToString(list: MutableList<Theme>): String {

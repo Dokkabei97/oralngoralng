@@ -7,6 +7,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldStartWith
 
 class ReviewTest : DescribeSpec({
 
@@ -118,16 +119,11 @@ class ReviewTest : DescribeSpec({
             val theme = themes.substring(0, themes.length - 2)
 
             val images: MutableMap<String, MutableMap<String, String>> = HashMap()
-//            val imageLists: Map<String, String> = HashMap()
             for ((i, v) in request.images.withIndex()) {
-                println("i => $i , v => $v")
-//                imageLists.("imageUrl", v.imageUrl)
-//                imageLists.put("imageDescription", v.imageDescription)
                 images["image$i"] = hashMapOf(
                     Pair("imageUrl", v.imageUrl),
                     Pair("imageDescription", v.imageDescription)
                 )
-                println(images)
             }
 
             it("review") {
@@ -143,12 +139,7 @@ class ReviewTest : DescribeSpec({
 
                 review.themeTags shouldBe "우정 여행, 식도락 여행"
                 review.locationTags shouldBe "서울, 경기도, 인천"
-//                review.images[0] shouldBe "image1.png"
-
-                println("review images  => ${review.images}")
-                println("review images1 => ${review.images["image1"]}")
-                println("review images1 values => ${review.images["image1"]?.values}")
-                println("review images1 imageUrl value => ${review.images["image1"]?.get("imageUrl")}")
+                review.images["image0"]?.get("imageDescription") shouldStartWith "홍대"
             }
         }
     }

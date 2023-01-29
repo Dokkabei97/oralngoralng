@@ -1,0 +1,9 @@
+enum ThemeTag {
+    FAMILY
+    FRIEND
+    COUPLE
+    SOLO
+    HEALING
+    FOOD
+    HISTORICAL
+}
