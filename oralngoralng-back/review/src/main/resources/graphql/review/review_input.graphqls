@@ -9,8 +9,8 @@ input CreateReviewRequest {
 }
 
 input ImageInput {
-    imageUrl: String!
-    imageDescription: String!
+    url: String!
+    description: String!
 }
 
 input UpdateReviewRequest {

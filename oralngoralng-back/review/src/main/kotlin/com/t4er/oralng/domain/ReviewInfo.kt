@@ -6,7 +6,7 @@ class ReviewInfo(review: Review) {
     val nickname: String = review.nickname
     val title: String = review.title
     val content: String = review.content
-//    val image: String = review.images
+    val images: List<MutableMap<String, String>>? = review.images["images"]
     val locationTags: String = review.locationTags
     val themeTags: String = review.themeTags
     val commentCount: Int = review.commentCount

@@ -5,7 +5,6 @@ import com.t4er.oralng.domain.tag.Theme
 import com.t4er.oralng.exception.InvalidParamException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldStartWith
 
@@ -22,18 +21,16 @@ class ReviewTest : DescribeSpec({
                         "대충 내용",
                         hashMapOf(
                             Pair(
-                                "image1",
-                                hashMapOf(
-                                    Pair("url", "https://oralng.minio.com/reviews/1/image1.png"),
-                                    Pair("depscrion", "홍대 가족 여행 ...")
-                                ),
-                            ),
-                            Pair(
-                                "image2",
-                                hashMapOf(
-                                    Pair("url", "https://oralng.minio.com/reviews/1/image2.png"),
-                                    Pair("depscrion", "은평구 힐링 ...")
-                                ),
+                                "images", listOf(
+                                    hashMapOf(
+                                        Pair("url", "https://oralng.minio.com/reviews/1/image1.png"),
+                                        Pair("depscrion", "홍대 가족 여행 ...")
+                                    ),
+                                    hashMapOf(
+                                        Pair("url", "https://oralng.minio.com/reviews/1/image2.png"),
+                                        Pair("depscrion", "은평구 힐링 ...")
+                                    ),
+                                )
                             )
                         ),
                         "서울 은평구, 서울 마포구",
@@ -51,13 +48,13 @@ class ReviewTest : DescribeSpec({
                 title = "대충 제목",
                 content = "대충 리뷰 내용",
                 images = mutableListOf<ReviewCommand.Image>(
-                    ReviewCommand.Image.of(
-                        url = "https://oralng.minio.com/reviews/1/image1.png",
-                        description = "홍대 가족 여행 ..."
+                    ReviewCommand.Image(
+                        "https://oralng.minio.com/reviews/1/image1.png",
+                        "홍대 가족 여행 ..."
                     ),
-                    ReviewCommand.Image.of(
-                        url = "https://oralng.minio.com/reviews/1/image2.png",
-                        description = "은평구 힐링 ..."
+                    ReviewCommand.Image(
+                        "https://oralng.minio.com/reviews/1/image2.png",
+                        "은평구 힐링 ..."
                     )
                 ),
                 locationTags = mutableListOf(
@@ -88,13 +85,13 @@ class ReviewTest : DescribeSpec({
                     title = "대충 제목",
                     content = "대충 리뷰 내용",
                     images = mutableListOf<ReviewCommand.Image>(
-                        ReviewCommand.Image.of(
-                            url = "https://oralng.minio.com/reviews/1/image1.png",
-                            description = "홍대 가족 여행 ..."
+                        ReviewCommand.Image(
+                            "https://oralng.minio.com/reviews/1/image1.png",
+                            "홍대 가족 여행 ..."
                         ),
-                        ReviewCommand.Image.of(
-                            url = "https://oralng.minio.com/reviews/1/image2.png",
-                            description = "은평구 힐링 ..."
+                        ReviewCommand.Image(
+                            "https://oralng.minio.com/reviews/1/image2.png",
+                            "은평구 힐링 ..."
                         )
                     ),
                     locationTags = mutableListOf(
@@ -118,13 +115,22 @@ class ReviewTest : DescribeSpec({
             }
             val theme = themes.substring(0, themes.length - 2)
 
-            val images: MutableMap<String, MutableMap<String, String>> = HashMap()
-            for ((i, v) in request.images.withIndex()) {
-                images["image$i"] = hashMapOf(
-                    Pair("imageUrl", v.imageUrl),
-                    Pair("imageDescription", v.imageDescription)
-                )
-            }
+            val images: MutableMap<String, List<MutableMap<String, String>>> = HashMap()
+//            for ((i, v) in request.images.withIndex()) {
+//                images["image$i"] = hashMapOf(
+//                    Pair("imageUrl", v.url),
+//                    Pair("imageDescription", v.description)
+//                )
+//            }
+            val im: List<MutableMap<String, String>> = request.images.stream()
+                .map { im ->
+                    hashMapOf(
+                        Pair("url", im.url),
+                        Pair("description", im.description)
+                    )
+                }
+                .toList()
+            images["images"] = im
 
             it("review") {
                 val review = Review.of(
@@ -139,7 +145,8 @@ class ReviewTest : DescribeSpec({
 
                 review.themeTags shouldBe "우정 여행, 식도락 여행"
                 review.locationTags shouldBe "서울, 경기도, 인천"
-                review.images["image0"]?.get("imageDescription") shouldStartWith "홍대"
+//                review.images["images"]?.get("description") shouldStartWith "홍대"
+                review.images.get("images")?.get(0)?.get("description") shouldStartWith "홍대"
             }
         }
     }

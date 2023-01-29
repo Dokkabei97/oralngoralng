@@ -43,7 +43,7 @@ class Review(
      */
     @Type(JsonType::class)
     @Column(name = "images", columnDefinition = "json")
-    var images: MutableMap<String, MutableMap<String, String>> = HashMap(),
+    var images: MutableMap<String, List<MutableMap<String, String>>> = HashMap(),
 
     /**
      * locationTags, themeTags는 각 MutableList<Location>, MutableList<Theme>로 받아
@@ -73,7 +73,7 @@ class Review(
             nickname: String,
             title: String,
             content: String,
-            images: MutableMap<String, MutableMap<String, String>>,
+            images: MutableMap<String, List<MutableMap<String, String>>>,
             locationTags: String,
             themeTags: String,
         ): Review {
@@ -97,7 +97,7 @@ class Review(
     fun update(
         title: String,
         content: String,
-        images: MutableMap<String, MutableMap<String, String>>,
+        images: MutableMap<String, List<MutableMap<String, String>>>,
         locationTags: String,
         themeTags: String
     ) {

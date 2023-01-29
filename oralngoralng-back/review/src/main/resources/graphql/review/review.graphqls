@@ -13,6 +13,6 @@ type Review {
 }
 
 type Image {
-    imageUrl: String!
-    imageDescription: String!
+    url: String!
+    description: String!
 }
