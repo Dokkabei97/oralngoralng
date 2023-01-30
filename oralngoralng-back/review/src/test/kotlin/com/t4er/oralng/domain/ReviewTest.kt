@@ -123,10 +123,10 @@ class ReviewTest : DescribeSpec({
 //                )
 //            }
             val im: List<MutableMap<String, String>> = request.images.stream()
-                .map { im ->
+                .map {
                     hashMapOf(
-                        Pair("url", im.url),
-                        Pair("description", im.description)
+                        Pair("url", it.url),
+                        Pair("description", it.description)
                     )
                 }
                 .toList()

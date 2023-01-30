@@ -44,10 +44,10 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
     private fun imageListToMap(list: MutableList<Image>): MutableMap<String, List<MutableMap<String, String>>> {
         val images: MutableMap<String, List<MutableMap<String, String>>> = HashMap()
         images["images"] = list.stream()
-            .map { image ->
+            .map {
                 hashMapOf(
-                    Pair("url", image.url),
-                    Pair("description", image.description)
+                    Pair("url", it.url),
+                    Pair("description", it.description)
                 )
             }
             .toList()
@@ -56,16 +56,16 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
 
     private fun themeListToString(list: MutableList<Theme>): String {
         var themes: String = ""
-        list.forEach { theme ->
-            themes += theme.description + ", "
+        list.forEach {
+            themes += it.description + ", "
         }
         return themes.substring(0, themes.length - 2)
     }
 
     private fun locationListToString(list: MutableList<Location>): String {
         var locations: String = ""
-        list.forEach { location ->
-            locations += location.description + ", "
+        list.forEach {
+            locations += it.description + ", "
         }
         return locations.substring(0, locations.length - 2)
     }
