@@ -27,3 +27,7 @@ input DeleteReviewRequest {
     reviewId: ID!
     userId: ID!
 }
+
+input GetReviewRequest {
+    reviewId: ID!
+}

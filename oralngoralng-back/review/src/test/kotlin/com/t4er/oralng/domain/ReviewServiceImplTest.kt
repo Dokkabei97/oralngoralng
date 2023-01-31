@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class ReviewServiceImplTest : BehaviorSpec() {
+internal class ReviewServiceImplTest : BehaviorSpec() {
 
     override fun extensions() = listOf(SpringExtension)
 
@@ -57,7 +57,7 @@ class ReviewServiceImplTest : BehaviorSpec() {
                     review.reviewId shouldBe 1L
                     review.images[0].description shouldStartWith "홍대"
                     review.title shouldBe "대충 제목"
-                    review.locationTags shouldStartWith "SEOUL"
+                    review.locationTags shouldStartWith "서울"
                 }
             }
         }
