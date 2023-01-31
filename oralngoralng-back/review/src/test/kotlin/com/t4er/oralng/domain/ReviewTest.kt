@@ -19,19 +19,9 @@ class ReviewTest : DescribeSpec({
                         "여행 조무사",
                         "가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234",
                         "대충 내용",
-                        hashMapOf(
-                            Pair(
-                                "images", listOf(
-                                    hashMapOf(
-                                        Pair("url", "https://oralng.minio.com/reviews/1/image1.png"),
-                                        Pair("depscrion", "홍대 가족 여행 ...")
-                                    ),
-                                    hashMapOf(
-                                        Pair("url", "https://oralng.minio.com/reviews/1/image2.png"),
-                                        Pair("depscrion", "은평구 힐링 ...")
-                                    ),
-                                )
-                            )
+                        listOf(
+                            Image("https://oralng.minio.com/reviews/1/image1.png", "홍대 가족 여행 ..."),
+                            Image("https://oralng.minio.com/reviews/1/image2.png", "은평구 힐링 ...")
                         ),
                         "서울 은평구, 서울 마포구",
                         "FAMILY, HEALING"
@@ -47,12 +37,12 @@ class ReviewTest : DescribeSpec({
                 nickname = "여행 조무사",
                 title = "대충 제목",
                 content = "대충 리뷰 내용",
-                images = mutableListOf<ReviewCommand.Image>(
-                    ReviewCommand.Image(
+                images = mutableListOf<ReviewCommand.ImageRequest>(
+                    ReviewCommand.ImageRequest(
                         "https://oralng.minio.com/reviews/1/image1.png",
                         "홍대 가족 여행 ..."
                     ),
-                    ReviewCommand.Image(
+                    ReviewCommand.ImageRequest(
                         "https://oralng.minio.com/reviews/1/image2.png",
                         "은평구 힐링 ..."
                     )
@@ -84,12 +74,12 @@ class ReviewTest : DescribeSpec({
                     nickname = "여행 조무사",
                     title = "대충 제목",
                     content = "대충 리뷰 내용",
-                    images = mutableListOf<ReviewCommand.Image>(
-                        ReviewCommand.Image(
+                    images = mutableListOf<ReviewCommand.ImageRequest>(
+                        ReviewCommand.ImageRequest(
                             "https://oralng.minio.com/reviews/1/image1.png",
                             "홍대 가족 여행 ..."
                         ),
-                        ReviewCommand.Image(
+                        ReviewCommand.ImageRequest(
                             "https://oralng.minio.com/reviews/1/image2.png",
                             "은평구 힐링 ..."
                         )
@@ -115,22 +105,25 @@ class ReviewTest : DescribeSpec({
             }
             val theme = themes.substring(0, themes.length - 2)
 
-            val images: MutableMap<String, List<MutableMap<String, String>>> = HashMap()
+//            val images: MutableMap<String, List<MutableMap<String, String>>> = HashMap()
 //            for ((i, v) in request.images.withIndex()) {
 //                images["image$i"] = hashMapOf(
 //                    Pair("imageUrl", v.url),
 //                    Pair("imageDescription", v.description)
 //                )
 //            }
-            val im: List<MutableMap<String, String>> = request.images.stream()
-                .map {
-                    hashMapOf(
-                        Pair("url", it.url),
-                        Pair("description", it.description)
-                    )
-                }
+//            val im: List<MutableMap<String, String>> = request.images.stream()
+//                .map {
+//                    hashMapOf(
+//                        Pair("url", it.url),
+//                        Pair("description", it.description)
+//                    )
+//                }
+//                .toList()
+//            images["images"] = im
+            val images = request.images.stream()
+                .map { Image(it.url, it.description) }
                 .toList()
-            images["images"] = im
 
             it("review") {
                 val review = Review.of(
@@ -145,8 +138,7 @@ class ReviewTest : DescribeSpec({
 
                 review.themeTags shouldBe "우정 여행, 식도락 여행"
                 review.locationTags shouldBe "서울, 경기도, 인천"
-//                review.images["images"]?.get("description") shouldStartWith "홍대"
-                review.images.get("images")?.get(0)?.get("description") shouldStartWith "홍대"
+                review.images[0].description shouldStartWith "홍대"
             }
         }
     }
