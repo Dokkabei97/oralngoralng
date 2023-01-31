@@ -11,20 +11,21 @@ import org.springframework.transaction.annotation.Transactional
 class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewStore) : ReviewService {
 
     @Transactional
-    override fun create(review: CreateReviewRequest) {
+    override fun create(review: CreateReviewRequest): ReviewInfo {
         val locations: String = locationListToString(review.locationTags)
         val themes: String = themeListToString(review.themeTags)
-//        val images: MutableMap<String, List<MutableMap<String, String>>> = imageListToMap(review.images)
+        val images: List<Image> = requestToImage(review.images)
         val of: Review = Review.of(
             review.userId,
             review.nickname,
             review.title,
             review.content,
-            listOf(),
+            images,
             locations,
             themes
         )
-        reviewStore.create(of)
+        val create = reviewStore.create(of)
+        return ReviewInfo(create)
     }
 
     @Transactional
@@ -32,8 +33,8 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
         val findById: Review = reviewReader.getReview(review.reviewId)
         val locations: String = locationListToString(review.locationTags)
         val themes: String = themeListToString(review.themeTags)
-//        val images: MutableMap<String, List<MutableMap<String, String>>> = imageListToMap(review.images)
-        findById.update(review.title, review.content, listOf(), locations, themes)
+        val images: List<Image> = requestToImage(review.images)
+        findById.update(review.title, review.content, images, locations, themes)
     }
 
     @Transactional
@@ -41,17 +42,10 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
         reviewStore.delete(review.reviewId)
     }
 
-    private fun imageListToMap(list: MutableList<Image>): MutableMap<String, List<MutableMap<String, String>>> {
-        val images: MutableMap<String, List<MutableMap<String, String>>> = HashMap()
-        images["images"] = list.stream()
-            .map {
-                hashMapOf(
-                    Pair("url", it.url),
-                    Pair("description", it.description)
-                )
-            }
+    private fun requestToImage(list: MutableList<ImageRequest>): List<Image> {
+        return list.stream()
+            .map { Image(it.url, it.description) }
             .toList()
-        return images
     }
 
     private fun themeListToString(list: MutableList<Theme>): String {
