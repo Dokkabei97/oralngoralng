@@ -13,6 +13,11 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3310/review?serverTimezone=UTC&characterEncoding=UTF-8
+#    username: review-t4er
+#    password: review-oralng
 
   flyway:
     enabled: false

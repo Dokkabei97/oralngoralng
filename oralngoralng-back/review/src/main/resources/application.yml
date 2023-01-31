@@ -5,7 +5,7 @@ spring:
   profiles:
     default: dev
 
-  graphql:
-    schema:
-      locations: classpath:graphql/**/
-      fileExtensions: .graphqls, .gqls
+#  graphql:
+#    schema:
+#      locations: classpath:graphql/**/
+#      fileExtensions: .graphqls, .gqls

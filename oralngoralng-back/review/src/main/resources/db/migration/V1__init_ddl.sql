@@ -18,8 +18,6 @@ create table reviews
 create index reviews_idx01 on reviews (review_id);
 create index reviews_idx02 on reviews (nickname);
 create index reviews_idx03 on reviews (title);
-create index reviews_idx04 on reviews (location_tags);
-create index reviews_idx05 on reviews (theme_tags);
 
 create table review_comments
 (

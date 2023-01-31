@@ -10,10 +10,11 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional(readOnly = true)
 class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewStore) : ReviewService {
 
-    override fun create(review: CreateReviewRequest) {
+    @Transactional
+    override fun create(review: CreateReviewRequest): ReviewInfo {
         val locations: String = locationListToString(review.locationTags)
         val themes: String = themeListToString(review.themeTags)
-        val images: MutableMap<Int, String> = imageListToMap(review.images)
+        val images: List<Image> = requestToImage(review.images)
         val of: Review = Review.of(
             review.userId,
             review.nickname,
@@ -23,41 +24,42 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
             locations,
             themes
         )
-        reviewStore.create(of)
+        val create = reviewStore.create(of)
+        return ReviewInfo(create)
     }
 
+    @Transactional
     override fun update(review: UpdateReviewRequest) {
         val findById: Review = reviewReader.getReview(review.reviewId)
         val locations: String = locationListToString(review.locationTags)
         val themes: String = themeListToString(review.themeTags)
-        val images: MutableMap<Int, String> = imageListToMap(review.images)
+        val images: List<Image> = requestToImage(review.images)
         findById.update(review.title, review.content, images, locations, themes)
     }
 
+    @Transactional
     override fun delete(review: DeleteReviewRequest) {
         reviewStore.delete(review.reviewId)
     }
 
-    private fun imageListToMap(list: List<String>): MutableMap<Int, String> {
-        val images: MutableMap<Int, String> = HashMap()
-        list.withIndex().forEach { (index, image) ->
-            images[index] = image
-        }
-        return images
+    private fun requestToImage(list: MutableList<ImageRequest>): List<Image> {
+        return list.stream()
+            .map { Image(it.url, it.description) }
+            .toList()
     }
 
     private fun themeListToString(list: MutableList<Theme>): String {
         var themes: String = ""
-        list.forEach { theme ->
-            themes += theme.description + ", "
+        list.forEach {
+            themes += it.description + ", "
         }
         return themes.substring(0, themes.length - 2)
     }
 
     private fun locationListToString(list: MutableList<Location>): String {
         var locations: String = ""
-        list.forEach { location ->
-            locations += location.description + ", "
+        list.forEach {
+            locations += it.description + ", "
         }
         return locations.substring(0, locations.length - 2)
     }

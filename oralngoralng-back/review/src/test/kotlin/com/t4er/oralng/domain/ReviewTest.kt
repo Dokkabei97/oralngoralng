@@ -5,8 +5,8 @@ import com.t4er.oralng.domain.tag.Theme
 import com.t4er.oralng.exception.InvalidParamException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldStartWith
 
 class ReviewTest : DescribeSpec({
 
@@ -19,9 +19,9 @@ class ReviewTest : DescribeSpec({
                         "여행 조무사",
                         "가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234가나다라abcd1234",
                         "대충 내용",
-                        hashMapOf(
-                            Pair<Int, String>(1, "https://oralng.minio.com/reviews/1/image1.png"),
-                            Pair<Int, String>(2, "https://oralng.minio.com/reviews/1/image2.png")
+                        listOf(
+                            Image("https://oralng.minio.com/reviews/1/image1.png", "홍대 가족 여행 ..."),
+                            Image("https://oralng.minio.com/reviews/1/image2.png", "은평구 힐링 ...")
                         ),
                         "서울 은평구, 서울 마포구",
                         "FAMILY, HEALING"
@@ -37,7 +37,16 @@ class ReviewTest : DescribeSpec({
                 nickname = "여행 조무사",
                 title = "대충 제목",
                 content = "대충 리뷰 내용",
-                images = listOf("image1.png", "image2.png"),
+                images = mutableListOf<ReviewCommand.ImageRequest>(
+                    ReviewCommand.ImageRequest(
+                        "https://oralng.minio.com/reviews/1/image1.png",
+                        "홍대 가족 여행 ..."
+                    ),
+                    ReviewCommand.ImageRequest(
+                        "https://oralng.minio.com/reviews/1/image2.png",
+                        "은평구 힐링 ..."
+                    )
+                ),
                 locationTags = mutableListOf(
                     Location.SEOUL,
                     Location.GYEONGGIDO,
@@ -65,7 +74,16 @@ class ReviewTest : DescribeSpec({
                     nickname = "여행 조무사",
                     title = "대충 제목",
                     content = "대충 리뷰 내용",
-                    images = listOf("image1.png", "image2.png"),
+                    images = mutableListOf<ReviewCommand.ImageRequest>(
+                        ReviewCommand.ImageRequest(
+                            "https://oralng.minio.com/reviews/1/image1.png",
+                            "홍대 가족 여행 ..."
+                        ),
+                        ReviewCommand.ImageRequest(
+                            "https://oralng.minio.com/reviews/1/image2.png",
+                            "은평구 힐링 ..."
+                        )
+                    ),
                     locationTags = mutableListOf(
                         Location.SEOUL,
                         Location.GYEONGGIDO,
@@ -86,10 +104,26 @@ class ReviewTest : DescribeSpec({
                 themes += theme.description + ", "
             }
             val theme = themes.substring(0, themes.length - 2)
-            val images: MutableMap<Int, String> = HashMap()
-            request.images.withIndex().forEach { (index, image) ->
-                images[index] = image
-            }
+
+//            val images: MutableMap<String, List<MutableMap<String, String>>> = HashMap()
+//            for ((i, v) in request.images.withIndex()) {
+//                images["image$i"] = hashMapOf(
+//                    Pair("imageUrl", v.url),
+//                    Pair("imageDescription", v.description)
+//                )
+//            }
+//            val im: List<MutableMap<String, String>> = request.images.stream()
+//                .map {
+//                    hashMapOf(
+//                        Pair("url", it.url),
+//                        Pair("description", it.description)
+//                    )
+//                }
+//                .toList()
+//            images["images"] = im
+            val images = request.images.stream()
+                .map { Image(it.url, it.description) }
+                .toList()
 
             it("review") {
                 val review = Review.of(
@@ -104,7 +138,7 @@ class ReviewTest : DescribeSpec({
 
                 review.themeTags shouldBe "우정 여행, 식도락 여행"
                 review.locationTags shouldBe "서울, 경기도, 인천"
-                review.images[0] shouldBe "image1.png"
+                review.images[0].description shouldStartWith "홍대"
             }
         }
     }

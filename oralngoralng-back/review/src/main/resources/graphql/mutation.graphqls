@@ -1,6 +1,6 @@
 type Mutation {
     # Review
-    createReview(input: CreateReviewRequest!): Review
-    updateReview(input: UpdateReviewRequest!): Review
-    deleteReview(input: DeleteReviewRequest!): Review
+    createReview(input: CreateReviewRequest!): ReviewInfo
+    updateReview(input: UpdateReviewRequest!): ReviewInfo
+    deleteReview(input: DeleteReviewRequest!): ReviewInfo
 }

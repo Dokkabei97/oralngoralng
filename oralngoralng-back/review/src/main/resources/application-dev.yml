@@ -3,10 +3,10 @@ spring:
     activate:
       on-profile: dev
 
-  graphql:
-    schema:
-      printer:
-        enabled: true
+#  graphql:
+#    schema:
+#      printer:
+#        enabled: true
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
