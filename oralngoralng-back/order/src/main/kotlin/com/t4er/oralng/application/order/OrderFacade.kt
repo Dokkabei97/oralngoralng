@@ -8,19 +8,9 @@ import org.springframework.stereotype.Service
 @Service
 class OrderFacade(val orderService: OrderService) {
 
-    fun registerOrder(command: RegisterOrderRequest): OrderInfo {
-        return orderService.registerOrder(command)
-    }
+    fun registerOrder(command: RegisterOrderRequest): OrderInfo = orderService.registerOrder(command)
+    fun paymentOrder(command: PaymentRequest) = orderService.paymentOrder(command)
+    fun getOrders(command: GetOrdersRequest): List<OrderInfo> = orderService.getOrders(command)
+    fun getOrder(command: GetOrderRequest): OrderInfo = orderService.getOrder(command)
 
-    fun paymentOrder(command: PaymentRequest) {
-        orderService.paymentOrder(command)
-    }
-
-    fun getOrders(command: GetOrdersRequest): List<OrderInfo> {
-        return orderService.getOrders(command)
-    }
-
-    fun getOrder(command: GetOrderRequest): OrderInfo {
-        return orderService.getOrder(command)
-    }
 }

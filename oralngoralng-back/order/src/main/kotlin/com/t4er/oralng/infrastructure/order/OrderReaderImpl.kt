@@ -6,13 +6,11 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 
 @Component
-class OrderReaderImpl(val orderRepository: OrderRepository): OrderReader {
+class OrderReaderImpl(val orderRepository: OrderRepository) : OrderReader {
 
-    override fun getOrder(orderToken: String): Order {
-        return orderRepository.findByOrderToken(orderToken)
-    }
+    override fun getOrder(orderToken: String): Order = orderRepository.findByOrderToken(orderToken)
 
-    override fun getOrders(userId: Long): List<Order> {
-        return orderRepository.findAllByUserId(userId)
-    }
+
+    override fun getOrders(userId: Long): List<Order> = orderRepository.findAllByUserId(userId)
+
 }

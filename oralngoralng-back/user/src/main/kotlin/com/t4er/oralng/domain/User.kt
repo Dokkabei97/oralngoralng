@@ -48,6 +48,4 @@ class User(
     }
 }
 
-private fun isValid(nickname: String): Boolean {
-    return nickname.length > 12
-}
+private fun isValid(nickname: String): Boolean = nickname.length > 12

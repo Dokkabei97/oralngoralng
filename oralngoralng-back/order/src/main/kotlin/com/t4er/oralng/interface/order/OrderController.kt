@@ -13,22 +13,15 @@ import jakarta.validation.Valid
 class OrderController(val orderFacade: OrderFacade) {
 
     @MutationMapping
-    fun registerOrder(@Argument @Valid input: RegisterOrderRequest): OrderInfo {
-        return orderFacade.registerOrder(input)
-    }
+    fun registerOrder(@Argument @Valid input: RegisterOrderRequest): OrderInfo = orderFacade.registerOrder(input)
 
     @MutationMapping
-    fun paymentOrder(@Argument @Valid input: PaymentRequest) {
-        orderFacade.paymentOrder(input)
-    }
+    fun paymentOrder(@Argument @Valid input: PaymentRequest) = orderFacade.paymentOrder(input)
 
     @QueryMapping
-    fun getOrders(@Argument @Valid input: GetOrdersRequest): List<OrderInfo> {
-        return orderFacade.getOrders(input)
-    }
+    fun getOrders(@Argument @Valid input: GetOrdersRequest): List<OrderInfo> = orderFacade.getOrders(input)
 
     @QueryMapping
-    fun getOrder(@Argument @Valid input: GetOrderRequest): OrderInfo {
-        return orderFacade.getOrder(input)
-    }
+    fun getOrder(@Argument @Valid input: GetOrderRequest): OrderInfo = orderFacade.getOrder(input)
+
 }

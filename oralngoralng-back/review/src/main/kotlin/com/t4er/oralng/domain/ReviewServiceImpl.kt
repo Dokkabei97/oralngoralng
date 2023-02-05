@@ -11,42 +11,40 @@ import org.springframework.transaction.annotation.Transactional
 class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewStore) : ReviewService {
 
     @Transactional
-    override fun create(review: CreateReviewRequest): ReviewInfo {
-        val locations: String = locationListToString(review.locationTags)
-        val themes: String = themeListToString(review.themeTags)
-        val images: List<Image> = requestToImage(review.images)
-        val of: Review = Review.of(
-            review.userId,
-            review.nickname,
-            review.title,
-            review.content,
+    override fun create(command: CreateReviewRequest): ReviewInfo {
+        val locations: String = locationListToString(command.locationTags)
+        val themes: String = themeListToString(command.themeTags)
+        val images: List<Image> = requestToImage(command.images)
+        val review: Review = Review.of(
+            command.userId,
+            command.nickname,
+            command.title,
+            command.content,
             images,
             locations,
             themes
         )
-        val create = reviewStore.create(of)
-        return ReviewInfo(create)
+        val of = reviewStore.create(review)
+        return ReviewInfo(of)
     }
 
     @Transactional
-    override fun update(review: UpdateReviewRequest) {
-        val findById: Review = reviewReader.getReview(review.reviewId)
-        val locations: String = locationListToString(review.locationTags)
-        val themes: String = themeListToString(review.themeTags)
-        val images: List<Image> = requestToImage(review.images)
-        findById.update(review.title, review.content, images, locations, themes)
+    override fun update(command: UpdateReviewRequest): ReviewInfo {
+        val review: Review = reviewReader.getReview(command.reviewId)
+        val locations: String = locationListToString(command.locationTags)
+        val themes: String = themeListToString(command.themeTags)
+        val images: List<Image> = requestToImage(command.images)
+        review.update(command.title, command.content, images, locations, themes)
+        return ReviewInfo(review)
     }
 
     @Transactional
-    override fun delete(review: DeleteReviewRequest) {
-        reviewStore.delete(review.reviewId)
-    }
+    override fun delete(command: DeleteReviewRequest) = reviewStore.delete(command.reviewId)
 
-    private fun requestToImage(list: MutableList<ImageRequest>): List<Image> {
-        return list.stream()
-            .map { Image(it.url, it.description) }
-            .toList()
-    }
+
+    private fun requestToImage(list: MutableList<ImageRequest>): List<Image> =
+        list.stream().map { Image(it.url, it.description) }.toList()
+
 
     private fun themeListToString(list: MutableList<Theme>): String {
         var themes: String = ""
