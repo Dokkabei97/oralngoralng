@@ -39,15 +39,12 @@ class ReviewServiceImpl(val reviewReader: ReviewReader, val reviewStore: ReviewS
     }
 
     @Transactional
-    override fun delete(command: DeleteReviewRequest) {
-        reviewStore.delete(command.reviewId)
-    }
+    override fun delete(command: DeleteReviewRequest) = reviewStore.delete(command.reviewId)
 
-    private fun requestToImage(list: MutableList<ImageRequest>): List<Image> {
-        return list.stream()
-            .map { Image(it.url, it.description) }
-            .toList()
-    }
+
+    private fun requestToImage(list: MutableList<ImageRequest>): List<Image> =
+        list.stream().map { Image(it.url, it.description) }.toList()
+
 
     private fun themeListToString(list: MutableList<Theme>): String {
         var themes: String = ""

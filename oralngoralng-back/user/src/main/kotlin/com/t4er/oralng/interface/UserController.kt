@@ -16,22 +16,15 @@ class UserController(val userFacade: UserFacade) {
     private val log = LoggerFactory.getLogger(UserController::class.java)
 
     @MutationMapping
-    fun registerUser(@Argument @Valid input: RegisterUserRequest): UserInfo {
-        return userFacade.registerUser(input)
-    }
+    fun registerUser(@Argument @Valid input: RegisterUserRequest): UserInfo = userFacade.registerUser(input)
 
     @MutationMapping
-    fun updateUser(@Argument @Valid input: UpdateUserRequest): UserInfo {
-        return userFacade.updateUser(input)
-    }
+    fun updateUser(@Argument @Valid input: UpdateUserRequest): UserInfo = userFacade.updateUser(input)
 
     @MutationMapping
-    fun deleteUser(@Argument @Valid input: DeleteUserRequest) {
-        userFacade.deleteUser(input)
-    }
+    fun deleteUser(@Argument @Valid input: DeleteUserRequest) = userFacade.deleteUser(input)
 
     @QueryMapping
-    fun getUser(@Argument @Valid input: GetUserRequest): UserInfo {
-        return userFacade.getUser(input)
-    }
+    fun getUser(@Argument @Valid input: GetUserRequest): UserInfo = userFacade.getUser(input)
+
 }

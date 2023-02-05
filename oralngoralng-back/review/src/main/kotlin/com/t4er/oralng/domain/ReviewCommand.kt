@@ -19,13 +19,6 @@ class ReviewCommand {
         val themeTags: MutableList<Theme>
     )
 
-    data class ImageRequest(
-        @field: NotBlank(message = "imageUrl은 필수 입니다.")
-        val url: String,
-        @field: NotBlank(message = "imageDescription은 필수 입니다.")
-        val description: String
-    )
-
     class UpdateReviewRequest(
         val reviewId: Long,
         val userId: Long,
@@ -36,6 +29,13 @@ class ReviewCommand {
         val images: MutableList<ImageRequest>,
         val locationTags: MutableList<Location>,
         val themeTags: MutableList<Theme>
+    )
+
+    data class ImageRequest(
+        @field: NotBlank(message = "url은 필수 입니다.")
+        val url: String,
+        @field: NotBlank(message = "description은 필수 입니다.")
+        val description: String
     )
 
     class DeleteReviewRequest(

@@ -8,19 +8,9 @@ import org.springframework.stereotype.Service
 @Service
 class UserFacade(val userService: UserService) {
 
-    fun registerUser(command: RegisterUserRequest): UserInfo {
-        return userService.registerUser(command)
-    }
+    fun registerUser(command: RegisterUserRequest): UserInfo = userService.registerUser(command)
+    fun updateUser(command: UpdateUserRequest): UserInfo = userService.updateUser(command)
+    fun deleteUser(command: DeleteUserRequest) = userService.deleteUser(command)
+    fun getUser(command: GetUserRequest): UserInfo = userService.getUser(command)
 
-    fun updateUser(command: UpdateUserRequest): UserInfo {
-        return userService.updateUser(command)
-    }
-
-    fun deleteUser(command: DeleteUserRequest) {
-        userService.deleteUser(command)
-    }
-
-    fun getUser(command: GetUserRequest): UserInfo {
-        return userService.getUser(command)
-    }
 }

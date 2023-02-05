@@ -13,12 +13,9 @@ import org.springframework.stereotype.Controller
 class ReviewController(val reviewFacade: ReviewFacade) {
 
     @MutationMapping
-    fun createReview(@Argument @Valid input: CreateReviewRequest): ReviewInfo {
-        return reviewFacade.createReview(input)
-    }
+    fun createReview(@Argument @Valid input: CreateReviewRequest): ReviewInfo = reviewFacade.createReview(input)
 
     @MutationMapping
-    fun updateReview(@Argument @Valid input: UpdateReviewRequest): ReviewInfo {
-        return reviewFacade.updateReview(input)
-    }
+    fun updateReview(@Argument @Valid input: UpdateReviewRequest): ReviewInfo = reviewFacade.updateReview(input)
+
 }

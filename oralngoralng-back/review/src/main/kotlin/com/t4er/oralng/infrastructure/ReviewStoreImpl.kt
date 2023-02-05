@@ -7,11 +7,7 @@ import org.springframework.stereotype.Component
 @Component
 class ReviewStoreImpl(val reviewRepository: ReviewRepository) : ReviewStore {
 
-    override fun create(review: Review): Review {
-        return reviewRepository.save(review)
-    }
+    override fun create(review: Review): Review = reviewRepository.save(review)
+    override fun delete(reviewId: Long) = reviewRepository.deleteReview(reviewId)
 
-    override fun delete(reviewId: Long) {
-        reviewRepository.deleteReview(reviewId)
-    }
 }

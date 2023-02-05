@@ -9,14 +9,12 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.graphql.execution.DataFetcherExceptionResolverAdapter
 
 @Configuration
-class GraphqlExceptionConfig: DataFetcherExceptionResolverAdapter() {
+class GraphqlExceptionConfig : DataFetcherExceptionResolverAdapter() {
 
-    override fun resolveToSingleError(ex: Throwable, env: DataFetchingEnvironment): GraphQLError? {
-        return when (ex) {
-            is EntityNotFoundException -> EntityNotFoundException(ex.message)
-            is InvalidParamException -> InvalidParamException(ex.message)
-            is IllegalStatusException -> IllegalStatusException(ex.message)
-            else ->  super.resolveToSingleError(ex, env)
-        }
+    override fun resolveToSingleError(ex: Throwable, env: DataFetchingEnvironment): GraphQLError? = when (ex) {
+        is EntityNotFoundException -> EntityNotFoundException(ex.message)
+        is InvalidParamException -> InvalidParamException(ex.message)
+        is IllegalStatusException -> IllegalStatusException(ex.message)
+        else -> super.resolveToSingleError(ex, env)
     }
 }

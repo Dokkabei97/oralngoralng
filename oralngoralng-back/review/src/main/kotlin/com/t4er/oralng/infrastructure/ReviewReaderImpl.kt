@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class ReviewReaderImpl(val reviewRepository: ReviewRepository) : ReviewReader {
-    override fun getReview(reviewId: Long): Review {
-        return reviewRepository.findById(reviewId)
-            .orElseThrow { EntityNotFoundException("해당 게시글은 없습니다.") }
-    }
+    override fun getReview(reviewId: Long): Review =
+        reviewRepository.findById(reviewId).orElseThrow { EntityNotFoundException("해당 게시글은 없습니다.") }
+
 }

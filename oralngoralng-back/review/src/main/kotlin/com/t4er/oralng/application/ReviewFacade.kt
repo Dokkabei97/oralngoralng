@@ -8,11 +8,7 @@ import org.springframework.stereotype.Service
 @Service
 class ReviewFacade(val reviewService: ReviewService) {
 
-    fun createReview(command: CreateReviewRequest): ReviewInfo {
-        return reviewService.create(command)
-    }
+    fun createReview(command: CreateReviewRequest): ReviewInfo = reviewService.create(command)
+    fun updateReview(command: UpdateReviewRequest): ReviewInfo = reviewService.update(command)
 
-    fun updateReview(command: UpdateReviewRequest): ReviewInfo {
-        return reviewService.update(command)
-    }
 }
