@@ -4,15 +4,10 @@ type ReviewInfo {
     nickname: String!
     title: String!
     content: String!
-    image: [ImageInfo]!
+    images: [Image]!
     locationTags: String!
     themeTags: String!
     commentCount: Int!
     recommendCount: Int!
     reportCount: Int!
-}
-
-type ImageInfo {
-    url: String!
-    description: String!
 }
