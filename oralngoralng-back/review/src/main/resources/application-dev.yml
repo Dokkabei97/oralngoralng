@@ -30,6 +30,13 @@ spring:
   # Redis 설정
   # ElasticSearch 설정
 
+  kafka:
+    producer:
+      bootstrap-servers: oralng-kafka:9002
+      acks: all
+    consumer:
+      bootstrap-servers: oralng-kafka:9002
+
 logging:
   level:
     org.hibernate.sql: debug
