@@ -5,9 +5,11 @@ import com.t4er.oralng.exception.InvalidParamException
 import io.hypersistence.utils.hibernate.type.json.JsonType
 import jakarta.persistence.*
 import org.hibernate.annotations.Type
+import org.springframework.data.elasticsearch.annotations.Document
 
 @Entity
 @Table(name = "reviews")
+@Document(indexName = "reviews")
 class Review(
 
     @Id
