@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-master
+spec:
+  selector:
+    matchLabels:
+      app: redis
+      role: master
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: master
+    spec:
+      containers:
+        - name: master
+          image: redis:latest
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 512Mi
+          ports:
+            - containerPort: 6379

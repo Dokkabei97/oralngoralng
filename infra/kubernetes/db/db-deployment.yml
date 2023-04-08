@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-db
+  template:
+    metadata:
+      labels:
+        app: user-db
+    spec:
+      containers:
+        - name: user-db
+          image: mysql:8.0
+          volumeMounts:
+            - name: user-db-data
+              mountPath: /var/lib/mysql
+          env:
+            - name: MYSQL_DATABASE
+              value: "user"
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: db_root_password
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: db_user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: db_user_password
+            - name: TZ
+              value: "Asia/Seoul"
+          args:
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+      volumes:
+        - name: user-db-data
+          persistentVolumeClaim:
+            claimName: user-db-pvc
+

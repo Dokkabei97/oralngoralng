@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-sentinel
+spec:
+  selector:
+    matchLabels:
+      app: redis
+      role: sentinel
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: sentinel
+    spec:
+      containers:
+        - name: sentinel
+          image: redis:latest
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 256Mi
+          env:
+            - name: REDIS_MASTER_HOST
+              value: "redis-master"
+          command:
+            - redis-sentinel
+            - /usr/local/etc/redis/sentinel.conf
