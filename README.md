@@ -7,7 +7,7 @@
 - Kotlin / Spring Boot
 - Go / Gin
 - TypeScript / Next.js
-- Dart / Flutter
+- Dart / Flutter (삭제 이유 Kotlin 공통 모듈로 변경)
 - Elasticsearch / Logstash || Filebeat / Kibana
 - GraphQL
 - Kafka
